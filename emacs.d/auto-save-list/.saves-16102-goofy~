@@ -1,0 +1,14 @@
+/home/balaji/linux-stable/tools/perf/builtin-top.c
+/home/balaji/linux-stable/tools/perf/#builtin-top.c#
+/home/balaji/linux-stable/arch/x86/kernel/cpu/perf_event.c
+/home/balaji/linux-stable/arch/x86/kernel/cpu/#perf_event.c#
+/home/balaji/linux-stable/arch/x86/include/asm/msr.h
+/home/balaji/linux-stable/arch/x86/include/asm/#msr.h#
+/home/balaji/linux-stable/kernel/events/core.c
+/home/balaji/linux-stable/kernel/events/#core.c#
+/home/balaji/linux-stable/tools/perf/util/annotate.c
+/home/balaji/linux-stable/tools/perf/util/#annotate.c#
+/home/balaji/linux-stable/lib/dynamic_debug.c
+/home/balaji/linux-stable/lib/#dynamic_debug.c#
+/home/balaji/linux-stable/TAGS
+/home/balaji/linux-stable/#TAGS#
