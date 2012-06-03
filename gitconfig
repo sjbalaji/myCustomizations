@@ -8,7 +8,7 @@
 	status = auto
 	branch = auto
 [color "branch"]
-        current = red reverse
+        current = magenta reverse
         local = yellow
         remote = green
 [color "diff"]
@@ -22,4 +22,4 @@
         untracked = cyan
 
 [core]
-	editor = emacs
+	editor = emacs-23.3-nox
