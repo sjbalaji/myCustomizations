@@ -1,0 +1,29 @@
+Config { font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
+       , bgColor = "black"
+       , fgColor = "grey"
+       , position = Top
+       , lowerOnStart = True
+       , commands = [ Run Weather "VOMM" ["-t","<station>: <tempC>C","-L","25","-H","30","--normal","green","--high","red","--low","lightblue"] 36000
+       	 	    , Run Weather "VABB" ["-t","<station>: <tempC>C","-L","25","-H","30","--normal","green","--high","red","--low","lightblue"] 36000
+                    , Run Network "eth1" ["-L","100","-H","10000","--normal","green","--high","red"] 10
+                    , Run Network "p5p1" ["-L","0","-H","200","--normal","green","--high","red"] 10
+                    , Run Cpu ["-L","10","-H","50","--normal","green","--high","red"] 10
+                    , Run Memory ["-t","Mem: <usedratio>%","-L","0","-H","20","--normal","green","--high","red"] 10
+                    , Run Swap ["-L","0","-H","20","--normal","green","--high","red"] 10
+                    , Run Com "uname" ["-n","-s","-r"] "" 36000
+                    , Run Date "%a %b %_d %Y %H:%M:%S" "date" 10
+		    , Run Com "uptime | awk '{print $2 $3 $4 $5 }'" [] "uptime" 10
+		    , Run Com "ifconfig | grep  192.168 | cut -d ':' -f2 | cut -d ' ' -f1" [] "ifconfig" 10
+		    , Run Com "ifconfig | grep  10.9 | cut -d ':' -f2 | cut -d ' ' -f1" [] "ifconfig1" 10
+		    , Run Battery ["-t","<left>% / <timeleft>","-L","50","-H","75","-h","green","-n","yell","-l","red"] 10
+   		    , Run ThermalZone 0 ["-t","<temp> C","-L","40","-H","79","-h","red","-n","yellow","-l","green"] 10
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = "%cpu% | %memory% * %swap% | %eth1% | %ifconfig% | %p5p1% | %ifconfig1% | %uptime% |  %battery% ; %thermal0% | }{ <fc=#ee9a00>%date%</fc> | %VOMM% | %VABB% |<fc=#ab9abb>%uname%</fc>    "
+       }
+
+
+
+
+
