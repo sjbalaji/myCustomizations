@@ -22,8 +22,3 @@ Config { font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
        , alignSep = "}{"
        , template = "%cpu% | %memory% * %swap% | %eth1% | %ifconfig% | %p5p1% | %ifconfig1% | %uptime% |  %battery% ; %thermal0% | }{ <fc=#ee9a00>%date%</fc> | %VOMM% | %VABB% |<fc=#ab9abb>%uname%</fc>    "
        }
-
-
-
-
-
