@@ -10,7 +10,7 @@
 (define-key global-map "\C-ca" 'org-agenda)
 (setq org-log-done t)
 
-(setq org-agenda-files (list "~/.emacs.d/org/test.org"))
+(setq org-agenda-files (list "~/.emacs.d/org/HotPower2012.org"))
 			     
 ;; ===== Function to delete a line =====
 
@@ -48,20 +48,17 @@
       (delete-char 1)
       (move-to-column previous-column))))
 
-;; Now bind the delete line function to the F8 key
+
+(global-set-key [f1] 'comment-region)
+(global-set-key [f2] 'uncomment-region)
 (global-set-key [f8] 'nuke-line)
 (global-set-key [f9] 'eshell-command)
 (global-set-key [f10] 'shell-command-on-region)
-;; shorcut for comment region
-;;(global-unset-key "\C-c\C-c")
-(global-set-key  [f1] 'comment-region)
+(global-set-key [f11] "\C-x\C-q")
 
-;; shortcut for uncomment region
-;;(global-unset-key "\C-c\C-u")
-(global-set-key [f2] 'uncomment-region)
 ;;(global-set-key "\C-cg" 'goto-line) M-g
 ;; shortcut for vm 
-(global-set-key [f11] 'vm)
+
 
 
 ;; C-x h -- select entire region
@@ -73,3 +70,8 @@
 ;; (when (load "hnb-mode" t)
 ;;   (autoload 'hnb-mode "hnb-mode" "Hierarchal Notebook editing mode." t)
 ;;   (add-to-list 'auto-mode-alist '("\\.hnb$" . hnb-mode)))
+;; Now bind the delete line function to the F8 key
+;; shorcut for comment region
+;;(global-unset-key "\C-c\C-c")
+;; shortcut for uncomment region
+;;(global-unset-key "\C-c\C-u")
