@@ -22,4 +22,4 @@
         untracked = cyan
 
 [core]
-	editor = emacs-23.3-nox
+	editor = emacs
