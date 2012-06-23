@@ -60,25 +60,6 @@ alias glg='git log --graph --oneline --all'
 # SSH related aliases
 ###############################################################################
 ###############################################################################
-# Exports
-export guest='guest@10.6.9.254'
-export ADD='192.168.0.1'
-export mvn='~/apache-maven-3.0.3/bin/./mvn'
-###############################################################################
-###############################################################################
-#alias setproxy='export https_proxy=localhost:1990\ export http_proxy=localhost:1990\ export ftp_proxy=localhost:1990'
-#alias cn='sudo cntlm'
-#alias killcntlm='pidof cntlm | xargs sudo kill -9'
-#alias killfirefox='pidof firefox | xargs sudo kill -9'
-#export http_proxy=localhost:1990
-#export ftp_proxy=localhost:1990
-#export https_proxy=localhost:1990
-#export http_proxy=localhost:1990
-#export ftp_proxy=localhost:1990
-#export https_proxy=localhost:1990
-#echo proxy set
-###############################################################################
-###############################################################################
 # Kultted from trac >:)
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
@@ -201,6 +182,9 @@ export STORM_HOME=/home/balaji/projects/storm/storm-0.7.0-SNAPSHOT
 export SCALA_HOME=/home/balaji/projects/storm/scala-2.8.2.final
 export PATH=/home/balaji/projects/storm/scala-2.8.2.final/bin:$JAVA_HOME/bin:$M2:$STORM_HOME/bin:$PATH:~/bin:~/scripts
 export HADOOP_PREFIX_HOME=/home/balaji/YARN/hadoop-common/hadoop-dist/target/hadoop-0.24.0-SNAPSHOT
+export mvn='~/apache-maven-3.0.3/bin/./mvn'
+##############################################################################
+# For cuda
 export LD_LIBRARY_PATH=/usr/local/lib
 export PATH=$PATH:$HADOOP_PREFIX_HOME/bin
 ###############################################################################
