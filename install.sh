@@ -10,4 +10,4 @@ echo Configuring xmonad
 mkdir ~/.xmonad
 cp xmonad.hs ~/.xmonad/xmonad.hs
 echo Configuring xmobar
-cp xmobarrc ~/.xmobarrc
+cp -r  xmobarrc ~/.xmobarrc
