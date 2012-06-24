@@ -9,5 +9,5 @@ cp gitconfig ~/.gitconfig
 echo Configuring xmonad
 mkdir ~/.xmonad
 cp xmonad.hs ~/.xmonad/xmonad.hs
-echo Cinfiguring xmobar
+echo Configuring xmobar
 cp xmobarrc ~/.xmobarrc

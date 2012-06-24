@@ -34,4 +34,4 @@ myConfig = defaultConfig { modMask = mod4Mask,
                            normalBorderColor = myNormalBorderColor,
                            focusedBorderColor = myFocusedBorderColor,
 			   logHook = myLogHook
-                          }
+                         }
