@@ -1,1 +1,1 @@
-ksysguard emacs vim xmonad xmobar i3 dmenu vlc tightvncserver xtightvncviewer screen netbeans g++ gcc git-core gitk texmaker gnuplot
+ksysguard emacs vim xmonad xmobar i3 dmenu vlc tightvncserver xtightvncviewer screen netbeans g++ gcc git-core gitk texmaker gnuplot guake xcompmgr 

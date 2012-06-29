@@ -32,7 +32,7 @@ alias e='emacs'
 alias eq='emacs-23.3 -nw '
 ###############################################################################
 # Set the wallpaper in dwm or xmonad 
-feh --bg-scale ~/Pictures/scotland.jpg
+feh --bg-scale /home/balaji/myCustomizations/Beautiful-Ireland-0105.jpg
 ###############################################################################
 # Matlab no window
 ###############################################################################

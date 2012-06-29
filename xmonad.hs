@@ -25,7 +25,7 @@ myBorderWidth = 1
 myPP = xmobarPP { ppCurrent = xmobarColor "#429942" "" . wrap "<" ">" }
 
 -- Keybinding to toggle the gap for the bar.
-toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask, xK_b)
+toggleStrutsKey XConfig { XMonad.modMask = modMask } = (modMask, xK_b)
 
 -- Main configuration, override the defaults to your liking.
 myConfig = defaultConfig { modMask = mod4Mask,
