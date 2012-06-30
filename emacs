@@ -52,10 +52,11 @@
 
 (global-set-key [f1] 'comment-region)
 (global-set-key [f2] 'uncomment-region)
+(global-set-key [f3] "\C-x\C-q")
 (global-set-key [f8] 'nuke-line)
 (global-set-key [f9] 'eshell-command)
 (global-set-key [f10] 'shell-command-on-region)
-(global-set-key [f11] "\C-x\C-q")
+
 
 (load "~/.emacs.d/header2.el")
 (add-hook 'c-mode-common-hook   'auto-make-header)
