@@ -5,6 +5,7 @@
 (add-hook 'find-file-hook (lambda () (global-hl-line-mode 1)))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (require 'org-install)
+;;(require 'header)
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 (define-key global-map "\C-cl" 'org-store-link)
 (define-key global-map "\C-ca" 'org-agenda)
@@ -56,22 +57,6 @@
 (global-set-key [f10] 'shell-command-on-region)
 (global-set-key [f11] "\C-x\C-q")
 
-;;(global-set-key "\C-cg" 'goto-line) M-g
-;; shortcut for vm 
-
-
-
-;; C-x h -- select entire region
-;;  M C \ --- indent region
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; (add-to-list 'load-path "~/.emacs.d/")
-;; ;;;(load "hnb")
-;; (require 'hnb-mode)
-;; (when (load "hnb-mode" t)
-;;   (autoload 'hnb-mode "hnb-mode" "Hierarchal Notebook editing mode." t)
-;;   (add-to-list 'auto-mode-alist '("\\.hnb$" . hnb-mode)))
-;; Now bind the delete line function to the F8 key
-;; shorcut for comment region
-;;(global-unset-key "\C-c\C-c")
-;; shortcut for uncomment region
-;;(global-unset-key "\C-c\C-u")
+(load "~/.emacs.d/header2.el")
+(add-hook 'c-mode-common-hook   'auto-make-header)
+(add-hook 'write-file-hooks 'auto-update-file-header)  
