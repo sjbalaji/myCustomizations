@@ -3,6 +3,11 @@
 (setq auto-completion-mode t)
 (add-hook 'find-file-hook (lambda () (linum-mode 1)))
 (add-hook 'find-file-hook (lambda () (global-hl-line-mode 1)))
+(add-hook 'load-path "~/.emacs.d/emms-3.0/")
+     (require 'emms-setup)
+     (emms-standard)
+     (emms-default-players)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (require 'org-install)
 ;;(require 'header)
