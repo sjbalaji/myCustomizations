@@ -10,9 +10,9 @@
 ;; Copyright (C) 1988 Lynn Randolph Slater, Jr.
 ;; Created: Tue Aug  4 17:06:46 1987
 ;; Version: 21.0
-;; Last-Updated: Sun Jan  1 14:05:19 2012 (-0800)
-;;           By: dradams
-;;     Update #: 1816
+;; Last-Updated: Sat Jun 30 22:35:19 2012 (+0530)
+;;           By: balaji
+;;     Update #: 1825
 ;; URL: http://www.emacswiki.org/cgi-bin/wiki/header2.el
 ;; Keywords: tools, docs, maint, abbrev, local
 ;; Compatibility: GNU Emacs: 20.x, 21.x, 22.x, 23.x
@@ -394,7 +394,9 @@ t means use local time with timezone; nil means use UTC."
                               ;;header-status
                               header-author
                               header-maintainer
-                              header-copyright
+			      header-mail
+			      header-organization
+                              ;;header-copyright
                               header-creation-date
                               ;;header-rcs-id
                               header-version
@@ -532,7 +534,15 @@ packages."
 
 (defsubst header-maintainer ()
   "Insert \"Maintainer: \" line."
-  (insert header-prefix-string "Maintainer: \n"))
+  (insert header-prefix-string "Maintainer: " (user-full-name) "\n"))
+
+(defsubst header-mail ()
+ "Insert \"Email: \" line."
+ (insert header-prefix-string "Email:  sjbalajimdu@gmail.com\n"))
+
+(defsubst header-organization ()
+ "Insert \"Organization: \" line."
+ (insert header-prefix-string "Organization:  IIT Madras\n"))
 
 (defun header-copyright ()
   "Insert `header-copyright-notice', unless nil."
