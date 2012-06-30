@@ -10,9 +10,9 @@
 ;; Copyright (C) 1988 Lynn Randolph Slater, Jr.
 ;; Created: Tue Aug  4 17:06:46 1987
 ;; Version: 21.0
-;; Last-Updated: Sat Jun 30 22:35:19 2012 (+0530)
+;; Last-Updated: Sat Jun 30 22:49:30 2012 (+0530)
 ;;           By: balaji
-;;     Update #: 1825
+;;     Update #: 1837
 ;; URL: http://www.emacswiki.org/cgi-bin/wiki/header2.el
 ;; Keywords: tools, docs, maint, abbrev, local
 ;; Compatibility: GNU Emacs: 20.x, 21.x, 22.x, 23.x
@@ -388,41 +388,41 @@ t means use local time with timezone; nil means use UTC."
 (defcustom make-header-hook '(
                               ;;header-mode-line
                               header-title
-                              header-blank
+                              ;;header-blank
                               header-file-name
                               header-description
                               ;;header-status
                               header-author
-                              header-maintainer
+                              ;;header-maintainer
 			      header-mail
 			      header-organization
                               ;;header-copyright
                               header-creation-date
                               ;;header-rcs-id
-                              header-version
+                              ;;header-version
                               ;;header-sccs
                               header-modification-date
                               header-modification-author
                               header-update-count
-                              header-url
-                              header-keywords
-                              header-compatibility
-                              header-blank
-                              header-lib-requires
+                              ;;header-url
+                              ;;header-keywords
+                              ;;header-compatibility
+                              ;;header-blank
+                              ;;header-lib-requires
+                              ;;header-end-line
+                              ;;header-commentary
+                              ;;header-blank
+                              ;;header-blank
+                              ;;header-blank
+                              ;;header-end-line
+                              ;;header-history
+                              ;;header-blank
+                              ;;header-blank
+                              ;;header-rcs-log
                               header-end-line
-                              header-commentary
-                              header-blank
-                              header-blank
-                              header-blank
-                              header-end-line
-                              header-history
-                              header-blank
-                              header-blank
-                              ;; header-rcs-log
-                              header-end-line
-                              header-free-software
-                              header-code
-                              header-eof
+                              ;;header-free-software
+                              ;;header-code
+                              ;;header-eof
                               )
   "*Functions that insert header elements.
 Each function is started on a new line and is expected to end in a new line.
