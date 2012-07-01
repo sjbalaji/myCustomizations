@@ -1,23 +1,49 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; supress the default startup messages
 (setq-default transient-mark-mode t)
 (setq inhibit-startup-message t)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; setup auto completion mode
 (setq auto-completion-mode t)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; line number mode
 (add-hook 'find-file-hook (lambda () (linum-mode 1)))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; highlight the current line
 (add-hook 'find-file-hook (lambda () (global-hl-line-mode 1)))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; emacs multimedia player 
 (add-hook 'load-path "~/.emacs.d/emms-3.0/")
      (require 'emms-setup)
      (emms-standard)
      (emms-default-players)
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; select color theme
+(require 'color-theme)
+(color-theme-initialize)
+(color-theme-arjen)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; org mode setup
 (require 'org-install)
-;;(require 'header)
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 (define-key global-map "\C-cl" 'org-store-link)
 (define-key global-map "\C-ca" 'org-agenda)
 (setq org-log-done t)
-
 (setq org-agenda-files (list "~/.emacs.d/org/HotPower2012.org"))
-			     
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; custom key bindings
+(global-set-key [f1] 'comment-region)
+(global-set-key [f2] 'uncomment-region)
+(global-set-key [f3] "\C-x\C-q")
+(global-set-key [f8] 'nuke-line)
+(global-set-key [f9] 'eshell-command)
+(global-set-key [f10] 'shell-command-on-region)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; auto insert headers
+(load "~/.emacs.d/header2.el")
+(add-hook 'c-mode-common-hook   'auto-make-header)
+(add-hook 'write-file-hooks 'auto-update-file-header)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;			     
 ;; ===== Function to delete a line =====
 
 ;; First define a variable which will store the previous column position
@@ -54,15 +80,4 @@
       (delete-char 1)
       (move-to-column previous-column))))
 
-
-(global-set-key [f1] 'comment-region)
-(global-set-key [f2] 'uncomment-region)
-(global-set-key [f3] "\C-x\C-q")
-(global-set-key [f8] 'nuke-line)
-(global-set-key [f9] 'eshell-command)
-(global-set-key [f10] 'shell-command-on-region)
-
-
-(load "~/.emacs.d/header2.el")
-(add-hook 'c-mode-common-hook   'auto-make-header)
-(add-hook 'write-file-hooks 'auto-update-file-header)  
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
