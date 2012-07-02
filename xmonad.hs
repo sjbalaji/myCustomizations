@@ -28,7 +28,8 @@ myPP = xmobarPP { ppCurrent = xmobarColor "#429942" "" . wrap "<" ">" }
 toggleStrutsKey XConfig { XMonad.modMask = modMask } = (modMask, xK_b)
 
 -- Main configuration, override the defaults to your liking.
-myConfig = defaultConfig { modMask = mod4Mask,
+myConfig = defaultConfig {
+                           modMask = mod4Mask,
                            terminal = myTerminal,
                            borderWidth = myBorderWidth,
                            normalBorderColor = myNormalBorderColor,
