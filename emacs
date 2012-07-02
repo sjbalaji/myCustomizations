@@ -1,3 +1,20 @@
+(add-hook 'load-path "~/.emacs.d/")
+;;(setq ac-modes (append ac-modes '(latex-mode)))
+;;(add-hook 'latex-mode-hook 'ac-l-setup)
+(require 'auto-complete-latex)
+
+(setq ac-l-sources 
+   '(
+   ac-l-source-user-keywords
+   ac-l-source-basic-commands
+   ac-l-source-package-commands
+   ac-l-source-primitives
+   ac-l-source-style-commands
+   ac-l-source-latex-dot-ltx
+   ac-l-source-basic-options-&-variables
+   ac-l-source-package-options-&-variables
+   ))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; split the window vertically whern two or more files are opened
 (setq split-width-threshold 0)
