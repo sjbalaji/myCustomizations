@@ -1,6 +1,23 @@
+(add-hook 'load-path "~/.emacs.d/")
+;;(setq ac-modes (append ac-modes '(latex-mode)))
+;;(add-hook 'latex-mode-hook 'ac-l-setup)
+(require 'auto-complete-latex)
+
+(setq ac-l-sources 
+   '(
+   ac-l-source-user-keywords
+   ac-l-source-basic-commands
+   ac-l-source-package-commands
+   ac-l-source-primitives
+   ac-l-source-style-commands
+   ac-l-source-latex-dot-ltx
+   ac-l-source-basic-options-&-variables
+   ac-l-source-package-options-&-variables
+   ))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; split the window vertically whern two or more files are opened
-(setq split-width-threshold 0)
+;;(setq split-width-threshold 40)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; supress the default startup messages
 (setq-default transient-mark-mode t)
@@ -12,8 +29,23 @@
 ;; line number mode
 (add-hook 'find-file-hook (lambda () (linum-mode 1)))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; coulmn number mode
+(add-hook 'find-file-hook (lambda () (column-number-mode 1)))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; highlight the current line
 (add-hook 'find-file-hook (lambda () (global-hl-line-mode 1)))
+;; ===== Turn on Auto Fill mode automatically in all modes =====
+
+;; Auto-fill-mode the the automatic wrapping of lines and insertion of
+;; newlines when the cursor goes over the column limit.
+
+;; This should actually turn on auto-fill-mode by default in all major
+;; modes. The other way to do this is to turn on the fill for specific modes
+;; via hooks.
+(setq auto-fill-mode 1)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; open files in read only mode by default (f3 can to used to change to write mode)
+(add-hook 'find-file-hook (lambda () (toggle-read-only 1)))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; emacs multimedia player 
 (add-hook 'load-path "~/.emacs.d/emms-3.0/")
