@@ -14,7 +14,12 @@
 ;;    ac-l-source-basic-options-&-variables
 ;;    ac-l-source-package-options-&-variables
 ;;    ))
-
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; displays the time in the status bar
+(display-time)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Changes all yes/no questions to y/n type
+(fset 'yes-or-no-p 'y-or-n-p)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; split the window vertically whern two or more files are opened
 ;;(setq split-width-threshold 40)
@@ -70,6 +75,9 @@
 (global-set-key [f1] 'comment-region)
 (global-set-key [f2] 'uncomment-region)
 (global-set-key [f3] "\C-x\C-q")
+(global-set-key [f4] "\C-xrk")
+(global-set-key [f5] "\C-xrrr")
+(global-set-key [f6] "\C-xrir")
 (global-set-key [f8] 'nuke-line)
 (global-set-key [f9] 'eshell-command)
 (global-set-key [f10] 'shell-command-on-region)
