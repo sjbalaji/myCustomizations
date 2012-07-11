@@ -84,6 +84,7 @@
 (global-set-key [f9] 'switch-to-term)
 (global-set-key [f10] 'next-buffer)
 (define-key global-map "\C-x\C-t" 'ansi-term)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun switch-to-term ()
   (interactive)
   (switch-to-buffer "*ansi-term*"))
