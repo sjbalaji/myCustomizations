@@ -39,6 +39,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; highlight the current line
 (add-hook 'find-file-hook (lambda () (global-hl-line-mode 1)))
+;;(add-hook 'find-file-hook (lambda () (ansi-term)))
 ;; ===== Turn on Auto Fill mode automatically in all modes =====
 
 ;; Auto-fill-mode the the automatic wrapping of lines and insertion of
@@ -78,9 +79,14 @@
 (global-set-key [f4] "\C-xrk")
 (global-set-key [f5] "\C-xrrr")
 (global-set-key [f6] "\C-xrir")
+;;(global-set-key [f7] 'ansi-term)
 (global-set-key [f8] 'nuke-line)
-(global-set-key [f9] 'eshell-command)
-(global-set-key [f10] 'shell-command-on-region)
+(global-set-key [f9] 'switch-to-term)
+(global-set-key [f10] 'next-buffer)
+(define-key global-map "\C-x\C-t" 'ansi-term)
+(defun switch-to-term ()
+  (interactive)
+  (switch-to-buffer "*ansi-term*"))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; auto insert headers
 (load "~/.emacs.d/header2.el")
