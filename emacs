@@ -47,6 +47,8 @@
 ;; This should actually turn on auto-fill-mode by default in all major
 ;; modes. The other way to do this is to turn on the fill for specific modes
 ;; via hooks.
+(setq-default truncate-lines t)
+(setq-default fill-column 200)
 (setq auto-fill-mode 1)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; open files in read only mode by default (f3 can to used to change to write mode)
@@ -60,7 +62,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; select color theme
 (require 'color-theme)
-;;(color-theme-initialize)
+(color-theme-initialize)
 (color-theme-arjen)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; org mode setup
