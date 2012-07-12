@@ -83,7 +83,7 @@ manageHook' = (composeAll . concat $
     , [className    =? c            --> doShift  "1:main"   |   c   <- myDev    ] -- move dev to main
     , [className    =? c            --> doShift  "2:web"    |   c   <- myWebs   ] -- move webs to main
     , [className    =? c            --> doShift  "3:vim"    |   c   <- myVim    ] -- move webs to main
-    , [className    =? c            --> doShift   "4:chat"   |   c   <- myChat   ] -- move chat to chat
+    , [className    =? c            --> doShift  "4:chat"   |   c   <- myChat   ] -- move chat to chat
     , [className    =? c            --> doShift  "5:music"  |   c   <- myMusic  ] -- move music to music
     , [className    =? c            --> doShift  "6:gimp"   |   c   <- myGimp   ] -- move img to div
     , [className    =? c            --> doCenterFloat       |   c   <- myFloats ] -- float my floats
@@ -100,11 +100,11 @@ manageHook' = (composeAll . concat $
         myFloats  = ["Smplayer","MPlayer","VirtualBox","Xmessage","XFontSel","Downloads","Nm-connection-editor"]
         myWebs    = ["Firefox","Google-chrome","Chromium", "Chromium-browser"]
         myMovie   = ["Boxee","Trine"]
-        myMusic     = ["Rhythmbox","Spotify"]
-        myChat        = ["Pidgin","Buddy List"]
-        myGimp          = ["Gimp"]
-        myDev             = ["gnome-terminal"]
-        myVim               = ["Gvim"]
+        myMusic   = ["Rhythmbox","Spotify"]
+        myChat    = ["Pidgin","Buddy List"]
+        myGimp    = ["Gimp"]
+        myDev     = ["gnome-terminal"]
+        myVim     = ["Gvim"]
  
         -- resources
         myIgnores = ["desktop","desktop_window","notify-osd","stalonetray","trayer"]
