@@ -96,12 +96,14 @@ myXmonadBar = "dzen2  -ta 'l' -h '24' -fg '#FFFFFF' -bg '#1B1D1E'"
 myStatusBar = "conky -c /home/balaji/.xmonad/.conky_dzen | dzen2 -x '2080' -w '2080' -h '24' -ta 'r' -bg '#1B1D1E' -fg '#FFFFFF' -y '0'"
 myBitmapsDir = "/home/my_user/.xmonad/dzen2"
 myBottomBar = "xmobar -b"
+myGuake = "guake"
 --}}}
 -- Main {{{
 main = do
     dzenLeftBar <- spawnPipe myXmonadBar
     dzenRightBar <- spawnPipe myStatusBar
     xmobarBottom <- spawnPipe myBottomBar
+    guake <- spawnPipe myGuake
     xmonad $ defaultConfig
       { terminal            = myTerminal
       , workspaces          = myWorkspaces
