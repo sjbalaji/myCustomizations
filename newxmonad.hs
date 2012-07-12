@@ -93,13 +93,15 @@ myWorkspaces    = ["1:main","2:web","3:emacs","4:chat","5:music", "6:gimp","7:wo
 -- Dzen/Conky
 --myXmonadBar = "dzen2 -x '1440' -y '0' -h '24' -w '640' -ta 'l' -fg '#FFFFFF' -bg '#1B1D1E'"
 myXmonadBar = "dzen2  -ta 'l' -h '24' -fg '#FFFFFF' -bg '#1B1D1E'"
-myStatusBar = "conky -c /home/balaji/.xmonad/.conky_dzen | dzen2 -x '2080' -w '1040' -h '24' -ta 'r' -bg '#1B1D1E' -fg '#FFFFFF' -y '0'"
+myStatusBar = "conky -c /home/balaji/.xmonad/.conky_dzen | dzen2 -x '2080' -w '2080' -h '24' -ta 'r' -bg '#1B1D1E' -fg '#FFFFFF' -y '0'"
 myBitmapsDir = "/home/my_user/.xmonad/dzen2"
+myBottomBar = "xmobar -b"
 --}}}
 -- Main {{{
 main = do
     dzenLeftBar <- spawnPipe myXmonadBar
     dzenRightBar <- spawnPipe myStatusBar
+    xmobarBottom <- spawnPipe myBottomBar
     xmonad $ defaultConfig
       { terminal            = myTerminal
       , workspaces          = myWorkspaces
