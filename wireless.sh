@@ -7,24 +7,20 @@ iwconfig wlan2 2>&1 | grep -q no\ wireless\ extensions\. && {
 
 essid=`iwconfig wlan2 | awk -F '"' '/ESSID/ {print $2}'`
 stngth=`iwconfig wlan2 | awk -F '=' '/Quality/ {print $2}' | cut -d '/' -f 1`
-echo $stngth
 bars=`expr $stngth / 7`
-echo $bars
 case $bars in
-  0)  bar='[----------]' ;;
-  1)  bar='[/---------]' ;;
-  2)  bar='[//--------]' ;;
-  3)  bar='[///-------]' ;;
-  4)  bar='[////------]' ;;
-  5)  bar='[/////-----]' ;;
-  6)  bar='[//////----]' ;;
-  7)  bar='[///////---]' ;;
-  8)  bar='[////////--]' ;;
-  9)  bar='[/////////-]' ;;
-  10) bar='[//////////]' ;;
-  *)  bar='[----!!----]' ;;
+  0)  bar="[$(tput setaf 1)$(tput bold)----------$(tput sgr0)]" ;;
+  1)  bar="[$(tput setaf 2)$(tput bold)*$(tput setaf 1)$(tput bold)---------$(tput sgr0)]" ;;
+  2)  bar="[$(tput setaf 2)$(tput bold)**$(tput setaf 1)$(tput bold)--------$(tput sgr0)]" ;;
+  3)  bar="[$(tput setaf 2)$(tput bold)***$(tput setaf 1)$(tput bold)-------$(tput sgr0)]" ;;
+  4)  bar="[$(tput setaf 2)$(tput bold)****$(tput setaf 1)$(tput bold)------$(tput sgr0)]" ;;
+  5)  bar="[$(tput setaf 2)$(tput bold)*****$(tput setaf 1)$(tput bold)-----$(tput sgr0)]" ;;
+  6)  bar="[$(tput setaf 2)$(tput bold)******$(tput setaf 1)$(tput bold)----$(tput sgr0)]" ;;
+  7)  bar="[$(tput setaf 2)$(tput bold)*******$(tput setaf 1)$(tput bold)---$(tput sgr0)]" ;;
+  8)  bar="[$(tput setaf 2)$(tput bold)********$(tput setaf 1)$(tput bold)--$(tput sgr0)]" ;;
+  9)  bar="[$(tput setaf 2)$(tput bold)*********$(tput setaf 1)$(tput bold)-$(tput sgr0)]" ;;
+  10) bar="[$(tput setaf 2)$(tput bold)**********$(tput sgr0)]" ;;
+  *)  bar="[$(tput setaf 1)$(tput bold)----!!----$(tput sgr0)]" ;;
 esac
-
-echo $essid $bar
-
+echo -ne "${essid}: ${bar}"
 exit 0
