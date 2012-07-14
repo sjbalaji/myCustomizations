@@ -1,13 +1,13 @@
 #!/bin/sh
 
-iwconfig wlan2 2>&1 | grep -q no\ wireless\ extensions\. && {
+iwconfig eth1 2>&1 | grep -q no\ wireless\ extensions\. && {
   echo wired
   exit 0
 }
 
-essid=`iwconfig wlan2 | awk -F '"' '/ESSID/ {print $2}'`
-stngth=`iwconfig wlan2 | awk -F '=' '/Quality/ {print $2}' | cut -d '/' -f 1`
-bars=`expr $stngth / 7`
+essid=`sudo iwconfig eth1 | awk -F '"' '/ESSID/ {print $2}'`
+stngth=`sudo iwconfig eth1 | awk -F '=' '/Quality/ {print $2}' | cut -d '/' -f 1`
+bars=`echo "$stngth * 2" | bc`
 case $bars in
   0)  bar="[$(tput setaf 1)$(tput bold)----------$(tput sgr0)]" ;;
   1)  bar="[$(tput setaf 2)$(tput bold)*$(tput setaf 1)$(tput bold)---------$(tput sgr0)]" ;;
