@@ -82,7 +82,7 @@
 (global-set-key [f4] "\C-xrk")
 (global-set-key [f5] "\C-xrrr")
 (global-set-key [f6] "\C-xrir")
-(global-set-key [f7] 'kill-buffer-and-window)
+(global-set-key [f7] "\C-u\M-.")
 (global-set-key [f8] 'nuke-line)
 (global-set-key [f9] 'switch-to-term)
 (global-set-key [f10] 'next-buffer)
