@@ -17,5 +17,5 @@ Config { font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%cpu% | %memory% * %swap% | %em1% | %ifconfig% | %uptime% }{ %wifi% | <fc=#ee9a00>%date%</fc> | %VOMM% | %VABB% |<fc=#ab9abb>%uname%</fc>    "
+       , template = "%cpu% | %memory% * %swap% | %em1% | %ifconfig% | %uptime% }{ <fc=#ee9a00>%wifi%</fc> | <fc=#ee9a00>%date%</fc> | %VOMM% | %VABB% |<fc=#ab9abb>%uname%</fc>    "
        }

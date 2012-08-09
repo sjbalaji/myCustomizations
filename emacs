@@ -29,6 +29,11 @@
 (setq-default transient-mark-mode t)
 (setq inhibit-startup-message t)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Evil mode :X
+(add-to-list 'load-path "~/.emacs.d/evil")
+     (require 'evil)
+     (evil-mode 1)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; setup auto completion mode
 (setq auto-completion-mode t)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
