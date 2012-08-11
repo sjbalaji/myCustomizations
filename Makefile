@@ -21,5 +21,11 @@ compileEmacs:
 	echo compiling emms 
 	cd ~/.emacs.d/emms-3.0/;
 	make;
+	echo compiling evil
+	cd ~/.emacs.d/evil/;
+	make;
+vimstuff:
+	cp vimrc ~/.vimrc
+	cp -r vim ~/.vim
 all:
-	screen git xmonad xmobar emacs compileEmacs
+	screen git xmonad xmobar emacs compileEmacs vimstuff
