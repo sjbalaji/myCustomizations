@@ -25,17 +25,20 @@
 ;; split the window vertically whern two or more files are opened
 ;;(setq split-width-threshold 40)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Evil mode :X
+(add-to-list 'load-path "~/.emacs.d/evil")
+(require 'evil)
+(evil-mode 1)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; supress the default startup messages
 (setq-default transient-mark-mode t)
 (setq inhibit-startup-message t)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Evil mode :X
-(add-to-list 'load-path "~/.emacs.d/evil")
-     (require 'evil)
-     (evil-mode 1)
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; setup auto completion mode
 (setq auto-completion-mode t)
+(;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; enable parenthesis matching globally 
+(show-paren-mode 1)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; line number mode
 (add-hook 'find-file-hook (lambda () (linum-mode 1)))
@@ -141,3 +144,17 @@
       (move-to-column previous-column))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;(defun my-add-end-block-comment ()
+;;    "Documentation goes here ..."
+;;      (interactive)
+;;        (let (start text)
+;;	  (save-excursion
+;;	    (backward-sexp 3)
+;;	    (setq start (point))
+;;	    (end-of-line)
+;;           (setq text (buffer-substring start (point))))
+;;         (insert (concat "  // " text))))
+;;
+;;(global-set-key (kbd "C-z /") 'my-add-end-block-comment)
+
+
