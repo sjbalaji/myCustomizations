@@ -1,23 +1,10 @@
 (add-hook 'load-path "~/.emacs.d/")
-;;(setq ac-modes (append ac-modes '(latex-mode)))
-;;(add-hook 'latex-mode-hook 'ac-l-setup)
-;; (require 'auto-complete-latex)
-
-;; (setq ac-l-sources 
-;;    '(
-;;    ac-l-source-user-keywords
-;;    ac-l-source-basic-commands
-;;    ac-l-source-package-commands
-;;    ac-l-source-primitives
-;;    ac-l-source-style-commands
-;;    ac-l-source-latex-dot-ltx
-;;    ac-l-source-basic-options-&-variables
-;;    ac-l-source-package-options-&-variables
-;;    ))
-(add-hook 'doc-view-mode-hook 'turn-on-auto-revert-mode)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; displays the time in the status bar
 (display-time)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; bink cursor mode
+(blink-cursor-mode 1)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Changes all yes/no questions to y/n type
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -25,7 +12,7 @@
 ;; split the window vertically whern two or more files are opened
 ;;(setq split-width-threshold 40)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Evil mode :X
+;; Evil mode :p
 (add-to-list 'load-path "~/.emacs.d/evil")
 (require 'evil)
 (evil-mode 1)
@@ -47,8 +34,8 @@
 (add-hook 'find-file-hook (lambda () (column-number-mode 1)))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; highlight the current line
-(add-hook 'find-file-hook (lambda () (global-hl-line-mode 1)))
-;;(add-hook 'find-file-hook (lambda () (ansi-term)))
+(global-hl-line-mode 1)
+(set-face-attribute hl-line-face nil :underline 1)
 ;; ===== Turn on Auto Fill mode automatically in all modes =====
 
 ;; Auto-fill-mode the the automatic wrapping of lines and insertion of
@@ -94,7 +81,6 @@
 (global-set-key [f8] 'nuke-line)
 (global-set-key [f9] 'switch-to-term)
 (global-set-key [f10] 'next-buffer)
-(define-key global-map "\C-x\C-t" 'ansi-term)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun switch-to-term ()
   (interactive)
@@ -106,7 +92,7 @@
 (load "~/.emacs.d/header2.el")
 (add-hook 'c-mode-common-hook   'auto-make-header)
 (add-hook 'write-file-hooks 'auto-update-file-header)
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;			     
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ===== Function to delete a line =====
 
 ;; First define a variable which will store the previous column position
@@ -142,19 +128,4 @@
       (kill-line)
       (delete-char 1)
       (move-to-column previous-column))))
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;(defun my-add-end-block-comment ()
-;;    "Documentation goes here ..."
-;;      (interactive)
-;;        (let (start text)
-;;	  (save-excursion
-;;	    (backward-sexp 3)
-;;	    (setq start (point))
-;;	    (end-of-line)
-;;           (setq text (buffer-substring start (point))))
-;;         (insert (concat "  // " text))))
-;;
-;;(global-set-key (kbd "C-z /") 'my-add-end-block-comment)
-
-
