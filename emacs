@@ -13,9 +13,9 @@
 ;;(setq split-width-threshold 40)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Evil mode :p
-(add-to-list 'load-path "~/.emacs.d/evil")
-(require 'evil)
-(evil-mode 1)
+;; (add-to-list 'load-path "~/.emacs.d/evil")
+;; (require 'evil)
+;; (evil-mode 1)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; supress the default startup messages
 (setq-default transient-mark-mode t)
@@ -71,16 +71,16 @@
 (setq org-agenda-files (list "~/.emacs.d/org/HotPower2012.org"))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; custom key bindings
-(global-set-key [f1] 'comment-region)
-(global-set-key [f2] 'uncomment-region)
-(global-set-key [f3] "\C-x\C-q")
-(global-set-key [f4] "\C-xrk")
-(global-set-key [f5] "\C-xrrr")
-(global-set-key [f6] "\C-xrir")
-(global-set-key [f7] "\C-u\M-.")
-(global-set-key [f8] 'nuke-line)
-(global-set-key [f9] 'switch-to-term)
-(global-set-key [f10] 'next-buffer)
+(global-set-key [f1] 'comment-region)    ;; Comment region
+(global-set-key [f2] 'uncomment-region)  ;; Uncomment region
+(global-set-key [f3] "\C-x\C-q")         ;; Change ro <+> rw mode 
+(global-set-key [f4] "\C-xrk")           ;; Kill the  rectangular region
+(global-set-key [f5] "\C-xrrr")          ;; Copy the rectangular region
+(global-set-key [f6] "\C-xrir")          ;; Paste the rectangular region
+(global-set-key [f7] "\C-u\M-.")         ;; Search for a TAG
+(global-set-key [f8] 'nuke-line)         ;; Delete a line
+(global-set-key [f9] 'switch-to-term)    ;; Open or switch to a terminal 
+(global-set-key [f10] 'next-buffer)      ;; Switch to next open buffer
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun switch-to-term ()
   (interactive)
