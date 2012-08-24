@@ -55,6 +55,7 @@ alias rcntlm='killcntlm;cn'
 alias wgetl='wget --no-proxy -c --limit-rate=100k '
 alias ch='ping 192.168.0.1'
 alias glg='git log --graph --oneline --all'
+alias killp='sudo pidof $@ | sudo xargs kill -9'
 ###############################################################################
 ###############################################################################
 # SSH related aliases
