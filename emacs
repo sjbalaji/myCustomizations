@@ -33,6 +33,10 @@
 ;; coulmn number mode
 (add-hook 'find-file-hook (lambda () (column-number-mode 1)))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; emacs git mode
+(add-to-list 'load-path "/home/balaji/.emacs.d/git-emacs")
+(require 'git-emacs)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; highlight the current line
 (global-hl-line-mode 1)
 (set-face-attribute hl-line-face nil :underline 1)
