@@ -52,10 +52,10 @@
 (add-hook 'find-file-hook (lambda () (toggle-read-only 1)))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; emacs multimedia player 
-(add-hook 'load-path "~/.emacs.d/emms-3.0/")
-     (require 'emms-setup)
-     (emms-standard)
-     (emms-default-players)
+;; (add-hook 'load-path "~/.emacs.d/emms-3.0/")
+;;      (require 'emms-setup)
+;;      (emms-standard)
+;;      (emms-default-players)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; select color theme
 (require 'color-theme)
@@ -77,10 +77,11 @@
 (global-set-key [f4] "\C-xrk")           ;; Kill the  rectangular region
 (global-set-key [f5] "\C-xrrr")          ;; Copy the rectangular region
 (global-set-key [f6] "\C-xrir")          ;; Paste the rectangular region
-(global-set-key [f7] "\C-u\M-.")         ;; Search for a TAG
+(global-set-key [f7] 'kill-buffer-and-window)         ;; Search for a TAG
 (global-set-key [f8] 'nuke-line)         ;; Delete a line
 (global-set-key [f9] 'switch-to-term)    ;; Open or switch to a terminal 
 (global-set-key [f10] 'next-buffer)      ;; Switch to next open buffer
+(global-set-key [f11] "\C-u\M-.")
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun switch-to-term ()
   (interactive)
