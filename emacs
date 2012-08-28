@@ -38,8 +38,10 @@
 (require 'git-emacs)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; highlight the current line
-(global-hl-line-mode 1)
-(set-face-attribute hl-line-face nil :underline 1)
+(global-hl-line-mode t)
+(make-variable-buffer-local 'global-hl-line-mode)
+(set-face-background hl-line-face "blue")
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ===== Turn on Auto Fill mode automatically in all modes =====
 
 ;; Auto-fill-mode the the automatic wrapping of lines and insertion of
