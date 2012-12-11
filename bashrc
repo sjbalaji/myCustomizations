@@ -30,14 +30,15 @@ alias gd='cd; cd Downloads'
 alias en='emacs -nw'
 alias e='emacs'
 alias eq='emacs-23.3 -nw '
+#alias killp='pidof $@ | xargs kill -9'
 ###############################################################################
 # Set the wallpaper in dwm or xmonad 
-feh --bg-scale /home/balaji/myCustomizations/Beautiful-Ireland-0105.jpg
+#feh --bg-scale /home/balaji/Wallpapers/dual_screen_wallpaper_110.jpg
 ###############################################################################
 # Matlab no window
 ###############################################################################
 # Misc aliases
-alias netbeans='~/netbeans-7.1.2/bin/netbeans &'
+#alias netbeans='~/netbeans-7.1.2/bin/netbeans &'
 alias x='exit'
 alias d='date'
 alias c='clear'
@@ -55,7 +56,9 @@ alias rcntlm='killcntlm;cn'
 alias wgetl='wget --no-proxy -c --limit-rate=100k '
 alias ch='ping 192.168.0.1'
 alias glg='git log --graph --oneline --all'
-alias killp='sudo pidof $@ | sudo xargs kill -9'
+alias work='ssh -X balaji@10.6.9.52'
+alias vm='sshpass -p doslab123 ssh doslab@10.6.9.23 -X'
+alias kq='pkill qemu'
 ###############################################################################
 ###############################################################################
 # SSH related aliases
@@ -145,6 +148,8 @@ xterm*|rxvt*)
 *)
     ;;
 esac
+source /etc/git-completion.bash
+source /etc/git-prompt.sh
 
 if [ "$TERM" != "dumb" ]; then
     eval "`dircolors -b`"
@@ -154,13 +159,15 @@ if [ "$TERM" != "dumb" ]; then
     alias egrep='egrep --color=auto'
 
     # Set a terminal prompt style (default is fancy color prompt)
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;33m\]\u@\h \[\033[01;34m\]$(promptpath)\[\033[00m\]\$ '
+    PS1="${debian_chroot:+($debian_chroot)}\u@\h\[\e[32;1m\]\[\e[37;1m\]\`if [ \$? = 0 ]; then echo \[\e[33m\] $(__git_ps1) $(promptpath) \[\e[0m\]; else echo \[\e[31m\] X\( $(promptpath) \[\e[0m\]; fi\`$ "
+# PS1='${debian_chroot:+($debian_chroot)}\u@\h `if [ \$? = 0 ]; then echo \[\e[33m\] :\) $(promptpath)\$; else echo \[\e[31m\] X\ $(promptpath) (\[\e[0m\]; fi'
 else
     alias ls="ls -F"
     alias ll='ls -alF'
     alias la='ls -A'
     alias l='ls -CF'
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h $(promptpath)\$ '
+    PS1="${debian_chroot:+($debian_chroot)}\u@\h\[\e[32;1m\]\[\e[37;1m\]\`if [ \$? = 0 ]; then echo \[\e[33m\] :\) $(promptpath) \[\e[0m\]; else echo \[\e[31m\] X\( $(promptpath) \[\e[0m\]; fi\`$ "
+#    PS1='${debian_chroot:+($debian_chroot)}\u@\h `if [ \$? = 0 ]; then echo \[\e[33m\] :\) $(promptpath)\$; else echo \[\e[31m\] X\ $(promptpath) (\[\e[0m\]; fi`'
 fi
 
 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
@@ -189,3 +196,5 @@ export mvn='~/apache-maven-3.0.3/bin/./mvn'
 export LD_LIBRARY_PATH=/usr/local/lib
 export PATH=$PATH:$HADOOP_PREFIX_HOME/bin
 ###############################################################################
+ PS1="\[\e[32;1m\]\[\e[37;1m\]\`if [ \$? = 0 ]; then echo \[\e[33m\] :\)  \[\e[0m\]; else echo \[\e[31m\] X\(\[\e[0m\]; fi\`\[\e[32;1m\] \[\e[32;1m\](\[\e[37;1m\]\h:\u\[\e[32;1m\])-(\[\e[37;1m\]\j\[\e[32;1m\])-(\[\e[37;1m\]\w\[\e[32;1m\])\n\[\e[0m\]"
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[1;32m\]\u@\h\[\033[0m\] \[\033[36m\][\W]\[\033[0m\] \[\033[1;30m\]#\#\[\033[0m\] \[\033[33m\]$(__git_ps1 "«%s»")\[\033[0m\] →  '

@@ -13,6 +13,11 @@ echo Configuring emcas
 rm -rf ~/.emacs*
 cp emacs ~/.emacs
 cp -r emacs.d ~/.emacs.d
+echo Configuring bash
+echo Configuring bashrc
+cp bashrc ~/.bashrc
+echo Configuring bash aliases
+cp bash_aliases ~/.bash_aliases
 echo compiling emms 
 cd ~/.emacs.d/emms-3.0/;
 make;
