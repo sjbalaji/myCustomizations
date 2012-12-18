@@ -5,8 +5,8 @@ iwconfig wlan2 2>&1 | grep -q no\ wireless\ extensions\. && {
   exit 0
 }
 
-essid=`sudo iwconfig wlan2 | awk -F '"' '/ESSID/ {print $2}'`
-stngth=`sudo iwconfig wlan2 | awk -F '=' '/Quality/ {print $2}' | cut -d '/' -f 1`
+essid=`sudo iwconfig eth1 | awk -F '"' '/ESSID/ {print $2}'`
+stngth=`sudo iwconfig eth1 | awk -F '=' '/Quality/ {print $2}' | cut -d '/' -f 1`
 bars=`echo "$stngth * 2" | bc`
 if [ -z $essid ];
 then
