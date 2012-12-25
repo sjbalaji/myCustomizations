@@ -58,10 +58,10 @@
 (add-hook 'find-file-hook (lambda () (toggle-read-only 1)))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; emacs multimedia player 
-;; (add-hook 'load-path "~/.emacs.d/emms-3.0/")
-;;      (require 'emms-setup)
-;;      (emms-standard)
-;;      (emms-default-players)
+ (add-hook 'load-path "~/.emacs.d/emms-3.0/")
+      (require 'emms-setup)
+      (emms-standard)
+      (emms-default-players)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; select color theme
 ;; (require 'color-theme)
@@ -76,6 +76,19 @@
 (setq org-log-done t)
 (setq org-agenda-files (list "~/.emacs.d/org/HotPower2012.org"))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; custom key bindings for org mode 
+(add-hook 'org-mode-hook
+  (lambda ()
+    (define-key org-mode-map [f1] 'org-insert-todo-heading)
+    (define-key org-mode-map [f2] "\C-c\C-c")))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; custom key bindings programming mode
+(defun my-programming-mode ()
+    (local-set-key [f11] "\C-u\M-.") ;; Next tag declaration
+    (local-set-key [f10] "\M-*") ;; Previous tag position  
+    (local-set-key [f7] 'find-tag))    ;; Search for a tag
+(add-hook 'c-mode-common-hook 'my-programming-mode)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; custom key bindings
 (global-set-key [f1] 'comment-region)    ;; Comment region
 (global-set-key [f2] 'uncomment-region)  ;; Uncomment region
@@ -87,7 +100,7 @@
 (global-set-key [f8] 'nuke-line)         ;; Delete a line
 (global-set-key [f9] 'switch-to-term)    ;; Open or switch to a terminal 
 (global-set-key [f10] 'next-buffer)      ;; Switch to next open buffer
-(global-set-key [f11] "\C-u\M-.")
+;;(global-set-key [f11] "\C-u\M-.")
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun switch-to-term ()
   (interactive)
@@ -193,7 +206,6 @@
 (require 'semantic-ia)
 (require 'ede)
 (require 'ede-locate)
-
 (semantic-gcc-setup)
 (setq semantic-load-turn-everything-on t)
 (semantic-load-enable-excessive-code-helpers)
@@ -205,30 +217,6 @@
 (defun my-cedet-hook ()
 (local-set-key [(control return)] 'semantic-ia-complete-symbol)
 (local-set-key "\C-c?" 'semantic-ia-complete-symbol-menu)
-;;(local-set-key "\C-TAB" 'semantic-ia-complete-symbol-menu)
-;;(local-set-key "\C-S" 'semantic-complete-analyze-inline)
 (local-set-key "\C-c>" 'semantic-complete-analyze-inline)
-;;(global-set-key [C-tab] 'semantic-complete-analyze-inline)
 (local-set-key "\C-cp" 'semantic-analyze-proto-impl-toggle))
 (add-hook 'c-mode-common-hook 'my-cedet-hook)
-;; ;; Semantic
-;; (global-semantic-idle-completions-mode t)
-;; (global-semantic-decoration-mode t)
-;; (global-semantic-highlight-func-mode t)
-;; (global-semantic-show-unmatched-syntax-mode t)
-
-;; ;; CC-mode
-;; (add-hook 'c-mode-hook '(lambda ()
-;;         (setq ac-sources (append '(ac-source-semantic) ac-sources))
-;;         (local-set-key (kbd "RET") 'newline-and-indent)
-;;         (linum-mode t)
-;;         (semantic-mode t)))
-
-;; Autocomplete
-;;(require 'auto-complete-config)
-;;(add-to-list 'ac-dictionary-directories (expand-file-name
-;;             "~/.emacs.d/elpa/auto-complete-1.4.20110207/dict"))
-;;(setq ac-comphist-file (expand-file-name
-;;             "~/.emacs.d/ac-comphist.dat"))
-;;(ac-config-default)
-
