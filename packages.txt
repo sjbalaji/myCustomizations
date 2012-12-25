@@ -1,1 +1,22 @@
-ksysguard emacs vim xmonad xmobar i3 dmenu vlc tightvncserver xtightvncviewer screen netbeans g++ gcc git-core gitk texmaker gnuplot guake xcompmgr 
+ksysguard 
+emacs 
+vim 
+xmonad 
+xmobar 
+i3 
+dmenu 
+vlc 
+tightvncserver 
+xtightvncviewer 
+screen 
+netbeans 
+g++ 
+gcc 
+git-core 
+gitk 
+texmaker 
+gnuplot 
+guake 
+xcompmgr 
+iptraf (Good) 
+iftop (Ok) 
