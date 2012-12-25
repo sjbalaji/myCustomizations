@@ -137,26 +137,98 @@
       (move-to-column previous-column))))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; el-get
-(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+;;(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 
-(unless (require 'el-get nil t)
-  (url-retrieve
-   "https://raw.github.com/dimitri/el-get/master/el-get-install.el"
-   (lambda (s)
-     (goto-char (point-max))
-     (eval-print-last-sexp))))
+;;(unless (require 'el-get nil t)
+;;  (url-retrieve
+;;   "https://raw.github.com/dimitri/el-get/master/el-get-install.el"
+;;   (lambda (s)
+;;     (goto-char (point-max))
+;;     (eval-print-last-sexp))))
 
-(el-get 'sync)
-(custom-set-variables
+;;(el-get 'sync)
+;;(custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(git-baseline-alist (quote (("/tmp/test_git/git_rebase/" . "master"))) t))
-(custom-set-faces
+;; '(git-baseline-alist (quote (("/tmp/test_git/git_rebase/" . "master"))) t))
+;;(custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+;; )
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(setq-default fill-column 100)
+(add-hook 'text-mode-hook 'turn-on-auto-fill)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defun close-all-buffers ()
+  (interactive)
+  (mapc 'kill-buffer (buffer-list)))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defun kill-other-buffers ()
+    "Kill all other buffers."
+    (interactive)
+    (mapc 'kill-buffer 
+          (delq (current-buffer) 
+                (remove-if-not 'buffer-file-name (buffer-list)))))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(load-file "~/.emacs.d/cedet-1.0/common/cedet.el")
+(global-ede-mode 1)                      ; Enable the Project management system
+(semantic-load-enable-code-helpers)      ; Enable prototype help and smart completion 
+(global-srecode-minor-mode 1)            ; Enable template insertion menu
+;; control + space
+(global-set-key [?\C- ] 'semantic-complete-analyze-inline)
+
+(load-library "completion")
+(global-set-key (kbd "C-.") 'complete)
+
+(defun my-semantic-hook ()
+  (imenu-add-to-menubar "TAGS"))
+(add-hook 'semantic-init-hooks 'my-semantic-hook)
+(semantic-load-enable-gaudy-code-helpers)
+(require 'semantic-load)
+(require 'semantic-gcc)
+(require 'semantic-ia)
+(require 'ede)
+(require 'ede-locate)
+
+(semantic-gcc-setup)
+(setq semantic-load-turn-everything-on t)
+(semantic-load-enable-excessive-code-helpers)
+(global-ede-mode 1)
+(global-semantic-idle-completions-mode nil)
+(global-set-key "\C-\M-x" 'semantic-analyze-proto-impl-toggle)
+(global-set-key [(control  <)] 'semantic-goto-definition)
+(global-set-key [(control  >)] 'semantic-pop-tag-mark)
+(defun my-cedet-hook ()
+(local-set-key [(control return)] 'semantic-ia-complete-symbol)
+(local-set-key "\C-c?" 'semantic-ia-complete-symbol-menu)
+;;(local-set-key "\C-TAB" 'semantic-ia-complete-symbol-menu)
+;;(local-set-key "\C-S" 'semantic-complete-analyze-inline)
+(local-set-key "\C-c>" 'semantic-complete-analyze-inline)
+;;(global-set-key [C-tab] 'semantic-complete-analyze-inline)
+(local-set-key "\C-cp" 'semantic-analyze-proto-impl-toggle))
+(add-hook 'c-mode-common-hook 'my-cedet-hook)
+;; ;; Semantic
+;; (global-semantic-idle-completions-mode t)
+;; (global-semantic-decoration-mode t)
+;; (global-semantic-highlight-func-mode t)
+;; (global-semantic-show-unmatched-syntax-mode t)
+
+;; ;; CC-mode
+;; (add-hook 'c-mode-hook '(lambda ()
+;;         (setq ac-sources (append '(ac-source-semantic) ac-sources))
+;;         (local-set-key (kbd "RET") 'newline-and-indent)
+;;         (linum-mode t)
+;;         (semantic-mode t)))
+
+;; Autocomplete
+;;(require 'auto-complete-config)
+;;(add-to-list 'ac-dictionary-directories (expand-file-name
+;;             "~/.emacs.d/elpa/auto-complete-1.4.20110207/dict"))
+;;(setq ac-comphist-file (expand-file-name
+;;             "~/.emacs.d/ac-comphist.dat"))
+;;(ac-config-default)
+
