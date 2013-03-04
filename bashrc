@@ -5,7 +5,7 @@
 ###############################################################################
 # Source global definitions
 if [ -f /etc/bashrc ]; then
-	. /etc/bashrc
+    . /etc/bashrc
 fi
 # User specific aliases and functions
 ###############################################################################
@@ -26,14 +26,19 @@ alias yumkill='sudo pkill yum; sudo rm -rf /var/run/yum.pid'
 alias dr=' --disablerepo=rpm*'
 ###############################################################################
 # Emacs with no window option
+function mgrep() {
+    grep -rni $1 . 
+}
 alias gd='cd; cd Downloads'
 alias en='emacs -nw'
 alias e='emacs'
-alias eq='emacs-23.3 -nw '
+#alias eq='emacs-23.3 -nw '
+alias eq=' emacsclient -t '
 #alias killp='pidof $@ | xargs kill -9'
+alias ms="mgrep"
 ###############################################################################
 # Set the wallpaper in dwm or xmonad 
-#feh --bg-scale /home/balaji/Wallpapers/dual_screen_wallpaper_110.jpg
+#feh --bg-cente /home/balaji/Wallpapers/dual_screen_wallpaper_110.jpg
 ###############################################################################
 # Matlab no window
 ###############################################################################
@@ -59,6 +64,7 @@ alias glg='git log --graph --oneline --all'
 alias work='ssh -X balaji@10.6.9.52'
 alias vm='sshpass -p doslab123 ssh doslab@10.6.9.23 -X'
 alias kq='pkill qemu'
+alias kp='pidof @ | xargs kill -9 '
 ###############################################################################
 ###############################################################################
 # SSH related aliases
@@ -142,10 +148,10 @@ promptpath () {
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
-xterm*|rxvt*)
+    xterm*|rxvt*)
     PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD/$HOME/~}\007"'
     ;;
-*)
+    *)
     ;;
 esac
 source /etc/git-completion.bash
@@ -183,18 +189,36 @@ run_scripts()
 run_scripts $HOME/.bashrc.d
 ##############################################################################
 # For Hadoop :)
-export JAVA_HOME=/home/balaji/jdk1.6.0_23
-export M2_HOME=/home/balaji/apache-maven-3.0.3
+export JAVA_HOME=/media/oldfs/jdk1.6.0_31
+export M2_HOME=/media/oldfs/apache-maven-3.0.3
 export M2=$M2_HOME/bin
 export STORM_HOME=/home/balaji/projects/storm/storm-0.7.0-SNAPSHOT
 export SCALA_HOME=/home/balaji/projects/storm/scala-2.8.2.final
 export PATH=/home/balaji/projects/storm/scala-2.8.2.final/bin:$JAVA_HOME/bin:$M2:$STORM_HOME/bin:$PATH:~/bin:~/scripts
 export HADOOP_PREFIX_HOME=/home/balaji/YARN/hadoop-common/hadoop-dist/target/hadoop-0.24.0-SNAPSHOT
-export mvn='~/apache-maven-3.0.3/bin/./mvn'
+export mvn='/media/oldfs/apache-maven-3.0.3/bin/./mvn'
 ##############################################################################
 # For cuda
-export LD_LIBRARY_PATH=/usr/local/lib
-export PATH=$PATH:$HADOOP_PREFIX_HOME/bin
+# # * Please make sure your PATH includes /usr/local/cuda/bin
+# # * Please make sure your LD_LIBRARY_PATH
+# # *   for 32-bit Linux distributions includes /usr/local/cuda/lib
+# # *   for 64-bit Linux distributions includes /usr/local/cuda/lib64:/usr/local/cuda/lib
+# # * OR
+# # *   for 32-bit Linux distributions add /usr/local/cuda/lib
+# # *   for 64-bit Linux distributions add /usr/local/cuda/lib64 and /usr/local/cuda/lib
+# # * to /etc/ld.so.conf and run ldconfig as root
+
+# # * Please read the release notes in /usr/local/cuda/doc/
+
+# # * To uninstall CUDA, delete /usr/local/cuda
+# # * Installation Complete
+
+export LD_LIBRARY_PATH=/usr/local/lib:/usr/lib64/:/usr/local/cuda/lib64:/usr/local/cuda/lib
+export PATH=$PATH:$HADOOP_PREFIX_HOME/bin:/usr/local/cuda/bin
 ###############################################################################
- PS1="\[\e[32;1m\]\[\e[37;1m\]\`if [ \$? = 0 ]; then echo \[\e[33m\] :\)  \[\e[0m\]; else echo \[\e[31m\] X\(\[\e[0m\]; fi\`\[\e[32;1m\] \[\e[32;1m\](\[\e[37;1m\]\h:\u\[\e[32;1m\])-(\[\e[37;1m\]\j\[\e[32;1m\])-(\[\e[37;1m\]\w\[\e[32;1m\])\n\[\e[0m\]"
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[1;32m\]\u@\h\[\033[0m\] \[\033[36m\][\W]\[\033[0m\] \[\033[1;30m\]#\#\[\033[0m\] \[\033[33m\]$(__git_ps1 "«%s»")\[\033[0m\] →  '
+PS1="\[\e[32;1m\]\[\e[37;1m\]\`if [ \$? = 0 ]; then echo \[\e[33m\] :\)  \[\e[0m\]; else echo \[\e[31m\] X\(\[\e[0m\]; fi\`\[\e[32;1m\] \[\e[32;1m\](\[\e[37;1m\]\h:\u\[\e[32;1m\])-(\[\e[37;1m\]\j\[\e[32;1m\])-(\[\e[37;1m\]\w\[\e[32;1m\])\n\[\e[0m\]"
+PS1='${debian_chroot:+($debian_chroot)}\[\033[1;32m\]\u@\h\[\033[0m\] \[\033[36m\][\W]\[\033[0m\] \[\033[1;30m\]#\#\[\033[0m\] \[\033[33m\]$(__git_ps1 "«%s»")\[\033[0m\] →  '
+###############################################################################
+# Gem5 path variables
+export M5_PATH=/media/oldfs/systemImages
+###############################################################################
