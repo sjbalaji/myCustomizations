@@ -16,6 +16,10 @@
 ;; (add-to-list 'load-path "~/.emacs.d/evil")
 ;; (require 'evil)
 ;; (evil-mode 1)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Doxygen :p
+ (add-to-list 'load-path "~/.emacs.d/doxymacs-1.8.0/lisp")
+ (require 'doxymacs)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; supress the default startup messages
 (setq-default transient-mark-mode t)
@@ -40,7 +44,7 @@
 ;; highlight the current line
 (global-hl-line-mode t)
 (make-variable-buffer-local 'global-hl-line-mode)
-(set-face-background hl-line-face "blue")
+(set-face-background hl-line-face "yellow")
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ===== Turn on Auto Fill mode automatically in all modes =====
 
@@ -80,14 +84,15 @@
 (add-hook 'org-mode-hook
   (lambda ()
     (define-key org-mode-map [f1] 'org-insert-todo-heading)
-    (define-key org-mode-map [f2] "\C-c\C-c")))
+    (define-key org-mode-map [f2] "\C-c\C-c")
+    (define-key org-mode-map [f3] 'org-insert-subheading)))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; custom key bindings programming mode
-(defun my-programming-mode ()
-    (local-set-key [f11] "\C-u\M-.") ;; Next tag declaration
-    (local-set-key [f10] "\M-*") ;; Previous tag position  
-    (local-set-key [f7] 'find-tag))    ;; Search for a tag
-(add-hook 'c-mode-common-hook 'my-programming-mode)
+(defun my-semantic-speedbar-analysis ()
+  (interactive)
+  (if (get-buffer " SPEEDBAR")
+      (kill-buffer " SPEEDBAR")
+      (semantic-speedbar-analysis)
+    (semantic-speedbar-analysis)))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; custom key bindings
 (global-set-key [f1] 'comment-region)    ;; Comment region
@@ -150,16 +155,16 @@
       (move-to-column previous-column))))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; el-get
-;;(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+;; (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 
-;;(unless (require 'el-get nil t)
-;;  (url-retrieve
-;;   "https://raw.github.com/dimitri/el-get/master/el-get-install.el"
-;;   (lambda (s)
-;;     (goto-char (point-max))
-;;     (eval-print-last-sexp))))
+;; (unless (require 'el-get nil t)
+;;   (url-retrieve
+;;    "https://raw.github.com/dimitri/el-get/master/el-get-install.el"
+;;    (lambda (s)
+;;      (goto-char (point-max))
+;;      (eval-print-last-sexp))))
 
-;;(el-get 'sync)
+;; (el-get 'sync)
 ;;(custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -188,6 +193,72 @@
                 (remove-if-not 'buffer-file-name (buffer-list)))))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (load-file "~/.emacs.d/cedet-1.0/common/cedet.el")
+;; This plain hack probably will not work with versions other than speedbar v 1.0
+(defun speedbar-timer-fn ()
+  "Run whenever Emacs is idle to update the speedbar item."
+  (if (or (not (speedbar-current-frame))
+	    (not (frame-live-p (speedbar-current-frame))))
+      (speedbar-set-timer nil)
+    ;; Save all the match data so that we don't mess up executing fns
+    (save-match-data
+      ;; Only do stuff if the frame is visible, not an icon, and if
+      ;; it is currently flagged to do something.
+      (if (and speedbar-update-flag
+	              (speedbar-current-frame)
+		             (frame-visible-p (speedbar-current-frame))
+			            (not (eq (frame-visible-p (speedbar-current-frame)) 'icon)))
+	    (let ((af (selected-frame)))
+	            (dframe-select-attached-frame speedbar-frame)
+		          ;; make sure we at least choose a window to
+		          ;; get a good directory from
+		          (if (window-minibuffer-p (selected-window))
+			        nil
+			    ;; Check for special modes
+			    (speedbar-maybe-add-localized-support (current-buffer))
+			    ;; Update for special mode all the time!
+			    (if (and speedbar-mode-specific-contents-flag
+				      (consp speedbar-special-mode-expansion-list)
+				       (local-variable-p
+					  'speedbar-special-mode-expansion-list
+					    (current-buffer)))
+				    ;;(eq (get major-mode 'mode-class 'special)))
+				    (progn
+				            (if (<= 2 speedbar-verbosity-level)
+						  (speedbar-message
+						      "Updating speedbar to special mode: %s..."
+						         major-mode))
+					          (speedbar-update-special-contents)
+						        (if (<= 2 speedbar-verbosity-level)
+							      (progn
+								    (speedbar-message
+								          "Updating speedbar to special mode: %s...done"
+									       major-mode)
+								        (speedbar-message nil))))
+
+			        ;; Update all the contents if directories change!
+			        (unless (and (or (member major-mode speedbar-ignored-modes)
+						    (string-equal "*SPEEDBAR*" (buffer-name))
+						       (not (buffer-file-name)))
+					            ;; Always update for GUD.
+					            (not (string-equal "GUD"
+								            speedbar-initial-expansion-list-name)))
+				      (speedbar-update-localized-contents)))
+			    (select-frame af))
+			      ;; Now run stealthy updates of time-consuming items
+			      (speedbar-stealthy-updates)))))
+  (run-hooks 'speedbar-timer-hook))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(add-to-list 'auto-mode-alist
+'("/usr/include/Qt" . c++-mode))
+
+(semantic-add-system-include 
+"/usr/include/Qt" 'c++-mode)
+(add-to-list 'semantic-lex-c-preprocessor-symbol-file
+"/usr/include/Qt/qconfig.h")
+(add-to-list 'semantic-lex-c-preprocessor-symbol-file
+"/usr/include/Qt/qconfig-dist.h")
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (global-ede-mode 1)                      ; Enable the Project management system
 (semantic-load-enable-code-helpers)      ; Enable prototype help and smart completion 
 (global-srecode-minor-mode 1)            ; Enable template insertion menu
@@ -217,6 +288,35 @@
 (defun my-cedet-hook ()
 (local-set-key [(control return)] 'semantic-ia-complete-symbol)
 (local-set-key "\C-c?" 'semantic-ia-complete-symbol-menu)
-(local-set-key "\C-c>" 'semantic-complete-analyze-inline)
+(local-set-key "\t" 'semantic-complete-analyze-inline)
 (local-set-key "\C-cp" 'semantic-analyze-proto-impl-toggle))
 (add-hook 'c-mode-common-hook 'my-cedet-hook)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(load-file "~/.emacs.d/sr-speedbar.el")
+   (require 'sr-speedbar)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; custom key bindings programming mode
+(defun my-programming-mode ()
+    (local-set-key [f11] "\C-u\M-.") ;; Next tag declaration
+    (local-set-key [f10] "\M-*") ;; Previous tag position  
+    (local-set-key [f7] 'find-tag)    ;; Search for a tag
+    (local-set-key [f5] 'semantic-speedbar-analysis)) ;; speedbar
+;;    (local-set-key [f5] 'my-semantic-speedbar-analysis)) ;; speedbar
+(add-hook 'c-mode-common-hook 'my-programming-mode)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+
+(unless (require 'el-get nil 'noerror)
+  (with-current-buffer
+      (url-retrieve-synchronously
+       "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
+    (let (el-get-master-branch)
+      (goto-char (point-max))
+      (eval-print-last-sexp))))
+
+(el-get 'sync)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Cuda syntax highlighting
+(add-to-list 'auto-mode-alist '("\\.cu$" . c++-mode))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
