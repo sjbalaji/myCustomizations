@@ -1,24 +1,32 @@
 [user]
 	name = balaji.sj
 	email = sjbalajimdu@gmail.com
+
 [alias]
     lg = log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+    lg1 = log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --abbrev-commit --date=relative
+    lg2 = log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --abbrev-commit
+    lg3 = log --graph --all --decorate --stat --graph --pretty=format:'%d %Cgreen%h%Creset (%ar - %Cred%an%Creset), %s%n' 
     s = status
     d = diff -- 
     a = add 
+
 [color]
 	ui = auto
 	status = auto
 	branch = auto
+
 [color "branch"]
         current = magenta reverse
         local = yellow
         remote = green
+
 [color "diff"]
         meta = yellow bold
         frag = magenta bold
         old = red bold
         new = green bold
+
 [color "status"]
         added = yellow
         changed = green
