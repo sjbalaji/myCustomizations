@@ -1,3 +1,10 @@
+
+;; Font family
+(set-default-font "DejaVu Sans Mono")
+
+;; Font size 
+(set-face-attribute 'default nil :height 100)
+
 (add-hook 'load-path "~/.emacs.d/")
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; displays the time in the status bar
@@ -85,7 +92,7 @@
   (lambda ()
     (define-key org-mode-map [f1] 'org-insert-todo-heading)
     (define-key org-mode-map [f2] "\C-c\C-c")
-    (define-key org-mode-map [f3] 'org-insert-subheading)))
+    (define-key org-mode-map [f7] 'org-insert-subheading)))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun my-semantic-speedbar-analysis ()
   (interactive)
@@ -319,4 +326,27 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Cuda syntax highlighting
 (add-to-list 'auto-mode-alist '("\\.cu$" . c++-mode))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; -== scala-mode ==-
+(add-to-list 'load-path "~/.emacs.d/scala")
+(require 'scala-mode-auto) 
+
+(add-hook 'scala-mode-hook
+         '(lambda ()
+       (scala-mode-feature-electric-mode)
+          ))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(require 'scala-mode)
+(add-to-list 'auto-mode-alist '("\.scala$" . scala-mode))
+(add-to-list 'load-path "~/.emacs.d/scala/ensime/elisp/")
+(require 'ensime)
+(add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; (add-to-list 'load-path "~/.emacs.d/gnuplot-mode")
+;; (require 'gnuplot)
+;; (setq gnuplot-program "/usr/bin/gnulpot")
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; If idle for more than 100 seconds then change it to read-only mode
+(run-at-time 100 1000 (lambda ()(toggle-read-only 1)))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
