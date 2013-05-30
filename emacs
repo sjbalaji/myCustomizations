@@ -1,12 +1,10 @@
-
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Font family
 (set-default-font "DejaVu Sans Mono")
-
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Font size 
 (set-face-attribute 'default nil :height 100)
-
 (add-hook 'load-path "~/.emacs.d/")
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; displays the time in the status bar
 (display-time)
@@ -26,8 +24,8 @@
 ;; (evil-mode 1)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Doxygen :p
- (add-to-list 'load-path "~/.emacs.d/doxymacs-1.8.0/lisp")
- (require 'doxymacs)
+(add-to-list 'load-path "~/.emacs.d/doxymacs-1.8.0/lisp")
+(require 'doxymacs)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; supress the default startup messages
 (setq-default transient-mark-mode t)
@@ -49,36 +47,17 @@
 (add-to-list 'load-path "/home/balaji/.emacs.d/git-emacs")
 (require 'git-emacs)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; highlight the current line
-;;(require 'highlight-current-line)
-;;(highlight-current-line-on t)
- 
-;; To customize the background color
-;;(set-face-background 'highlight-current-line-face "light yellow")
-;;(global-hl-line-mode t)
-;;(make-variable-buffer-local 'global-hl-line-mode)
-
-;;(require 'highlight-current-line)
-;;(highlight-current-line-on t)
- 
-;; To customize the background color
-;;(set-face-background 'highlight-current-line-face "light yellow")
+;; highlight the current line 
+;; Different option for X window vs terminal mode :)
 (global-hl-line-mode 1)
- 
-;; To customize the background color
-(set-face-background 'hl-line "#330")  ;; Emacs 22 Only
-
-;;(require 'highline)
-;;(highline-mode 1)
- 
-;; To customize the background color
-;;(set-face-background 'highline-face "#222")
+(if window-system
+    (set-face-background 'hl-line "#330")
+  (make-variable-buffer-local 'global-hl-line-mode))  ;; Emacs 22 Only
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Remove the menu, tool and the scroll bar
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
-
-;; (set-face-background hl-line-face "light yellow")
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ===== Turn on Auto Fill mode automatically in all modes =====
 
@@ -96,10 +75,10 @@
 (add-hook 'find-file-hook (lambda () (toggle-read-only 1)))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; emacs multimedia player 
- (add-hook 'load-path "~/.emacs.d/emms-3.0/")
-      (require 'emms-setup)
-      (emms-standard)
-      (emms-default-players)
+(add-hook 'load-path "~/.emacs.d/emms-3.0/")
+(require 'emms-setup)
+(emms-standard)
+(emms-default-players)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; select color theme
 ;; (require 'color-theme)
@@ -116,16 +95,16 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; custom key bindings for org mode 
 (add-hook 'org-mode-hook
-  (lambda ()
-    (define-key org-mode-map [f1] 'org-insert-todo-heading)
-    (define-key org-mode-map [f2] "\C-c\C-c")
-    (define-key org-mode-map [f7] 'org-insert-subheading)))
+	  (lambda ()
+	    (define-key org-mode-map [f1] 'org-insert-todo-heading)
+	    (define-key org-mode-map [f2] "\C-c\C-c")
+	    (define-key org-mode-map [f7] 'org-insert-subheading)))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun my-semantic-speedbar-analysis ()
   (interactive)
   (if (get-buffer " SPEEDBAR")
       (kill-buffer " SPEEDBAR")
-      (semantic-speedbar-analysis)
+    (semantic-speedbar-analysis)
     (semantic-speedbar-analysis)))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; custom key bindings
@@ -176,7 +155,7 @@
   ;; kill-line. All that happens in this case is that the new-line character
   ;; is deleted.
   (if (= (current-column) 0)
-    (delete-char 1)
+      (delete-char 1)
 
     ;; This is the 'else' clause. The current line being deleted is not zero
     ;; in length. First remove the line by moving to its start and then
@@ -200,16 +179,16 @@
 
 ;; (el-get 'sync)
 ;;(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
+;; custom-set-variables was added by Custom.
+;; If you edit it by hand, you could mess it up, so be careful.
+;; Your init file should contain only one such instance.
+;; If there is more than one, they won't work right.
 ;; '(git-baseline-alist (quote (("/tmp/test_git/git_rebase/" . "master"))) t))
 ;;(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
+;; custom-set-faces was added by Custom.
+;; If you edit it by hand, you could mess it up, so be careful.
+;; Your init file should contain only one such instance.
+;; If there is more than one, they won't work right.
 ;; )
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (setq-default fill-column 100)
@@ -220,78 +199,77 @@
   (mapc 'kill-buffer (buffer-list)))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun kill-other-buffers ()
-    "Kill all other buffers."
-    (interactive)
-    (mapc 'kill-buffer 
-          (delq (current-buffer) 
-                (remove-if-not 'buffer-file-name (buffer-list)))))
+  "Kill all other buffers."
+  (interactive)
+  (mapc 'kill-buffer 
+	(delq (current-buffer) 
+	      (remove-if-not 'buffer-file-name (buffer-list)))))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (load-file "~/.emacs.d/cedet-1.0/common/cedet.el")
 ;; This plain hack probably will not work with versions other than speedbar v 1.0
 (defun speedbar-timer-fn ()
   "Run whenever Emacs is idle to update the speedbar item."
   (if (or (not (speedbar-current-frame))
-	    (not (frame-live-p (speedbar-current-frame))))
+	  (not (frame-live-p (speedbar-current-frame))))
       (speedbar-set-timer nil)
     ;; Save all the match data so that we don't mess up executing fns
     (save-match-data
       ;; Only do stuff if the frame is visible, not an icon, and if
       ;; it is currently flagged to do something.
       (if (and speedbar-update-flag
-	              (speedbar-current-frame)
-		             (frame-visible-p (speedbar-current-frame))
-			            (not (eq (frame-visible-p (speedbar-current-frame)) 'icon)))
-	    (let ((af (selected-frame)))
-	            (dframe-select-attached-frame speedbar-frame)
-		          ;; make sure we at least choose a window to
-		          ;; get a good directory from
-		          (if (window-minibuffer-p (selected-window))
-			        nil
-			    ;; Check for special modes
-			    (speedbar-maybe-add-localized-support (current-buffer))
-			    ;; Update for special mode all the time!
-			    (if (and speedbar-mode-specific-contents-flag
-				      (consp speedbar-special-mode-expansion-list)
-				       (local-variable-p
-					  'speedbar-special-mode-expansion-list
-					    (current-buffer)))
-				    ;;(eq (get major-mode 'mode-class 'special)))
-				    (progn
-				            (if (<= 2 speedbar-verbosity-level)
-						  (speedbar-message
-						      "Updating speedbar to special mode: %s..."
-						         major-mode))
-					          (speedbar-update-special-contents)
-						        (if (<= 2 speedbar-verbosity-level)
-							      (progn
-								    (speedbar-message
-								          "Updating speedbar to special mode: %s...done"
-									       major-mode)
-								        (speedbar-message nil))))
+	       (speedbar-current-frame)
+	       (frame-visible-p (speedbar-current-frame))
+	       (not (eq (frame-visible-p (speedbar-current-frame)) 'icon)))
+	  (let ((af (selected-frame)))
+	    (dframe-select-attached-frame speedbar-frame)
+	    ;; make sure we at least choose a window to
+	    ;; get a good directory from
+	    (if (window-minibuffer-p (selected-window))
+		nil
+	      ;; Check for special modes
+	      (speedbar-maybe-add-localized-support (current-buffer))
+	      ;; Update for special mode all the time!
+	      (if (and speedbar-mode-specific-contents-flag
+		       (consp speedbar-special-mode-expansion-list)
+		       (local-variable-p
+			'speedbar-special-mode-expansion-list
+			(current-buffer)))
+		  ;;(eq (get major-mode 'mode-class 'special)))
+		  (progn
+		    (if (<= 2 speedbar-verbosity-level)
+			(speedbar-message
+			 "Updating speedbar to special mode: %s..."
+			 major-mode))
+		    (speedbar-update-special-contents)
+		    (if (<= 2 speedbar-verbosity-level)
+			(progn
+			  (speedbar-message
+			   "Updating speedbar to special mode: %s...done"
+			   major-mode)
+			  (speedbar-message nil))))
 
-			        ;; Update all the contents if directories change!
-			        (unless (and (or (member major-mode speedbar-ignored-modes)
-						    (string-equal "*SPEEDBAR*" (buffer-name))
-						       (not (buffer-file-name)))
-					            ;; Always update for GUD.
-					            (not (string-equal "GUD"
-								            speedbar-initial-expansion-list-name)))
-				      (speedbar-update-localized-contents)))
-			    (select-frame af))
-			      ;; Now run stealthy updates of time-consuming items
-			      (speedbar-stealthy-updates)))))
+		;; Update all the contents if directories change!
+		(unless (and (or (member major-mode speedbar-ignored-modes)
+				 (string-equal "*SPEEDBAR*" (buffer-name))
+				 (not (buffer-file-name)))
+			     ;; Always update for GUD.
+			     (not (string-equal "GUD"
+						speedbar-initial-expansion-list-name)))
+		  (speedbar-update-localized-contents)))
+	      (select-frame af))
+	    ;; Now run stealthy updates of time-consuming items
+	    (speedbar-stealthy-updates)))))
   (run-hooks 'speedbar-timer-hook))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (add-to-list 'auto-mode-alist
-'("/usr/include/Qt" . c++-mode))
+	     '("/usr/include/Qt" . c++-mode))
 
 (semantic-add-system-include 
-"/usr/include/Qt" 'c++-mode)
+ "/usr/include/Qt" 'c++-mode)
 (add-to-list 'semantic-lex-c-preprocessor-symbol-file
-"/usr/include/Qt/qconfig.h")
+	     "/usr/include/Qt/qconfig.h")
 (add-to-list 'semantic-lex-c-preprocessor-symbol-file
-"/usr/include/Qt/qconfig-dist.h")
-
+	     "/usr/include/Qt/qconfig-dist.h")
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (global-ede-mode 1)                      ; Enable the Project management system
 (semantic-load-enable-code-helpers)      ; Enable prototype help and smart completion 
@@ -320,21 +298,21 @@
 (global-set-key [(control  <)] 'semantic-goto-definition)
 (global-set-key [(control  >)] 'semantic-pop-tag-mark)
 (defun my-cedet-hook ()
-(local-set-key [(control return)] 'semantic-ia-complete-symbol)
-(local-set-key "\C-c?" 'semantic-ia-complete-symbol-menu)
-(local-set-key "\t" 'semantic-complete-analyze-inline)
-(local-set-key "\C-cp" 'semantic-analyze-proto-impl-toggle))
+  (local-set-key [(control return)] 'semantic-ia-complete-symbol)
+  (local-set-key "\C-c?" 'semantic-ia-complete-symbol-menu)
+  (local-set-key "\t" 'semantic-complete-analyze-inline)
+  (local-set-key "\C-cp" 'semantic-analyze-proto-impl-toggle))
 (add-hook 'c-mode-common-hook 'my-cedet-hook)
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (load-file "~/.emacs.d/sr-speedbar.el")
-   (require 'sr-speedbar)
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(require 'sr-speedbar)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; custom key bindings programming mode
 (defun my-programming-mode ()
-    (local-set-key [f11] "\C-u\M-.") ;; Next tag declaration
-    (local-set-key [f10] "\M-*") ;; Previous tag position  
-    (local-set-key [f7] 'find-tag)    ;; Search for a tag
-    (local-set-key [f5] 'semantic-speedbar-analysis)) ;; speedbar
+  (local-set-key [f11] "\C-u\M-.") ;; Next tag declaration
+  (local-set-key [f10] "\M-*") ;; Previous tag position  
+  (local-set-key [f7] 'find-tag)    ;; Search for a tag
+  (local-set-key [f5] 'semantic-speedbar-analysis)) ;; speedbar
 ;;    (local-set-key [f5] 'my-semantic-speedbar-analysis)) ;; speedbar
 (add-hook 'c-mode-common-hook 'my-programming-mode)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -354,15 +332,12 @@
 ;; Cuda syntax highlighting
 (add-to-list 'auto-mode-alist '("\\.cu$" . c++-mode))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-; -== scala-mode ==-
+					; -== scala-mode ==-
 (add-to-list 'load-path "~/.emacs.d/scala")
 (require 'scala-mode-auto) 
-
 (add-hook 'scala-mode-hook
-         '(lambda ()
-       (scala-mode-feature-electric-mode)
-          ))
-
+	  '(lambda ()
+	     (scala-mode-feature-electric-mode)))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (require 'scala-mode)
 (add-to-list 'auto-mode-alist '("\.scala$" . scala-mode))
@@ -377,7 +352,10 @@
 ;; If idle for more than 100 seconds then change it to read-only mode
 (run-at-time 100 1000 (lambda ()(toggle-read-only 1)))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
+;; To customize the theme based on the window system 
+;; The one below is for the X-window system
 (add-to-list 'load-path "~/.emacs.d/color-theme-cobalt-0.0.2/")
 (load-file "~/.emacs.d/color-theme-cobalt-0.0.2/color-theme-cobalt.el")
-(color-theme-cobalt)
+(if window-system
+    (color-theme-cobalt))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
