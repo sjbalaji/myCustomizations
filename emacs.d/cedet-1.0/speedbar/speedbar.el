@@ -261,7 +261,7 @@ A nil value means don't show the file in the list."
   "*Obsoleted variable.  Use `dframe-update-speed'.")
 ;;; END REMOVE THESE
 
-(defcustom speedbar-frame-parameters '((minibuffer . nil)
+(defcustom speedbar-frame-parameters '((minibuffer . 1)
 				       (width . 20)
 				       (border-width . 0)
 				       (menu-bar-lines . 0)

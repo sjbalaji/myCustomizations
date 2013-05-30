@@ -1,0 +1,68 @@
+--- a/elisp/emacs-goodies-el/ascii.el
++++ b/elisp/emacs-goodies-el/ascii.el
+@@ -392,9 +392,11 @@
+     (setq ascii-display         t
+ 	  ascii-reference-count (1+ ascii-reference-count))
+     ;; local hooks
+-    (make-local-hook 'post-command-hook)
++    (if (fboundp 'make-local-hook)
++        (make-local-hook 'post-command-hook))
+     (add-hook 'post-command-hook 'ascii-post-command)
+-    (make-local-hook 'kill-buffer-hook)
++    (if (fboundp 'make-local-hook)
++        (make-local-hook 'kill-buffer-hook))
+     (add-hook 'kill-buffer-hook 'ascii-off nil t)
+     ;; own hook
+     (run-hooks 'ascii-hook)
+@@ -428,7 +430,8 @@
+ ;; Internal variables
+ 
+ 
+-(make-local-hook 'ascii-hook)
++(if (fboundp 'make-local-hook)
++    (make-local-hook 'ascii-hook))
+ 
+ 
+ (defconst ascii-table
+--- a/elisp/emacs-goodies-el/egocentric.el
++++ b/elisp/emacs-goodies-el/egocentric.el
+@@ -101,7 +101,8 @@
+ 
+ (defvar egocentric-overlay-list nil
+   "List of overlays used to highlight occurences of your name in `egocentric-mode'.")
+-(make-local-variable 'egocentric-overlay-list)
++(if (fboundp 'make-local-hook)
++    (make-local-variable 'egocentric-overlay-list))
+ 
+ (defvar egocentric-regexp-list nil
+   "Regexp used to check whether a word has to be highlighted.
+@@ -141,7 +142,8 @@
+ (defun egocentric-mode-on ()
+   "Turn Egocentric mode on."
+   (interactive)
+-  (make-local-hook 'post-command-hook)
++  (if (fboundp 'make-local-hook)
++      (make-local-hook 'post-command-hook))
+   (add-hook 'post-command-hook (function egocentric-post-command-hook) t t)
+   (egocentric-update-regexp-list)
+   (egocentric-insinuate egocentric-regexp-list)
+--- a/elisp/emacs-goodies-el/maplev.el
++++ b/elisp/emacs-goodies-el/maplev.el
+@@ -1853,13 +1853,15 @@
+   ;; the file's local variables specs might change maplev-release
+   ;; xemacs version of make-local-hook returns t, not the hook. (JR)
+   ;; make-local-hook is obsolete in GNU emacs 21.1
+-  (make-local-hook 'hack-local-variables-hook)
++  (if (fboundp 'make-local-hook)
++      (make-local-hook 'hack-local-variables-hook))
+   (add-hook 'hack-local-variables-hook 'maplev-mode-name nil t)
+ 
+   ;; Set hooks
+   (if maplev-clean-buffer-before-saving-flag
+       (add-hook 'local-write-file-hooks 'maplev-remove-trailing-spaces))
+-  (make-local-hook 'before-change-functions)
++  (if (fboundp 'make-local-hook)
++      (make-local-hook 'before-change-functions))
+   (add-hook 'before-change-functions 'maplev--before-change-function nil t)
+   (run-hooks 'maplev-mode-hook))
+ 

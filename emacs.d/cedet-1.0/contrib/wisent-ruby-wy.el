@@ -2,8 +2,8 @@
 
 ;;; Copyright (C) 2007 Daniel Debertin (debertin@gmail.com)
 
-;; Author: balaji <balaji@shiro>
-;; Created: 2011-03-17 00:39:42+0530
+;; Author: balaji <balaji@beethoven>
+;; Created: 2012-12-17 12:13:47+0530
 ;; Keywords: syntax
 ;; X-RCS: $Id$
 

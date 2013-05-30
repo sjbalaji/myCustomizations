@@ -6,6 +6,7 @@
 (set-face-attribute 'default nil :height 100)
 
 (add-hook 'load-path "~/.emacs.d/")
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; displays the time in the status bar
 (display-time)
@@ -49,9 +50,35 @@
 (require 'git-emacs)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; highlight the current line
-(global-hl-line-mode t)
-(make-variable-buffer-local 'global-hl-line-mode)
-(set-face-background hl-line-face "yellow")
+;;(require 'highlight-current-line)
+;;(highlight-current-line-on t)
+ 
+;; To customize the background color
+;;(set-face-background 'highlight-current-line-face "light yellow")
+;;(global-hl-line-mode t)
+;;(make-variable-buffer-local 'global-hl-line-mode)
+
+;;(require 'highlight-current-line)
+;;(highlight-current-line-on t)
+ 
+;; To customize the background color
+;;(set-face-background 'highlight-current-line-face "light yellow")
+(global-hl-line-mode 1)
+ 
+;; To customize the background color
+(set-face-background 'hl-line "#330")  ;; Emacs 22 Only
+
+;;(require 'highline)
+;;(highline-mode 1)
+ 
+;; To customize the background color
+;;(set-face-background 'highline-face "#222")
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+
+;; (set-face-background hl-line-face "light yellow")
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ===== Turn on Auto Fill mode automatically in all modes =====
 
@@ -350,3 +377,7 @@
 ;; If idle for more than 100 seconds then change it to read-only mode
 (run-at-time 100 1000 (lambda ()(toggle-read-only 1)))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(add-to-list 'load-path "~/.emacs.d/color-theme-cobalt-0.0.2/")
+(load-file "~/.emacs.d/color-theme-cobalt-0.0.2/color-theme-cobalt.el")
+(color-theme-cobalt)

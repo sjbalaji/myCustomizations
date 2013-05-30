@@ -1,7 +1,7 @@
-This is semantic-user.info, produced by makeinfo version 4.9 from
+This is semantic-user.info, produced by makeinfo version 4.13 from
 user-guide.texi.
 
-   This is the Semantic User's Manual
+This is the Semantic User's Manual
 
    Copyright (C) 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007,
 2008, 2009, 2010 Eric M. Ludlam Copyright (C) 2001, 2002, 2003, 2004
@@ -81,7 +81,7 @@ functions.
 If you use `semantic-load.el', you do not need to add the above lines
 in your `.emacs' file.
 
-Two additional speedbar modes are described in *Note Speedbar Analysis::
+Two additional speedbar modes are described in *note Speedbar Analysis::
 
 
 File: semantic-user.info,  Node: ECB,  Next: imenu,  Prev: speedbar,  Up: Top
@@ -464,10 +464,10 @@ You can get smart completions or summary information to automatically
 popup without explicitly pressing a key or running a function.
 
 This is accomplished through the Idle Scheduler and related features.
-See *Note Idle Scheduler:: for more on the Scheduler.
+See *note Idle Scheduler:: for more on the Scheduler.
 
 Completions are provided with `semantic-idle-completions-mode'.  See
-*Note Idle Completions Mode::.
+*note Idle Completions Mode::.
 
 
 File: semantic-user.info,  Node: Smart Summary,  Next: Smart Jump,  Prev: Smart Completion,  Up: Analyzer
@@ -497,9 +497,9 @@ You can also get summaries to popup in idle time without having to
 press a key to get the information.
 
 This is accomplished through the Idle Scheduler and related features.
-See *Note Idle Scheduler:: for more on the Scheduler.
+See *note Idle Scheduler:: for more on the Scheduler.
 
-Summaries are provided with `semantic-idle-summary-mode'.  See *Note
+Summaries are provided with `semantic-idle-summary-mode'.  See *note
 Idle Summary Mode::.
 
 
@@ -541,7 +541,7 @@ interface lists details about the analysis, such as the current
 function, local arguments and variables, details on the prefix (the
 symbol the cursor is on), and a list of all possible completions.
 Completions are specified in "semantic-analyze-possible-completions"
-*Note Analyzer::.
+*note Analyzer::.
 
 Each entry can be jumped to by clicking on the name.  For strongly
 typed languages, this means you will jump to the definition of the
@@ -588,7 +588,7 @@ identify what the data type was.
 
 The first item in the list of the prefix is the first lookup failure in
 the chain, and that is the item to focus debugging effort on.  For more
-on the analyzer, see *Note Analyzer::.
+on the analyzer, see *note Analyzer::.
 
      Context Type: #<semantic-analyze-context context>
      Bounds: (182 . 185)
@@ -631,10 +631,10 @@ For C++, check to make sure that your project level include files are
 in "quotes", and not in <angle brackets>.  Items in angle brackets are
 system includes.
 
-See *Note Semanticdb search debugging commands:: for more commands.
+See *note Semanticdb search debugging commands:: for more commands.
 
 If items should be loaded but aren't, you may need to update the search
-throttle.  See *Note Search Throttle::.
+throttle.  See *note Search Throttle::.
 
 If you see some tables that have 0 tags in them, then you you may have
 an incorrectly set throttle.
@@ -1135,7 +1135,7 @@ File: semantic-user.info,  Node: Idle Completions Mode,  Prev: Idle Summary Mode
 =========================
 
 The definition of smart completion is described in the Analyzer section
-*Note Analyzer::.
+*note Analyzer::.
 
 The Idle Completions mode will calculate the list of possible
 completions in idle time, and display them in a popup list, or other
@@ -1182,8 +1182,8 @@ Semantic comes with a wide range of minor-modes which use various
 features of semantic.  These modes vary widely in utility.
 
 There are some core modes that are required for smooth operations.
-Some of these are discussed in other chapters, such as *Note Idle
-Scheduler::, and *Note semanticdb::
+Some of these are discussed in other chapters, such as *note Idle
+Scheduler::, and *note semanticdb::
 
 * Menu:
 
@@ -1208,7 +1208,7 @@ that can assist in programming Semantic supported languages.
 * MRU Bookmarks Mode::
 * Breadcrumbs Mode::
 
-Senator is another mode which can assist in programming *Note senator::.
+Senator is another mode which can assist in programming *note senator::.
 
 
 File: semantic-user.info,  Node: Development Modes,  Prev: Code Helpers,  Up: Minor Modes
@@ -1287,7 +1287,7 @@ function or method body point is in, all occurances of that symbol will
 be highlighted.  Each location will be analyzed to make sure it is the
 same as the location where point is.
 
-Unlike *Note Highlight Func Mode:: which lighlights the tag the point is
+Unlike *note Highlight Func Mode:: which lighlights the tag the point is
 in, this highlights uses of the symbol the point is in.  Note that the
 "current tag" is an entity that may contain code that the point is in.
 A symbol is a single word or symbol under point.
@@ -1776,7 +1776,7 @@ the following commands:
 For a bit more on include paths, see the *note Search Optimization
 section: (semantic)Search Optimization.
 
-Debug your search paths using stiff in *Note Semanticdb search
+Debug your search paths using stiff in *note Semanticdb search
 debugging commands::.
 
 
@@ -1855,9 +1855,9 @@ but could not find on disk using `M-x
 semanticdb-find-adebug-lost-includes RET'.
 
 Once you have used the below functions to debug the problem, you may
-need to reconfigure how semantic finds include files.  See *Note
+need to reconfigure how semantic finds include files.  See *note
 Semanticdb Search Configuration::.  If the search config is ok, you may
-need to configure the search throttle. See *Note Search Throttle::.
+need to configure the search throttle. See *note Search Throttle::.
 
  -- Command: semanticdb-dump-all-table-summary
      Dump a list of all databases in Emacs memory.
@@ -2252,20 +2252,19 @@ Appendix A GNU Free Documentation License
      H. Include an unaltered copy of this License.
      I. Preserve the section entitled "History", and its title, and add
      to    it an item stating at least the title, year, new authors, and
-       publisher of the Modified Version as given on the Title Page.
-     If    there is no section entitled "History" in the Document,
-     create one    stating the title, year, authors, and publisher of
-     the Document as    given on its Title Page, then add an item
+       publisher of the Modified Version as given on the Title Page.  If
+       there is no section entitled "History" in the Document, create
+     one    stating the title, year, authors, and publisher of the
+     Document as    given on its Title Page, then add an item
      describing the Modified    Version as stated in the previous
      sentence.
      J. Preserve the network location, if any, given in the Document for
-       public access to a Transparent copy of the Document, and
-     likewise    the network locations given in the Document for
-     previous versions    it was based on.  These may be placed in the
-     "History" section.     You may omit a network location for a work
-     that was published at    least four years before the Document
-     itself, or if the original    publisher of the version it refers
-     to gives permission.
+       public access to a Transparent copy of the Document, and likewise
+       the network locations given in the Document for previous versions
+       it was based on.  These may be placed in the "History" section.
+       You may omit a network location for a work that was published at
+       least four years before the Document itself, or if the original
+      publisher of the version it refers to gives permission.
      K. In any section entitled "Acknowledgements" or "Dedications",
      preserve the section's title, and preserve in the section all the
       substance and tone of each of the contributor acknowledgements
@@ -2424,10 +2423,10 @@ notices just after the title page:
        Front-Cover Texts being LIST, and with the Back-Cover Texts being LIST.
        A copy of the license is included in the section entitled ``GNU
        Free Documentation License''.
-If you have no Invariant Sections, write "with no Invariant
-Sections" instead of saying which ones are invariant.  If you have no
-Front-Cover Texts, write "no Front-Cover Texts" instead of "Front-Cover
-Texts being LIST"; likewise for Back-Cover Texts.
+If you have no Invariant Sections, write "with no Invariant Sections"
+instead of saying which ones are invariant.  If you have no Front-Cover
+Texts, write "no Front-Cover Texts" instead of "Front-Cover Texts being
+LIST"; likewise for Back-Cover Texts.
 
 If your document contains nontrivial examples of program code, we
 recommend releasing these examples in parallel under your choice of
@@ -2619,127 +2618,127 @@ Index
 
 
 Tag Table:
-Node: Top1082
-Node: speedbar2349
-Node: ECB3089
-Node: imenu3445
-Ref: semantic-imenu-expandable-tag-classes6033
-Node: senator6254
-Ref: senator-go-to-up-reference7451
-Node: Analyzer13565
-Node: Smart Completion15498
-Ref: semantic-ia-complete-symbol15957
-Ref: semantic-ia-complete-symbol-menu16139
-Ref: semantic-ia-complete-tip16335
-Node: Smart Summary16743
-Ref: semantic-ia-show-summary17107
-Ref: semantic-ia-show-variants17205
-Ref: semantic-ia-show-doc17310
-Ref: semantic-ia-describe-class17427
-Node: Smart Jump17930
-Ref: semantic-ia-fast-jump18436
-Ref: semantic-ia-fast-mouse-jump18649
-Node: Speedbar Analysis18913
-Node: Smart Completion Debugging20272
-Node: SymRef26781
-Ref: semantic-symref27240
-Ref: semantic-symref-symbol27612
-Ref: semantic-symref-regexp27983
-Node: SymRef Results Mode28380
-Node: Configuring SymRef29238
-Ref: semantic-symref-tool-alist30195
-Node: Document30521
-Node: Charts33464
-Ref: semantic-chart-database-size34079
-Ref: semantic-chart-tag-complexity34381
-Node: Idle Scheduler34672
-Ref: global-semantic-idle-scheduler-mode35262
-Ref: semantic-idle-scheduler-idle-time35942
-Ref: semantic-idle-scheduler-mode-hook36156
-Ref: semantic-idle-scheduler-verbose-flag36275
-Node: Reparsing Options36902
-Ref: semantic-idle-scheduler-max-buffer-size37313
-Ref: semantic-idle-scheduler-no-working-message37592
-Ref: semantic-idle-scheduler-working-in-modeline-flag37723
-Ref: semantic-before-idle-scheduler-reparse-hooks38009
-Ref: semantic-after-idle-scheduler-reparse-hooks38258
-Node: Idle Working Options38445
-Ref: semantic-idle-scheduler-work-idle-time39357
-Ref: semantic-idle-work-parse-neighboring-files-flag39618
-Node: Debugging Idle Time Issues39759
-Ref: semantic-debug-idle-function40281
-Ref: semantic-debug-idle-work-function40391
-Node: Idle Summary Mode40627
-Ref: semantic-idle-summary-mode41019
-Ref: semantic-idle-summary-function41715
-Ref: semantic-idle-summary-out-of-context-faces41917
-Node: Idle Completions Mode42674
-Ref: semantic-idle-completions-mode43134
-Ref: semantic-complete-analyze-inline-idle43967
-Ref: semantic-complete-inline-analyzer-idle-displayor-class44415
-Node: Minor Modes44618
-Node: Code Helpers45196
-Node: Development Modes45692
-Node: Sticky Function Mode45918
-Node: Highlight Func Mode46902
-Ref: semantic-highlight-func-mode47394
-Ref: semantic-highlight-func-current-tag-face48160
-Node: Local Symbol Highlight Mode48213
-Ref: semantic-idle-symbol-highlight-face49046
-Node: Tag Decoration Mode49098
-Ref: semantic-decoration-mode49579
-Ref: semantic-toggle-decoration-style50151
-Ref: semantic-tag-boundary-face50686
-Ref: semantic-decoration-on-private-members-face51012
-Ref: semantic-decoration-on-protected-members-face51376
-Ref: semantic-decoration-on-includes51820
-Ref: semantic-decoration-on-unknown-includes52038
-Ref: semantic-decoration-on-unparsed-includes52240
-Ref: define-semantic-decoration-style52618
-Node: MRU Bookmarks Mode53698
-Ref: semantic-mru-bookmark-mode54138
-Node: Breadcrumbs Mode54917
-Ref: semantic-idle-breadcrumbs-display-function55857
-Ref: semantic-idle-breadcrumbs-format-tag-function56151
-Ref: semantic-idle-breadcrumbs-separator56444
-Ref: semantic-idle-breadcrumbs-header-line-prefix56695
-Node: Highlight Edits Mode56824
-Node: Parser State57765
-Node: Unmatched Syntax Highlighting58795
-Node: semanticdb59825
-Ref: semanticdb-mode-hooks61727
-Node: Semanticdb Tag Storage62071
-Ref: semanticdb-default-file-name62468
-Ref: semanticdb-default-save-directory62557
-Ref: semanticdb-persistent-path62886
-Ref: semanticdb-project-predicate-functions63610
-Ref: semanticdb-save-database-hooks64102
-Node: Semanticdb Search Configuration64254
-Node: Semanticdb Roots66083
-Ref: semanticdb-project-roots66521
-Ref: semanticdb-project-root-functions66867
-Node: Include paths67461
-Ref: semantic-add-system-include67796
-Ref: semantic-remove-system-include67990
-Ref: semantic-customize-system-include-path68188
-Ref: semanticdb-implied-include-tags68435
-Node: Search Throttle68959
-Ref: semanticdb-find-default-throttle69459
-Node: Semanticdb search debugging commands71259
-Ref: semanticdb-dump-all-table-summary72286
-Ref: semanticdb-find-test-translate-path72401
-Ref: semanticdb-find-adebug-lost-includes72573
-Ref: semantic-adebug-searchdb72809
-Node: Semanticdb System Backends72914
-Ref: semanticdb-project-system-databases73274
-Ref: semanticdb-search-system-databases73828
-Node: Changing Backends73897
-Ref: semanticdb-new-database-class74436
-Node: Script Generated Cache Files74655
-Node: Create System Databases75130
-Ref: semanticdb-create-ebrowse-database75587
-Node: Debugging75779
-Node: GNU Free Documentation License80126
-Node: Index99864
+Node: Top1080
+Node: speedbar2347
+Node: ECB3087
+Node: imenu3443
+Ref: semantic-imenu-expandable-tag-classes6031
+Node: senator6252
+Ref: senator-go-to-up-reference7449
+Node: Analyzer13563
+Node: Smart Completion15496
+Ref: semantic-ia-complete-symbol15955
+Ref: semantic-ia-complete-symbol-menu16137
+Ref: semantic-ia-complete-tip16333
+Node: Smart Summary16741
+Ref: semantic-ia-show-summary17105
+Ref: semantic-ia-show-variants17203
+Ref: semantic-ia-show-doc17308
+Ref: semantic-ia-describe-class17425
+Node: Smart Jump17928
+Ref: semantic-ia-fast-jump18434
+Ref: semantic-ia-fast-mouse-jump18647
+Node: Speedbar Analysis18911
+Node: Smart Completion Debugging20270
+Node: SymRef26779
+Ref: semantic-symref27238
+Ref: semantic-symref-symbol27610
+Ref: semantic-symref-regexp27981
+Node: SymRef Results Mode28378
+Node: Configuring SymRef29236
+Ref: semantic-symref-tool-alist30193
+Node: Document30519
+Node: Charts33462
+Ref: semantic-chart-database-size34077
+Ref: semantic-chart-tag-complexity34379
+Node: Idle Scheduler34670
+Ref: global-semantic-idle-scheduler-mode35260
+Ref: semantic-idle-scheduler-idle-time35940
+Ref: semantic-idle-scheduler-mode-hook36154
+Ref: semantic-idle-scheduler-verbose-flag36273
+Node: Reparsing Options36900
+Ref: semantic-idle-scheduler-max-buffer-size37311
+Ref: semantic-idle-scheduler-no-working-message37590
+Ref: semantic-idle-scheduler-working-in-modeline-flag37721
+Ref: semantic-before-idle-scheduler-reparse-hooks38007
+Ref: semantic-after-idle-scheduler-reparse-hooks38256
+Node: Idle Working Options38443
+Ref: semantic-idle-scheduler-work-idle-time39355
+Ref: semantic-idle-work-parse-neighboring-files-flag39616
+Node: Debugging Idle Time Issues39757
+Ref: semantic-debug-idle-function40279
+Ref: semantic-debug-idle-work-function40389
+Node: Idle Summary Mode40625
+Ref: semantic-idle-summary-mode41017
+Ref: semantic-idle-summary-function41713
+Ref: semantic-idle-summary-out-of-context-faces41915
+Node: Idle Completions Mode42672
+Ref: semantic-idle-completions-mode43132
+Ref: semantic-complete-analyze-inline-idle43965
+Ref: semantic-complete-inline-analyzer-idle-displayor-class44413
+Node: Minor Modes44616
+Node: Code Helpers45194
+Node: Development Modes45690
+Node: Sticky Function Mode45916
+Node: Highlight Func Mode46900
+Ref: semantic-highlight-func-mode47392
+Ref: semantic-highlight-func-current-tag-face48158
+Node: Local Symbol Highlight Mode48211
+Ref: semantic-idle-symbol-highlight-face49044
+Node: Tag Decoration Mode49096
+Ref: semantic-decoration-mode49577
+Ref: semantic-toggle-decoration-style50149
+Ref: semantic-tag-boundary-face50684
+Ref: semantic-decoration-on-private-members-face51010
+Ref: semantic-decoration-on-protected-members-face51374
+Ref: semantic-decoration-on-includes51818
+Ref: semantic-decoration-on-unknown-includes52036
+Ref: semantic-decoration-on-unparsed-includes52238
+Ref: define-semantic-decoration-style52616
+Node: MRU Bookmarks Mode53696
+Ref: semantic-mru-bookmark-mode54136
+Node: Breadcrumbs Mode54915
+Ref: semantic-idle-breadcrumbs-display-function55855
+Ref: semantic-idle-breadcrumbs-format-tag-function56149
+Ref: semantic-idle-breadcrumbs-separator56442
+Ref: semantic-idle-breadcrumbs-header-line-prefix56693
+Node: Highlight Edits Mode56822
+Node: Parser State57763
+Node: Unmatched Syntax Highlighting58793
+Node: semanticdb59823
+Ref: semanticdb-mode-hooks61725
+Node: Semanticdb Tag Storage62069
+Ref: semanticdb-default-file-name62466
+Ref: semanticdb-default-save-directory62555
+Ref: semanticdb-persistent-path62884
+Ref: semanticdb-project-predicate-functions63608
+Ref: semanticdb-save-database-hooks64100
+Node: Semanticdb Search Configuration64252
+Node: Semanticdb Roots66081
+Ref: semanticdb-project-roots66519
+Ref: semanticdb-project-root-functions66865
+Node: Include paths67459
+Ref: semantic-add-system-include67794
+Ref: semantic-remove-system-include67988
+Ref: semantic-customize-system-include-path68186
+Ref: semanticdb-implied-include-tags68433
+Node: Search Throttle68957
+Ref: semanticdb-find-default-throttle69457
+Node: Semanticdb search debugging commands71257
+Ref: semanticdb-dump-all-table-summary72284
+Ref: semanticdb-find-test-translate-path72399
+Ref: semanticdb-find-adebug-lost-includes72571
+Ref: semantic-adebug-searchdb72807
+Node: Semanticdb System Backends72912
+Ref: semanticdb-project-system-databases73272
+Ref: semanticdb-search-system-databases73826
+Node: Changing Backends73895
+Ref: semanticdb-new-database-class74434
+Node: Script Generated Cache Files74653
+Node: Create System Databases75128
+Ref: semanticdb-create-ebrowse-database75585
+Node: Debugging75777
+Node: GNU Free Documentation License80124
+Node: Index99850
 
 End Tag Table

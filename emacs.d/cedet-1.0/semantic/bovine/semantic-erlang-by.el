@@ -2,8 +2,8 @@
 
 ;; Copyright (C) 2002, 2003 Vladimir G. Sekissov
 
-;; Author: balaji <balaji@shiro>
-;; Created: 2011-03-17 00:39:23+0530
+;; Author: balaji <balaji@beethoven>
+;; Created: 2012-12-17 12:14:01+0530
 ;; Keywords: syntax
 ;; X-RCS: $Id$
 
