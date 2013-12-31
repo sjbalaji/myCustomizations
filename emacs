@@ -454,3 +454,7 @@
 
 (global-set-key (kbd "RET") 'autopairs-ret)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(xterm-mouse-mode t)
+(mouse-wheel-mode t)
+(setq x-select-enable-clipboard t)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
