@@ -1,43 +1,4 @@
 -- -- Imports.
--- import XMonad
--- import XMonad.Hooks.DynamicLog
--- import XMonad.Hooks.FadeInactive
-
--- myLogHook :: X ()
-
--- myLogHook = fadeInactiveLogHook fadeAmount
--- 	  where fadeAmount = 0.8
-
--- -- The main function.
--- main = xmonad =<< statusBar myBar myPP toggleStrutsKey myConfig
-
--- -- Command to launch the bar.
--- myBar = "xmobar"
-
--- -- Custom terminal 
--- myTerminal  = "konsole"
-
--- myNormalBorderColor  = "black"
--- myFocusedBorderColor = "red"
--- myBorderWidth = 1
-
--- -- Custom PP, configure it as you like. It determines what's being written to the bar.
--- myPP = xmobarPP { ppCurrent = xmobarColor "#429942" "" . wrap "<" ">" }
-
--- -- Keybinding to toggle the gap for the bar.
--- toggleStrutsKey XConfig { XMonad.modMask = modMask } = (modMask, xK_b)
-
--- myWorkspaces = ["1:main","2:web","3:emacs","4:chat","5:music", "6:gimp"]
--- -- Main configuration, override the defaults to your liking.
--- myConfig = defaultConfig { modMask = mod4Mask,
---                             workspaces = myWorkspaces,
---                            terminal = myTerminal,
---                            borderWidth = myBorderWidth,
---                            normalBorderColor = myNormalBorderColor,
---                            focusedBorderColor = myFocusedBorderColor,
--- 			   logHook = myLogHook
---                         }
--- ~/.xmonad/xmonad.hs
 -- Imports {{{
 import XMonad
 -- Prompt
@@ -97,6 +58,7 @@ myStatusBar = "conky -c /home/balaji/.xmonad/.conky_dzen | dzen2 -x '2080' -w '2
 myBitmapsDir = "/home/my_user/.xmonad/dzen2"
 myBottomBar = "xmobar -b"
 myGuake = "guake"
+myWallpaper = "feh --bg-scale /home/balaji/Pictures/husky.jpg"
 --}}}
 -- Main {{{
 main = do
@@ -104,6 +66,7 @@ main = do
     dzenRightBar <- spawnPipe myStatusBar
     xmobarBottom <- spawnPipe myBottomBar
     guake <- spawnPipe myGuake
+    wallpaper <- spawnPipe myWallpaper 
     xmonad $ defaultConfig
       { terminal            = myTerminal
       , workspaces          = myWorkspaces
@@ -114,7 +77,7 @@ main = do
       , logHook             = myLogHook dzenLeftBar >> fadeInactiveLogHook 0xdddddddd
       , normalBorderColor   = colorNormalBorder
       , focusedBorderColor  = colorFocusedBorder
-      , borderWidth         = 2
+      , borderWidth         = 0
       , startupHook = setWMName "LG3D" 
 }
 --}}}
@@ -145,11 +108,11 @@ manageHook' = (composeAll . concat $
         myFloats  = ["Smplayer","MPlayer","VirtualBox","Xmessage","XFontSel","Downloads","Nm-connection-editor"]
         myWebs    = ["Firefox","Google-chrome","Chromium", "Chromium-browser"]
         myMovie   = ["Boxee","Trine","vlc"]
-        myMusic     = ["Rhythmbox","Spotify","amarok"]
-        myChat        = ["Pidgin","Empathy","Buddy List"]
-        myGimp          = ["Gimp"]
-        myDev             = ["konsole"]
-        myEmacs               = ["Emacs"]
+        myMusic   = ["Rhythmbox","Spotify","amarok"]
+        myChat    = ["Pidgin","Empathy","Buddy List"]
+        myGimp    = ["Gimp"]
+        myDev     = ["konsole"]
+        myEmacs   = ["Emacs"]
         myWork    = ["Texmaker"]
  
         -- resources
@@ -221,7 +184,7 @@ colorFocusedBorder  = "#fd971f"
  
 barFont  = "terminus"
 barXFont = "inconsolata:size=12"
-xftFont = "xft: inconsolata-14"
+xftFont  = "xft: inconsolata-14"
 --}}}
  
 -- Prompt Config {{{
@@ -249,7 +212,7 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     [ ((modMask,                    xK_p        ), runOrRaisePrompt largeXPConfig)
     , ((modMask .|. shiftMask,      xK_Return   ), spawn $ XMonad.terminal conf)
     , ((modMask,                    xK_g        ), spawn "guake")
-    , ((modMask,                    xK_F2       ), spawn "krunner")
+    , ((modMask,                    xK_F2       ), spawn "gmrun")
     , ((modMask .|. shiftMask,      xK_c        ), kill)
     , ((modMask .|. shiftMask,      xK_l        ), spawn "slock")
     -- Programs
