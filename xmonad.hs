@@ -1,4 +1,8 @@
--- -- Imports.
+-- Not mine 
+-- I just doono the initial source 
+-- I have made only small customizations to this
+
+-- Imports.
 -- Imports {{{
 import XMonad
 -- Prompt

@@ -3,19 +3,31 @@ Config { font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
        , fgColor = "grey"
        , position = Top
        , lowerOnStart = True
-       , commands = [ Run Weather "VOMM" ["-t","<station>: <tempC>C","-L","25","-H","30","--normal","green","--high","red","--low","lightblue"] 36000
-       	 	    , Run Weather "VABB" ["-t","<station>: <tempC>C","-L","25","-H","30","--normal","green","--high","red","--low","lightblue"] 36000
-                    , Run Network "em1" ["-L","100","-H","10000","--normal","green","--high","red"] 10
+       , commands = [ Run Weather "VOMM" ["-t","<station>: <tempC>C","-L","25","-H","30","--normal","green","--high","red","--low","lightblue"] 10
+       	 	    , Run Weather "VABB" ["-t","<station>: <tempC>C","-L","25","-H","30","--normal","green","--high","red","--low","lightblue"] 10
+                    , Run Network "eth0" ["-L","100","-H","10000","--normal","green","--high","red"] 10
+                    , Run Network "wlan0" ["-L","100","-H","10000","--normal","green","--high","red"] 10
                     , Run Cpu ["-L","10","-H","50","--normal","green","--high","red"] 10
-                    , Run Memory ["-t","Mem: <usedratio>%","-L","0","-H","20","--normal","green","--high","red"] 10
+                    , Run Memory ["-t","Mem: <usedratio>%","-L","0","-H","80","--normal","green","--high","red"] 10
                     , Run Swap ["-L","0","-H","20","--normal","green","--high","red"] 10
                     , Run Com "uname" ["-n","-s","-r"] "" 36000
                     , Run Date "%a %b %_d %Y %H:%M:%S" "date" 10
 		    , Run Com "uptime | awk '{print $2 $3 $4 $5 }'" [] "uptime" 10
 		    , Run Com "ifconfig | grep  10.6 | cut -d ':' -f2 | cut -d ' ' -f1" [] "ifconfig" 10
+		    , Run Com "sensors | grep temp1 | cut -d '+' -f2 | cut -d '(' -f1 | head -n1" [] "sensor" 10
+		    , Run Com "ifconfig | grep  192.168 | cut -d ':' -f2 | cut -d ' ' -f1" [] "ifconfig1" 10
 		    , Run Com "/home/balaji/.xmonad/wireless.sh" [] "wifi" 10
+		    , Run Battery [
+      "-t", "<acstatus>: <left>%",
+      "--",
+      "-c", "charge_full",
+      "-O", "AC",
+      "-o", "Bat",
+      "-h", "green",
+      "-l", "red"
+    ] 10
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%cpu% | %memory% * %swap% | %em1% | %ifconfig% | %uptime% }{ <fc=#ee9a00>%wifi%</fc> | <fc=#ee9a00>%date%</fc> | %VOMM% | %VABB% |<fc=#ab9abb>%uname%</fc>    "
+       , template = "%cpu% | %memory% * %swap% | %eth0% | %ifconfig% |%wlan0% | %ifconfig1% |%uptime% }{ <fc=#ee9a00>%date%</fc> | %VOMM% | %battery% |<fc=#ab9abb>%uname%</fc> |  %sensor%" 
        }
