@@ -5,7 +5,7 @@
 ;; Copyright (C) 2008, 2009, Emacs Guys <emacser@freedom.com>, all rights reserved.
 ;; Created: 2008-06-23 14:46:02
 ;; Version: 1.0
-;; Last-Updated: Sat Feb  9 14:32:26 2013 (+0530)
+;; Last-Updated: Wed Feb  5 01:02:03 2014 (+0530)
 ;; URL: not distributed yet
 ;; Keywords: speedbar
 ;; Compatibility: GNU Emacs 23.0.60.1

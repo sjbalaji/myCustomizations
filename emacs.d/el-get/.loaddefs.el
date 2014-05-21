@@ -3,987 +3,238 @@
 ;;; Code:
 
 
-;;;### (autoloads (align-all-strings align-string) "align-string"
-;;;;;;  "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/align-string.el"
-;;;;;;  (20758 4093))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/align-string.el
+;;;### (autoloads (assistant) "assistant" "gnus/lisp/assistant.el"
+;;;;;;  (21233 11095))
+;;; Generated autoloads from gnus/lisp/assistant.el
 
-(autoload 'align-string "align-string" "\
-Align first occurrence of REGEXP in each line of region.
-If given a prefix argument, align occurrence number COUNT on each line.
+(autoload 'assistant "assistant" "\
+Assist setting up Emacs based on FILE.
 
-\(fn BEGIN END REGEXP COUNT)" t nil)
-
-(autoload 'align-all-strings "align-string" "\
-Align all occurrences of REGEXP in each line of region.
-That is to say, align the first occurrence of each line with each other,
-align the second occurence of each line with each other, and so on.
-
-\(fn BEGIN END REGEXP)" t nil)
+\(fn FILE)" t nil)
 
 ;;;***
 
-;;;### (autoloads (all) "all" "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/all.el"
-;;;;;;  (16059 54755))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/all.el
+;;;### (autoloads (auth-source-cache-expiry) "auth-source" "gnus/lisp/auth-source.el"
+;;;;;;  (21233 11095))
+;;; Generated autoloads from gnus/lisp/auth-source.el
 
-(autoload 'all "all" "\
-Show all lines in the current buffer containing a match for REGEXP.
+(defvar auth-source-cache-expiry 7200 "\
+How many seconds passwords are cached, or nil to disable
+expiring.  Overrides `password-cache-expiry' through a
+let-binding.")
 
-If a match spreads across multiple lines, all those lines are shown.
-
-Each line is displayed with NLINES lines before and after, or -NLINES
-before if NLINES is negative.
-NLINES defaults to `list-matching-lines-default-context-lines'.
-Interactively it is the prefix arg.
-
-The lines are shown in a buffer named `*All*'.
-Any changes made in that buffer will be propagated to this buffer.
-
-\(fn REGEXP &optional NLINES)" t nil)
+(custom-autoload 'auth-source-cache-expiry "auth-source" t)
 
 ;;;***
 
-;;;### (autoloads (apache-mode) "apache-mode" "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/apache-mode.el"
-;;;;;;  (19103 54677))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/apache-mode.el
+;;;### (autoloads (binhex-decode-region binhex-decode-region-external
+;;;;;;  binhex-decode-region-internal) "binhex" "gnus/lisp/binhex.el"
+;;;;;;  (21233 11095))
+;;; Generated autoloads from gnus/lisp/binhex.el
 
-(autoload 'apache-mode "apache-mode" "\
-Major mode for editing Apache configuration files.
+(defconst binhex-begin-line "^:...............................................................$" "\
+Regular expression matching the start of a BinHex encoded region.")
 
-\(fn)" t nil)
-(add-to-list 'auto-mode-alist '("\\.htaccess\\'"   . apache-mode))
-(add-to-list 'auto-mode-alist '("httpd\\.conf\\'"  . apache-mode))
-(add-to-list 'auto-mode-alist '("srm\\.conf\\'"    . apache-mode))
-(add-to-list 'auto-mode-alist '("access\\.conf\\'" . apache-mode))
-(add-to-list 'auto-mode-alist '("sites-\\(available\\|enabled\\)/" . apache-mode))
+(autoload 'binhex-decode-region-internal "binhex" "\
+Binhex decode region between START and END without using an external program.
+If HEADER-ONLY is non-nil only decode header and return filename.
 
-;;;***
-
-;;;### (autoloads (apt-sources-mode) "apt-sources" "emacs-goodies-el/emacs-goodies-el/elisp/debian-el/apt-sources.el"
-;;;;;;  (19215 18987))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/debian-el/apt-sources.el
+\(fn START END &optional HEADER-ONLY)" t nil)
 
-(autoload 'apt-sources-mode "apt-sources" "\
-Major mode for editing apt's sources.list file.
-Sets up command `font-lock-mode'.
+(autoload 'binhex-decode-region-external "binhex" "\
+Binhex decode region between START and END using external decoder.
 
-\\{apt-sources-mode-map}
+\(fn START END)" t nil)
 
-\(fn)" t nil)
+(autoload 'binhex-decode-region "binhex" "\
+Binhex decode region between START and END.
+
+\(fn START END)" t nil)
 
 ;;;***
 
-;;;### (autoloads (apt-utils-search apt-utils-show-package) "apt-utils"
-;;;;;;  "emacs-goodies-el/emacs-goodies-el/elisp/debian-el/apt-utils.el"
-;;;;;;  (19972 48294))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/debian-el/apt-utils.el
+;;;### (autoloads (canlock-verify canlock-insert-header) "canlock"
+;;;;;;  "gnus/lisp/canlock.el" (21233 11095))
+;;; Generated autoloads from gnus/lisp/canlock.el
 
-(autoload 'apt-utils-show-package "apt-utils" "\
-Show information for a Debian package.
-A selection of known packages is presented.  See `apt-utils-mode'
-for more detailed help.  If NEW-SESSION is non-nil, generate a
-new `apt-utils-mode' buffer.
+(autoload 'canlock-insert-header "canlock" "\
+Insert a Cancel-Key and/or a Cancel-Lock header if possible.
 
-\(fn &optional NEW-SESSION)" t nil)
+\(fn &optional ID-FOR-KEY ID-FOR-LOCK PASSWORD)" nil nil)
 
-(autoload 'apt-utils-search "apt-utils" "\
-Search Debian packages for regular expression.
-To search for multiple patterns use a string like \"foo && bar\".
-The regular expression used to split the
-terms (`apt-utils-search-split-regexp') is customisable.
+(autoload 'canlock-verify "canlock" "\
+Verify Cancel-Lock or Cancel-Key in BUFFER.
+If BUFFER is nil, the current buffer is assumed.  Signal an error if
+it fails.
 
-\(fn)" t nil)
+\(fn &optional BUFFER)" t nil)
 
 ;;;***
 
-;;;### (autoloads (ascii-off ascii-on ascii-display ascii-customize)
-;;;;;;  "ascii" "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/ascii.el"
-;;;;;;  (20758 4093))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/ascii.el
+;;;### (autoloads (color-name-to-rgb) "color" "gnus/lisp/color.el"
+;;;;;;  (21233 11095))
+;;; Generated autoloads from gnus/lisp/color.el
 
-(autoload 'ascii-customize "ascii" "\
-Customize ASCII options.
+(autoload 'color-name-to-rgb "color" "\
+Convert COLOR string to a list of normalized RGB components.
+COLOR should be a color name (e.g. \"white\") or an RGB triplet
+string (e.g. \"#ff12ec\").
+
+Normally the return value is a list of three floating-point
+numbers, (RED GREEN BLUE), each between 0.0 and 1.0 inclusive.
+
+Optional argument FRAME specifies the frame where the color is to be
+displayed.  If FRAME is omitted or nil, use the selected frame.
+If FRAME cannot display COLOR, return nil.
+
+\(fn COLOR &optional FRAME)" nil nil)
+
+;;;***
+
+;;;### (autoloads (color-theme-solarized-light color-theme-solarized-dark
+;;;;;;  color-theme-solarized) "color-theme-solarized" "color-theme-solarized/color-theme-solarized.el"
+;;;;;;  (21257 43447))
+;;; Generated autoloads from color-theme-solarized/color-theme-solarized.el
+
+(autoload 'color-theme-solarized "color-theme-solarized" "\
+Color theme by Ethan Schoonover, created 2011-03-24.
+Ported to Emacs by Greg Pfeil, http://ethanschoonover.com/solarized.
+
+\(fn MODE)" t nil)
+
+(autoload 'color-theme-solarized-dark "color-theme-solarized" "\
+Not documented
 
 \(fn)" t nil)
 
-(autoload 'ascii-display "ascii" "\
-Toggle ASCII code display.
-
-If ARG is null, toggle ASCII code display.
-If ARG is a number and is greater than zero, turn on display; otherwise, turn
-off display.
-If ARG is anything else, turn on display.
-
-\(fn &optional ARG)" t nil)
-
-(autoload 'ascii-on "ascii" "\
-Turn on ASCII code display.
-
-\(fn)" t nil)
-
-(autoload 'ascii-off "ascii" "\
-Turn off ASCII code display.
+(autoload 'color-theme-solarized-light "color-theme-solarized" "\
+Not documented
 
 \(fn)" t nil)
 
 ;;;***
 
-;;;### (autoloads (bar-cursor-change bar-cursor-mode) "bar-cursor"
-;;;;;;  "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/bar-cursor.el"
-;;;;;;  (20758 4093))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/bar-cursor.el
+;;;### (autoloads (gnus-article-outlook-deuglify-article gnus-outlook-deuglify-article
+;;;;;;  gnus-article-outlook-repair-attribution gnus-article-outlook-unwrap-lines)
+;;;;;;  "deuglify" "gnus/lisp/deuglify.el" (21233 11095))
+;;; Generated autoloads from gnus/lisp/deuglify.el
 
-(autoload 'bar-cursor-mode "bar-cursor" "\
-Toggle use of variable `bar-cursor-mode'.
-This quasi-minor mode changes cursor to a bar cursor in insert mode,
-and a block cursor in overwrite mode.  It may only be turned on and
-off globally, not on a per-buffer basis (hence the quasi- designation).
+(autoload 'gnus-article-outlook-unwrap-lines "deuglify" "\
+Unwrap lines that appear to be wrapped citation lines.
+You can control what lines will be unwrapped by frobbing
+`gnus-outlook-deuglify-unwrap-min' and `gnus-outlook-deuglify-unwrap-max',
+indicating the minimum and maximum length of an unwrapped citation line.  If
+NODISPLAY is non-nil, don't redisplay the article buffer.
 
-Optional ARG turns mode on if ARG is a positive integer.
+\(fn &optional NODISPLAY)" t nil)
 
-\(fn &optional ARG)" t nil)
+(autoload 'gnus-article-outlook-repair-attribution "deuglify" "\
+Repair a broken attribution line.
+If NODISPLAY is non-nil, don't redisplay the article buffer.
 
-(autoload 'bar-cursor-change "bar-cursor" "\
-Enable or disable advice based on value of variable `bar-cursor-mode'.
+\(fn &optional NODISPLAY)" t nil)
+
+(autoload 'gnus-outlook-deuglify-article "deuglify" "\
+Full deuglify of broken Outlook (Express) articles.
+Treat dumbquotes, unwrap lines, repair attribution and rearrange citation.  If
+NODISPLAY is non-nil, don't redisplay the article buffer.
+
+\(fn &optional NODISPLAY)" t nil)
+
+(autoload 'gnus-article-outlook-deuglify-article "deuglify" "\
+Deuglify broken Outlook (Express) articles and redisplay.
+
+\(fn)" t nil)
+
+;;;***
+
+;;;### (autoloads (dig) "dig" "gnus/lisp/dig.el" (21233 11095))
+;;; Generated autoloads from gnus/lisp/dig.el
+
+(autoload 'dig "dig" "\
+Query addresses of a DOMAIN using dig, by calling `dig-invoke'.
+Optional arguments are passed to `dig-invoke'.
+
+\(fn DOMAIN &optional QUERY-TYPE QUERY-CLASS QUERY-OPTION DIG-OPTION SERVER)" t nil)
+
+;;;***
+
+;;;### (autoloads (dns-mode-soa-increment-serial dns-mode) "dns-mode"
+;;;;;;  "gnus/lisp/dns-mode.el" (21233 11095))
+;;; Generated autoloads from gnus/lisp/dns-mode.el
+
+(autoload 'dns-mode "dns-mode" "\
+Major mode for viewing and editing DNS master files.
+This mode is inherited from text mode.  It add syntax
+highlighting, and some commands for handling DNS master files.
+Its keymap inherits from `text-mode' and it has the same
+variables for customizing indentation.  It has its own abbrev
+table and its own syntax table.
+
+Turning on DNS mode runs `dns-mode-hook'.
+
+\(fn)" t nil)
+ (defalias 'zone-mode 'dns-mode)
+
+(autoload 'dns-mode-soa-increment-serial "dns-mode" "\
+Locate SOA record and increment the serial field.
+
+\(fn)" t nil)
+
+;;;***
+
+;;;### (autoloads (eassist-list-methods eassist-switch-h-cpp) "eassist"
+;;;;;;  "eassist/eassist.el" (21267 27657))
+;;; Generated autoloads from eassist/eassist.el
+
+(defvar eassist-header-switches '(("h" "cpp" "cc" "c") ("hpp" "cpp" "cc") ("cpp" "h" "hpp") ("c" "h") ("C" "H") ("H" "C" "CPP" "CC") ("cc" "h" "hpp")) "\
+This variable defines possible switches for `eassist-switch-h-cpp' function.
+Its format is list of (from . (to1 to2 to3...)) elements.  From and toN are
+strings which are extentions of the files.")
+
+(autoload 'eassist-switch-h-cpp "eassist" "\
+Switch header and body file according to `eassist-header-switches' var.
+The current buffer's file name extention is searched in
+`eassist-header-switches' variable to find out extention for file's counterpart,
+for example *.hpp <--> *.cpp.
+
+\(fn)" t nil)
+
+(autoload 'eassist-list-methods "eassist" "\
+Show method/function list of current buffer in a newly created buffer.
+This function is recommended to be bound to some convinient hotkey.
+
+\(fn)" t nil)
+
+;;;***
+
+;;;### (autoloads (ecomplete-setup) "ecomplete" "gnus/lisp/ecomplete.el"
+;;;;;;  (21233 11095))
+;;; Generated autoloads from gnus/lisp/ecomplete.el
+
+(autoload 'ecomplete-setup "ecomplete" "\
+Not documented
 
 \(fn)" nil nil)
 
 ;;;***
 
-;;;### (autoloads (bm-previous-mouse bm-previous bm-next-mouse bm-next
-;;;;;;  bm-toggle-mouse bm-toggle) "bm" "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/bm.el"
-;;;;;;  (19425 29270))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/bm.el
+;;;### (autoloads (ediff-toggle-ignore-case) "ediff+" "ediff+/ediff+.el"
+;;;;;;  (21267 27660))
+;;; Generated autoloads from ediff+/ediff+.el
 
-(autoload 'bm-toggle "bm" "\
-Toggle bookmark at point.
-
-\(fn)" t nil)
-
-(autoload 'bm-toggle-mouse "bm" "\
-Toggle a bookmark with a mouse click.
-EV is the mouse event.
-
-\(fn EV)" t nil)
-
-(autoload 'bm-next "bm" "\
-Goto next bookmark.
+(autoload 'ediff-toggle-ignore-case "ediff+" "\
+Not documented
 
 \(fn)" t nil)
 
-(autoload 'bm-next-mouse "bm" "\
-Go to the next bookmark with the scroll wheel.
-EV is the mouse event.
-
-\(fn EV)" t nil)
-
-(autoload 'bm-previous "bm" "\
-Goto previous bookmark.
-
-\(fn)" t nil)
-
-(autoload 'bm-previous-mouse "bm" "\
-Go to the previous bookmark with the scroll wheel.
-EV is the mouse event.
-
-\(fn EV)" t nil)
-
-;;;***
-
-;;;### (autoloads (boxquote-unbox boxquote-unbox-region boxquote-fill-paragraph
-;;;;;;  boxquote-kill boxquote-narrow-to-boxquote-content boxquote-narrow-to-boxquote
-;;;;;;  boxquote-text boxquote-where-is boxquote-shell-command boxquote-describe-key
-;;;;;;  boxquote-describe-variable boxquote-describe-function boxquote-boxquote
-;;;;;;  boxquote-paragraph boxquote-defun boxquote-yank boxquote-kill-ring-save
-;;;;;;  boxquote-insert-buffer boxquote-insert-file boxquote-buffer
-;;;;;;  boxquote-region boxquote-title) "boxquote" "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/boxquote.el"
-;;;;;;  (19103 54677))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/boxquote.el
-
-(autoload 'boxquote-title "boxquote" "\
-Set the title of the current boxquote to TITLE.
-
-If TITLE is an empty string the title is removed. Note that the title will
-be formatted using `boxquote-title-format'.
-
-\(fn TITLE)" t nil)
-
-(autoload 'boxquote-region "boxquote" "\
-Draw a box around the left hand side of a region bounding START and END.
-
-\(fn START END)" t nil)
-
-(autoload 'boxquote-buffer "boxquote" "\
-Apply `boxquote-region' to a whole buffer.
-
-\(fn)" t nil)
-
-(autoload 'boxquote-insert-file "boxquote" "\
-Insert the contents of a file, boxed with `boxquote-region'.
-
-If `boxquote-title-files' is non-nil the boxquote will be given a title that
-is the result of applying `boxquote-file-title-function' to FILENAME.
-
-\(fn FILENAME)" t nil)
-
-(autoload 'boxquote-insert-buffer "boxquote" "\
-Insert the contents of a buffer, boxes with `boxquote-region'.
-
-If `boxquote-title-buffers' is non-nil the boxquote will be given a title that
-is the result of applying `boxquote-buffer-title-function' to BUFFER.
-
-\(fn BUFFER)" t nil)
-
-(autoload 'boxquote-kill-ring-save "boxquote" "\
-Like `kill-ring-save' but remembers a title if possible.
-
-The title is acquired by calling `boxquote-kill-ring-save-title'. The title
-will be used by `boxquote-yank'.
-
-\(fn)" t nil)
-
-(autoload 'boxquote-yank "boxquote" "\
-Do a `yank' and box it in with `boxquote-region'.
-
-If the yanked entry was placed on the kill ring with
-`boxquote-kill-ring-save' the resulting boxquote will be titled with
-whatever `boxquote-kill-ring-save-title' returned at the time.
-
-\(fn)" t nil)
-
-(autoload 'boxquote-defun "boxquote" "\
-Apply `boxquote-region' the current defun.
-
-\(fn)" t nil)
-
-(autoload 'boxquote-paragraph "boxquote" "\
-Apply `boxquote-region' to the current paragraph.
-
-\(fn)" t nil)
-
-(autoload 'boxquote-boxquote "boxquote" "\
-Apply `boxquote-region' to the current boxquote.
-
-\(fn)" t nil)
-
-(autoload 'boxquote-describe-function "boxquote" "\
-Call `describe-function' and boxquote the output into the current buffer.
-
-\(fn)" t nil)
-
-(autoload 'boxquote-describe-variable "boxquote" "\
-Call `describe-variable' and boxquote the output into the current buffer.
-
-\(fn)" t nil)
-
-(autoload 'boxquote-describe-key "boxquote" "\
-Call `describe-key' and boxquote the output into the current buffer.
-
-If the call to this command is prefixed with \\[universal-argument] you will also be
-prompted for a buffer. The key defintion used will be taken from that buffer.
-
-\(fn KEY)" t nil)
-
-(autoload 'boxquote-shell-command "boxquote" "\
-Call `shell-command' with COMMAND and boxquote the output.
-
-\(fn COMMAND)" t nil)
-
-(autoload 'boxquote-where-is "boxquote" "\
-Call `where-is' with DEFINITION and boxquote the result.
-
-\(fn DEFINITION)" t nil)
-
-(autoload 'boxquote-text "boxquote" "\
-Insert TEXT, boxquoted.
-
-\(fn TEXT)" t nil)
-
-(autoload 'boxquote-narrow-to-boxquote "boxquote" "\
-Narrow the buffer to the current boxquote.
-
-\(fn)" t nil)
-
-(autoload 'boxquote-narrow-to-boxquote-content "boxquote" "\
-Narrow the buffer to the content of the current boxquote.
-
-\(fn)" t nil)
-
-(autoload 'boxquote-kill "boxquote" "\
-Kill the boxquote and its contents.
-
-\(fn)" t nil)
-
-(autoload 'boxquote-fill-paragraph "boxquote" "\
-Perform a `fill-paragraph' inside a boxquote.
-
-\(fn ARG)" t nil)
-
-(autoload 'boxquote-unbox-region "boxquote" "\
-Remove a box created with `boxquote-region'.
-
-\(fn START END)" t nil)
-
-(autoload 'boxquote-unbox "boxquote" "\
-Remove the boxquote that contains `point'.
-
-\(fn)" t nil)
-
-;;;***
-
-;;;### (autoloads (browse-huge-tar-copy-file-at-point browse-huge-tar-view-file-at-point
-;;;;;;  browse-huge-tar-file) "browse-huge-tar" "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/browse-huge-tar.el"
-;;;;;;  (16313 9500))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/browse-huge-tar.el
-
-(autoload 'browse-huge-tar-file "browse-huge-tar" "\
-Create a buffer containing a listing of FILENAME as a tar file.
-
-\(fn FILENAME)" t nil)
-
-(autoload 'browse-huge-tar-view-file-at-point "browse-huge-tar" "\
-Extract the file at the point into a buffer for viewing.
-
-\(fn)" t nil)
-
-(autoload 'browse-huge-tar-copy-file-at-point "browse-huge-tar" "\
-Extract the file at the point and copy to a local file OUTFILE.
-This requires the value of `shell-file-name' to support redirection using \">\".
-
-\(fn OUTFILE)" t nil)
-
-;;;***
-
-;;;### (autoloads (browse-kill-ring browse-kill-ring-default-keybindings)
-;;;;;;  "browse-kill-ring" "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/browse-kill-ring.el"
-;;;;;;  (20758 4093))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/browse-kill-ring.el
-
-(autoload 'browse-kill-ring-default-keybindings "browse-kill-ring" "\
-Set up M-y (`yank-pop') so that it can invoke `browse-kill-ring'.
-Normally, if M-y was not preceeded by C-y, then it has no useful
-behavior.  This function sets things up so that M-y will invoke
-`browse-kill-ring'.
-
-\(fn)" t nil)
-
-(autoload 'browse-kill-ring "browse-kill-ring" "\
-Display items in the `kill-ring' in another buffer.
-
-\(fn)" t nil)
-
-;;;***
-
-;;;### (autoloads (color-theme-initialize color-theme-submit color-theme-install
-;;;;;;  color-theme-compare color-theme-make-snapshot color-theme-analyze-defun
-;;;;;;  color-theme-print color-theme-install-at-point-for-current-frame
-;;;;;;  color-theme-install-at-mouse color-theme-describe color-theme-select)
-;;;;;;  "color-theme" "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/color-theme.el"
-;;;;;;  (20758 4093))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/color-theme.el
-
-(autoload 'color-theme-select "color-theme" "\
-Displays a special buffer for selecting and installing a color theme.
-With optional prefix ARG, this buffer will include color theme libraries
-as well.  A color theme library is in itself not complete, it must be
-used as part of another color theme to be useful.  Thus, color theme
-libraries are mainly useful for color theme authors.
-
-\(fn &optional ARG)" t nil)
-
-(autoload 'color-theme-describe "color-theme" "\
-Describe color theme listed at point.
-This shows the documentation of the value of text-property color-theme
-at point.  The text-property color-theme should be a color theme
-function.  See `color-themes'.
-
-\(fn)" t nil)
-
-(autoload 'color-theme-install-at-mouse "color-theme" "\
-Install color theme clicked upon using the mouse.
-First argument EVENT is used to set point.  Then
-`color-theme-install-at-point' is called.
-
-\(fn EVENT)" t nil)
-
-(autoload 'color-theme-install-at-point-for-current-frame "color-theme" "\
-Install color theme at point for current frame only.
-Binds `color-theme-is-global' to nil and calls
-`color-theme-install-at-point'.
-
-\(fn)" t nil)
-
-(autoload 'color-theme-print "color-theme" "\
-Print the current color theme function.
-
-You can contribute this function to <URL:news:gnu.emacs.sources> or
-paste it into your .emacs file and call it.  That should recreate all
-the settings necessary for your color theme.
-
-Example:
-
-    (require 'color-theme)
-    (defun my-color-theme ()
-      \"Color theme by Alex Schroeder, created 2000-05-17.\"
-      (interactive)
-      (color-theme-install
-       '(...
-	 ...
-	 ...)))
-    (my-color-theme)
-
-If you want to use a specific color theme function, you can call the
-color theme function in your .emacs directly.
-
-Example:
-
-    (require 'color-theme)
-    (color-theme-gnome2)
-
-\(fn &optional BUF)" t nil)
-
-(autoload 'color-theme-analyze-defun "color-theme" "\
-Once you have a color-theme printed, check for missing faces.
-This is used by maintainers who receive a color-theme submission
-and want to make sure it follows the guidelines by the color-theme
-author.
-
-\(fn)" t nil)
-
-(autoload 'color-theme-make-snapshot "color-theme" "\
-Return the definition of the current color-theme.
-The function returned will recreate the color-theme in use at the moment.
-
-\(fn)" nil nil)
-
-(autoload 'color-theme-compare "color-theme" "\
-Compare two color themes.
-This will print the differences between installing THEME-A and
-installing THEME-B.  Note that the order is important: If a face is
-defined in THEME-A and not in THEME-B, then this will not show up as a
-difference, because there is no reset before installing THEME-B.  If a
-face is defined in THEME-B and not in THEME-A, then this will show up as
-a difference.
-
-\(fn THEME-A THEME-B)" t nil)
-
-(autoload 'color-theme-install "color-theme" "\
-Install a color theme defined by frame parameters, variables and faces.
-
-The theme is installed for all present and future frames; any missing
-faces are created.  See `color-theme-install-faces'.
-
-THEME is a color theme definition.  See below for more information.
-
-If you want to install a color theme from your .emacs, use the output
-generated by `color-theme-print'.  This produces color theme function
-which you can copy to your .emacs.
-
-A color theme definition is a list:
-\([FUNCTION] FRAME-PARAMETERS VARIABLE-SETTINGS FACE-DEFINITIONS)
-
-FUNCTION is the color theme function which called `color-theme-install'.
-This is no longer used.  There was a time when this package supported
-automatic factoring of color themes.  This has been abandoned.
-
-FRAME-PARAMETERS is an alist of frame parameters.  These are installed
-with `color-theme-install-frame-params'.  These are installed last such
-that any changes to the default face can be changed by the frame
-parameters.
-
-VARIABLE-DEFINITIONS is an alist of variable settings.  These are
-installed with `color-theme-install-variables'.
-
-FACE-DEFINITIONS is an alist of face definitions.  These are installed
-with `color-theme-install-faces'.
-
-If `color-theme-is-cumulative' is nil, a color theme will undo face and
-frame-parameter settings of previous color themes.
-
-\(fn THEME)" nil nil)
-
-(autoload 'color-theme-submit "color-theme" "\
-Submit your color-theme to the maintainer.
-
-\(fn)" t nil)
-
-(autoload 'color-theme-initialize "color-theme" "\
-Initialize the color theme package by loading color-theme-libraries.
-
-\(fn)" t nil)
-
-;;;***
-
-;;;### (autoloads (ctypes-read-file ctypes-auto-parse-mode ctypes-file
-;;;;;;  ctypes-dir ctypes-tags ctypes-all-buffers ctypes-buffer ctypes-define-type-in-mode
-;;;;;;  ctypes-define-type) "ctypes" "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/ctypes.el"
-;;;;;;  (20758 4093))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/ctypes.el
-
-(autoload 'ctypes-define-type "ctypes" "\
-Add a new TYPE to current major mode and inform font-lock.
-
-When preceded by C-u the display is not updated.
-
-Return non-nil if the type was not known before.
-
-\(fn TYPE &optional DELAY-ACTION MODE)" t nil)
-
-(autoload 'ctypes-define-type-in-mode "ctypes" "\
-Add TYPE to major mode MODE and inform font-lock.
-
-When preceded by C-u the display is not updated.
-
-\(This function is designed for interactive use, please call
-`ctypes-define-type' from Lisp programs.)
-
-\(fn TYPE &optional DELAY-ACTION MODE)" t nil)
-
-(autoload 'ctypes-buffer "ctypes" "\
-Search for types in buffer, inform font-lock if any is found.
-
-When preceded by C-u the action is not performed.
-
-Return non-nil if new types are found.
-
-\(fn &optional BUF DELAY-ACTION MODE)" t nil)
-
-(autoload 'ctypes-all-buffers "ctypes" "\
-Search for types in all buffers, inform font-lock about all discoveries.
-
-When preceded by C-u the display is not updated.
-
-Return non-nil if new types are found.
-
-\(fn &optional DELAY-ACTION)" t nil)
-
-(autoload 'ctypes-tags "ctypes" "\
-Search for types in files in the visited TAGS table.
-Should no tags table be visited, the user will be prompted for a new.
-
-When preceded by C-u the display is not updated.
-
-Return non-nil if new types are found.
-
-\(fn &optional DELAY-ACTION)" t nil)
-
-(autoload 'ctypes-dir "ctypes" "\
-Search for types in files in a directory hierarchy.
-
-See variable `ctypes-dir-read-file' for a description of which files
-are opened during scanning, and how you can change the behavior.
-
-When preceded by C-u the display is not updated.
-
-Return non-nil if new types are found.
-
-\(fn &optional DIR DELAY-ACTION)" t nil)
-
-(autoload 'ctypes-file "ctypes" "\
-Search for types in file FILE.
-Should FILE not be loaded it is read into a temporary buffer.
-
-Return mode of file, if new types was found.
-
-\(fn FILE &optional DELAY-ACTION)" t nil)
-
-(autoload 'ctypes-auto-parse-mode "ctypes" "\
-Toggle CTypes auto parse mode; search all new buffers for types.
-With arg, turn types Auto Mode on if and only if arg is positive.
-
-This a global minor mode, it does not have a private keymap, nor does
-it add itself to the mode line.
-
-Place the following in your startup file to enable this feature in
-future sessions:
-
-    (require 'ctypes)
-    (ctypes-auto-parse-mode 1)
-
-When activated, the functions in the hook `ctypes-auto-parse-mode-hook'
-is called with no args.
-
-\(fn &optional ARG)" t nil)
-
-(autoload 'ctypes-read-file "ctypes" "\
-Load types previously saved with `ctypes-write-file'.
-The name of the file is given by the optional argument FILE.
-Should no file name be given the value of the variable `ctypes-file-name'
-is used.
-
-Please note that the types read will be added to the current types.
-
-When preceded by C-u the display is not updated.
-
-The third argument, NO-ERROR, determines whether or not we should
-raise an error if there should be any problem loading the file.
-
-Should the fourth argument, QUIETLY, be non-nil no messages are
-generated when the file is loaded.
-
-Return non-nil if new types are found.
-
-\(fn &optional FILE DELAY-ACTION NO-ERROR QUIETLY)" t nil)
-
-;;;***
-
-;;;### (autoloads (deb-find deb-view-mode deb-view deb-view-dired-view)
-;;;;;;  "deb-view" "emacs-goodies-el/emacs-goodies-el/elisp/debian-el/deb-view.el"
-;;;;;;  (20043 14215))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/debian-el/deb-view.el
-
-(autoload 'deb-view-dired-view "deb-view" "\
-View Debian package control and data files.
-Press \"q\" in either window to kill both buffers
-and return to the dired buffer. See deb-view.
-
-\(fn)" t nil)
-
-(autoload 'deb-view "deb-view" "\
-View Debian package DEBFILE's control and data files.
-Press \"q\" in either window to kill both buffers.
-
-In dired, press ^d on the dired line of the .deb file to view.
-Or, execute: ESCAPE x deb-view RETURN, and enter the .deb file name
-at the prompt.
-
-\(fn DEBFILE)" t nil)
-
-(autoload 'deb-view-mode "deb-view" "\
-View mode for Debian Archive Files.
-
-\(fn)" t nil)
-
-(autoload 'deb-find "deb-view" "\
-Search for deb files.
-Use the method specified by the variable deb-find-method, and collect
-output in a buffer.  See also the variable deb-find-directory.
-
-This command uses a special history list, so you can
-easily repeat a `deb-find' command.
-
-\(fn)" t nil)
-
-;;;***
-
-;;;### (autoloads (emacs-bts-control debian-bts-control) "debian-bts-control"
-;;;;;;  "emacs-goodies-el/emacs-goodies-el/elisp/dpkg-dev-el/debian-bts-control.el"
-;;;;;;  (19331 13712))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/dpkg-dev-el/debian-bts-control.el
-
-(autoload 'debian-bts-control "debian-bts-control" "\
-Contruct a message with initial ACTION command for control@bugs.debian.org.
-Contructs a new control command line if called from within the message
-being constructed.
-
-If prefix arg is provided, use the current buffer instead instead of
-creating a new outgoing email message buffer.
-The current buffer is also used if the current major mode matches one listed
-in `debian-bts-control-modes-to-reuse'.
-
-\(fn ACTION &optional ARG)" t nil)
-
-(autoload 'emacs-bts-control "debian-bts-control" "\
-Contruct a message with ACTION command for control@debbugs.gnu.org.
-Contructs a new control command line if called from within the message
-being constructed.
-
-If prefix arg is provided, use the current buffer instead instead of
-creating a new outgoing email message buffer.
-The current buffer is also used if the current major mode matches one listed
-in `debian-bts-control-modes-to-reuse'.
-
-\(fn ACTION &optional ARG)" t nil)
-
-;;;***
-
-;;;### (autoloads (debian-bug emacs-bug-get-bug-as-email debian-bug-get-bug-as-email
-;;;;;;  debian-bug-get-bug-as-file debian-bug-web-package debian-bug-web-packages
-;;;;;;  debian-bug-web-this-bug-under-mouse emacs-bug-web-bug debian-bug-web-bug
-;;;;;;  debian-bug-web-developer-page debian-bug-web-bugs debian-bug-intent-to-package
-;;;;;;  debian-bug-request-for-package debian-bug-wnpp) "debian-bug"
-;;;;;;  "emacs-goodies-el/emacs-goodies-el/elisp/debian-el/debian-bug.el"
-;;;;;;  (19489 12640))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/debian-el/debian-bug.el
-
-(autoload 'debian-bug-wnpp "debian-bug" "\
-Submit a WNPP bug report to Debian.
-Optional argument ACTION can be provided in programs.
-
-\(fn &optional ACTION)" t nil)
-
-(autoload 'debian-bug-request-for-package "debian-bug" "\
-Shortcut for `debian-bug-wnpp' with RFP action.
-
-\(fn)" t nil)
-
-(autoload 'debian-bug-intent-to-package "debian-bug" "\
-Shortcut for `debian-bug-wnpp' with ITP action (for Debian developers).
-
-\(fn)" t nil)
-
-(autoload 'debian-bug-web-bugs "debian-bug" "\
-Browse the BTS for this package via `browse-url'.
-With optional argument prefix ARCHIVED, display archived bugs.
-
-\(fn &optional ARCHIVED)" t nil)
-
-(autoload 'debian-bug-web-developer-page "debian-bug" "\
-Browse the web for this package's developer page.
-
-\(fn)" t nil)
-
-(autoload 'debian-bug-web-bug "debian-bug" "\
-Browse the BTS for BUG-NUMBER via `browse-url'.
-
-\(fn &optional BUG-NUMBER)" t nil)
-
-(autoload 'emacs-bug-web-bug "debian-bug" "\
-Browse the Emacs BTS for BUG-NUMBER via `browse-url'.
-
-\(fn &optional BUG-NUMBER)" t nil)
-
-(autoload 'debian-bug-web-this-bug-under-mouse "debian-bug" "\
-Browse the BTS via `browse-url' for the bug report number under mouse.
-In a program, mouse location is in EVENT.
-
-\(fn EVENT)" t nil)
-
-(autoload 'debian-bug-web-packages "debian-bug" "\
-Search Debian web page for this package via `browse-url'.
-
-\(fn)" t nil)
-
-(autoload 'debian-bug-web-package "debian-bug" "\
-Search Debian web page in ARCHIVE for this package via `browse-url'.
-
-\(fn ARCHIVE)" t nil)
-
-(autoload 'debian-bug-get-bug-as-file "debian-bug" "\
-Read bug report #BUG-NUMBER as a regular file.
-
-\(fn &optional BUG-NUMBER)" t nil)
-
-(autoload 'debian-bug-get-bug-as-email "debian-bug" "\
-Read bug report #BUG-NUMBER via Email interface.
-
-\(fn &optional BUG-NUMBER)" t nil)
-
-(autoload 'emacs-bug-get-bug-as-email "debian-bug" "\
-Read Emacs bug report #BUG-NUMBER via Email interface.
-
-\(fn &optional BUG-NUMBER)" t nil)
-
-(autoload 'debian-bug "debian-bug" "\
-Submit a Debian bug report.
-
-\(fn)" t nil)
-
-;;;***
-
-;;;### (autoloads (debian-changelog-mode debian-changelog-add-entry)
-;;;;;;  "debian-changelog-mode" "emacs-goodies-el/emacs-goodies-el/elisp/dpkg-dev-el/debian-changelog-mode.el"
-;;;;;;  (20121 57468))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/dpkg-dev-el/debian-changelog-mode.el
-
-(autoload 'debian-changelog-add-entry "debian-changelog-mode" "\
-Add a new change entry to a debian-style changelog.
-If called from buffer other than a debian/changelog, this will search
-for the debian/changelog file to add the entry to.
-
-\(fn)" t nil)
-
-(autoload 'debian-changelog-mode "debian-changelog-mode" "\
-Major mode for editing Debian-style change logs.
-Runs `debian-changelog-mode-hook' if it exists.
-
-Key bindings:
-
-\\{debian-changelog-mode-map}
-
-If you want to use your debian.org email address for debian/changelog
-entries without using it for the rest of your email, use the `customize`
-interface to set it, or simply set the variable
-`debian-changelog-mailing-address' in your ~/.emacs file, e.g.
-
- (setq debian-changelog-mailing-address \"myname@debian.org\"))
-
-\(fn)" t nil)
-(add-to-list 'auto-mode-alist '("/debian/*NEWS" . debian-changelog-mode))
-(add-to-list 'auto-mode-alist '("NEWS.Debian" . debian-changelog-mode))
-(add-to-list 'auto-mode-alist '("/debian/\\([[:lower:][:digit:]][[:lower:][:digit:].+-]+\\.\\)?changelog\\'" . debian-changelog-mode))
-(add-to-list 'auto-mode-alist '("changelog.Debian" . debian-changelog-mode))
-(add-to-list 'auto-mode-alist '("changelog.dch" . debian-changelog-mode))
-
-;;;***
-
-;;;### (autoloads (debian-control-mode) "debian-control-mode" "emacs-goodies-el/emacs-goodies-el/elisp/dpkg-dev-el/debian-control-mode.el"
-;;;;;;  (20043 15570))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/dpkg-dev-el/debian-control-mode.el
-
-(autoload 'debian-control-mode "debian-control-mode" "\
-A major mode for editing Debian control files (i.e. debian/control).
-
-\(fn)" t nil)
-(add-to-list 'auto-mode-alist '("/debian/control\\'" . debian-control-mode))
-
-;;;***
-
-;;;### (autoloads (debian-copyright-mode) "debian-copyright" "emacs-goodies-el/emacs-goodies-el/elisp/dpkg-dev-el/debian-copyright.el"
-;;;;;;  (19536 19929))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/dpkg-dev-el/debian-copyright.el
-
-(autoload 'debian-copyright-mode "debian-copyright" "\
-Mode to edit and read debian/copyright.
-\\{debian-copyright-mode-map}
-
-\(fn)" t nil)
-
-(add-to-list 'auto-mode-alist '("debian/.*copyright\\'" . debian-copyright-mode))
-
-(add-to-list 'auto-mode-alist '("\\`/usr/share/doc/.*/copyright" . debian-copyright-mode))
-
-;;;***
-
-;;;### (autoloads (dedicated-mode) "dedicated" "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/dedicated.el"
-;;;;;;  (20758 4093))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/dedicated.el
-
-(autoload 'dedicated-mode "dedicated" "\
-Toggle dedicated minor mode.
-With ARG, turn minor mode on if ARG is positive, off otherwise.
-
-\(fn &optional ARG)" t nil)
-
-;;;***
-
-;;;### (autoloads (df) "df" "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/df.el"
-;;;;;;  (19104 28952))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/df.el
-
-(autoload 'df "df" "\
-Enables display of space left on any PARTITION in mode-lines.
-This display updates automatically every `df-refresh' seconds.
-
-\(fn &optional PARTITION)" t nil)
-
-;;;***
-
-;;;### (autoloads (diminished-minor-modes diminish-maybe-refresh
-;;;;;;  diminished-modes diminish-undo diminish) "diminish" "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/diminish.el"
-;;;;;;  (20758 4093))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/diminish.el
-
-(autoload 'diminish "diminish" "\
-Diminish mode-line display of minor mode MODE to TO-WHAT (default \"\").
-
-Interactively, enter (with completion) the name of any minor mode, followed
-on the next line by what you want it diminished to (default empty string).
-The response to neither prompt should be quoted.  However, in Lisp code,
-both args must be quoted, the first as a symbol, the second as a string,
-as in (diminish 'jiggle-mode \" Jgl\").
-
-The mode-line displays of minor modes usually begin with a space, so
-the modes' names appear as separate words on the mode line.  However, if
-you're having problems with a cramped mode line, you may choose to use single
-letters for some modes, without leading spaces.  Capitalizing them works
-best; if you then diminish some mode to \"X\" but have abbrev-mode enabled as
-well, you'll get a display like \"AbbrevX\".  This function prepends a space
-to TO-WHAT if it's > 1 char long & doesn't already begin with a space.
-
-If ANNOTATE-FLAG is nil or omitted, the normal case in interactive use, then
-the variable `diminished-minor-modes' will be modified to reflect the change.
-
-\(fn MODE &optional TO-WHAT ANNOTATE-FLAG)" t nil)
-
-(autoload 'diminish-undo "diminish" "\
-Restore mode-line display of diminished mode MODE to its minor-mode value.
-Do nothing if the arg is a minor mode that hasn't been diminished.
-
-Interactively, enter (with completion) the name of any diminished mode (a
-mode that was formerly a minor mode on which you invoked M-x diminish).
-To restore all diminished modes to minor status, answer `diminished-modes'.
-The response to the prompt shouldn't be quoted.  However, in Lisp code,
-the arg must be quoted as a symbol, as in (diminish-undo 'diminished-modes).
-
-If ANNOTATE-FLAG is nil or omitted, the normal case in interactive use, then
-the variable `diminished-minor-modes' will be modified to reflect the change.
-
-\(fn MODE &optional ANNOTATE-FLAG)" t nil)
-
-(autoload 'diminished-modes "diminish" "\
-Echo all active diminished or minor modes as if they were minor.
-The display goes in the echo area; if it's too long even for that,
-you can see the whole thing in the *Messages* buffer.
-This doesn't change the status of any modes; it just lets you see
-what diminished modes would be on the mode-line if they were still minor.
-
-\(fn)" t nil)
-
-(autoload 'diminish-maybe-refresh "diminish" "\
-Should redo `diminish'ing only if something has changed.
-Right now, do it regardless and hope this isn't too slow.
-
-\(fn)" t nil)
-
-(defvar diminished-minor-modes nil "\
-List of minor modes to diminish and their mode line display strings.
-The display string can be the empty string if you want the name of the mode
-completely removed from the mode line.  If you prefer, you can abbreviate
-the name.  For 2 characters or more will be displayed as a separate word on
-the mode line, just like minor modes' names.  A single character will be
-scrunched up against the previous word.  Multiple single-letter diminished
-modes will all be scrunched together.
-
-The display of undiminished modes will not be affected.")
-
-(custom-autoload 'diminished-minor-modes "diminish" nil)
-
-;;;***
-
-;;;### (autoloads (edit-env) "edit-env" "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/edit-env.el"
-;;;;;;  (20758 4093))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/edit-env.el
-
-(autoload 'edit-env "edit-env" "\
-Display, edit, delete and add environment variables.
-
-\(fn)" t nil)
-
-;;;***
-
-;;;### (autoloads (egocentric-update-regexp-list egocentric-mode-off
-;;;;;;  egocentric-mode-on egocentric-mode) "egocentric" "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/egocentric.el"
-;;;;;;  (20758 4093))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/egocentric.el
-
-(autoload 'egocentric-mode "egocentric" "\
-Toggle egocentric mode.
-Optional argument ARG is an optional boolean controling whether egocentric-mode should be turned on/off.
-
-\(fn &optional ARG)" t nil)
-
-(autoload 'egocentric-mode-on "egocentric" "\
-Turn Egocentric mode on.
-
-\(fn)" t nil)
-
-(autoload 'egocentric-mode-off "egocentric" "\
-Turn Egocentric mode off.
-
-\(fn)" t nil)
-
-(autoload 'egocentric-update-regexp-list "egocentric" "\
-Update ``egocentric-regexp-list'' from $USER and $NAME variables.
-
-\(fn)" t nil)
+(when (< emacs-major-version 22) (defun ediff-help-for-quick-help nil "Explain Ediff commands in more detail." (interactive) (ediff-barf-if-not-control-buffer) (let ((pos (ediff-event-point last-command-event)) overl cmd) (if ediff-xemacs-p (setq overl (extent-at pos (current-buffer) 'ediff-help-info) cmd (ediff-overlay-get overl 'ediff-help-info)) (setq cmd (car (mapcar #'(lambda (elt) (overlay-get elt 'ediff-help-info)) (overlays-at pos))))) (if (not (stringp cmd)) (error "Hmm... I don't see an Ediff command around here...")) (ediff-documentation "Quick Help Commands") (let ((case-fold-search nil)) (cond ((string= cmd "?") (re-search-forward "^`\\?'")) ((string= cmd "G") (re-search-forward "^`G'")) ((string= cmd "E") (re-search-forward "^`E'")) ((string= cmd "wd") (re-search-forward "^`wd'")) ((string= cmd "wx") (re-search-forward "^`wa'")) ((string= cmd "a/b") (re-search-forward "^`a'")) ((string= cmd "x") (re-search-forward "^`a'")) ((string= cmd "xy") (re-search-forward "^`ab'")) ((string= cmd "p,DEL") (re-search-forward "^`p'")) ((string= cmd "n,SPC") (re-search-forward "^`n'")) ((string= cmd "j") (re-search-forward "^`j'")) ((string= cmd "gx") (re-search-forward "^`ga'")) ((string= cmd "!") (re-search-forward "^`!'")) ((string= cmd "*") (re-search-forward "^`\\*'")) ((string= cmd "m") (re-search-forward "^`m'")) ((string= cmd "|") (re-search-forward "^`|'")) ((string= cmd "@") (re-search-forward "^`@'")) ((string= cmd "h") (re-search-forward "^`h'")) ((string= cmd "r") (re-search-forward "^`r'")) ((string= cmd "rx") (re-search-forward "^`ra'")) ((string= cmd "##") (re-search-forward "^`##'")) ((string= cmd "#c") (re-search-forward "^`#c'")) ((string= cmd "#f/#h") (re-search-forward "^`#f'")) ((string= cmd "X") (re-search-forward "^`A'")) ((string= cmd "v/V") (re-search-forward "^`v'")) ((string= cmd "</>") (re-search-forward "^`<'")) ((string= cmd "~") (re-search-forward "^`~'")) ((string= cmd "i") (re-search-forward "^`i'")) ((string= cmd "D") (re-search-forward "^`D'")) ((string= cmd "R") (re-search-forward "^`R'")) ((string= cmd "M") (re-search-forward "^`M'")) ((string= cmd "z/q") (re-search-forward "^`z'")) ((string= cmd "%") (re-search-forward "^`%'")) ((string= cmd "C-l") (re-search-forward "^`C-l'")) ((and (> emacs-major-version 20) (string= cmd "$$")) (re-search-forward "^`\\$\\$'")) ((and (> emacs-major-version 20) (string= cmd "$*")) (re-search-forward "^`\\$\\*'")) ((and (< emacs-major-version 21) (string= cmd "$")) (re-search-forward "^`\\$'")) ((string= cmd "/") (re-search-forward "^`/'")) ((string= cmd "&") (re-search-forward "^`&'")) ((string= cmd "s") (re-search-forward "^`s'")) ((string= cmd "+") (re-search-forward "^`\\+'")) ((string= cmd "=") (re-search-forward "^`='")) (t (error "Undocumented command! Type `G' in Ediff Control Panel to drop a note to the Ediff maintainer")))))))
 
 ;;;***
 
 ;;;### (autoloads (el-get-checksum el-get-make-recipes el-get-cd
-;;;;;;  el-get-self-update el-get-update-all el-get-version) "el-get"
-;;;;;;  "el-get/el-get.el" (20758 3846))
+;;;;;;  el-get-self-update el-get-update-packages-of-type el-get-update-all
+;;;;;;  el-get-version) "el-get" "el-get/el-get.el" (21233 10306))
 ;;; Generated autoloads from el-get/el-get.el
 
 (autoload 'el-get-version "el-get" "\
@@ -995,6 +246,11 @@ Message the current el-get version
 Performs update of all installed packages.
 
 \(fn &optional NO-PROMPT)" t nil)
+
+(autoload 'el-get-update-packages-of-type "el-get" "\
+Update all installed packages of type TYPE.
+
+\(fn TYPE)" t nil)
 
 (autoload 'el-get-self-update "el-get" "\
 Update el-get itself.  The standard recipe takes care of reloading the code.
@@ -1020,7 +276,7 @@ Compute the checksum of the given package, and put it in the kill-ring
 ;;;***
 
 ;;;### (autoloads (el-get-list-packages) "el-get-list-packages" "el-get/el-get-list-packages.el"
-;;;;;;  (20758 3846))
+;;;;;;  (21233 10306))
 ;;; Generated autoloads from el-get/el-get-list-packages.el
 
 (autoload 'el-get-list-packages "el-get-list-packages" "\
@@ -1030,1650 +286,2909 @@ Display a list of packages.
 
 ;;;***
 
-;;;### (autoloads (eproject-compile eproject-eshell-cd-here eproject-multi-isearch-buffers
-;;;;;;  eproject-todo eproject-grep eproject-revisit-project eproject-kill-project-buffers
-;;;;;;  eproject-ibuffer eproject-find-file) "eproject-extras" "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/eproject-extras.el"
-;;;;;;  (19974 14166))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/eproject-extras.el
+;;;### (autoloads (fill-flowed fill-flowed-encode) "flow-fill" "gnus/lisp/flow-fill.el"
+;;;;;;  (21233 11095))
+;;; Generated autoloads from gnus/lisp/flow-fill.el
 
-(autoload 'eproject-find-file "eproject-extras" "\
-Present the user with a list of files in the current project.
-to select from, open file when selected.
+(autoload 'fill-flowed-encode "flow-fill" "\
+Not documented
 
-\(fn)" t nil)
+\(fn &optional BUFFER)" nil nil)
 
-(autoload 'eproject-ibuffer "eproject-extras" "\
-Open an IBuffer window showing all buffers in the current project, or named project if PREFIX arg is supplied.
+(autoload 'fill-flowed "flow-fill" "\
+Not documented
 
-\(fn PREFIX)" t nil)
-
-(autoload 'eproject-kill-project-buffers "eproject-extras" "\
-Kill every buffer in the current project, including the current buffer.
-
-If PREFIX is specified, prompt for a project name and kill those
-buffers instead.
-
-\(fn PREFIX)" t nil)
-
-(autoload 'eproject-revisit-project "eproject-extras" "\
-Given a project name, visit the root directory.
-
-If PREFIX arg is supplied, run `eproject-find-file'.
-
-\(fn PREFIX)" t nil)
-
-(autoload 'eproject-grep "eproject-extras" "\
-Search all files in the current project for REGEXP.
-
-\(fn REGEXP)" t nil)
-
-(autoload 'eproject-todo "eproject-extras" "\
-Display a project TODO list.
-
-Customize `eproject-todo-expressions' to control what this function looks for.
-
-\(fn)" t nil)
-
-(autoload 'eproject-multi-isearch-buffers "eproject-extras" "\
-Do a `multi-isearch' on opened buffers in the current project.
-
-Run `eproject-open-all-project-files' first or just
-`eproject-grep' if you want to search all project files.
-
-\(fn)" t nil)
-
-(autoload 'eproject-eshell-cd-here "eproject-extras" "\
-If there is an EShell buffer, cd to the project root in that buffer.
-
-With the prefix arg LOOK-IN-INVISIBLE-BUFFERS looks in buffers that are not currently displayed.
-
-\(fn &optional LOOK-IN-INVISIBLE-BUFFERS)" t nil)
-
-(autoload 'eproject-compile "eproject-extras" "\
-Run `compile-command' in the project root.
-
-\(fn)" t nil)
+\(fn &optional BUFFER DELETE-SPACE)" nil nil)
 
 ;;;***
 
-;;;### (autoloads (ff-paths-install) "ff-paths" "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/ff-paths.el"
-;;;;;;  (20043 15601))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/ff-paths.el
-
-(autoload 'ff-paths-install "ff-paths" "\
-Install ff-paths as a `find-file-not-found-hooks' and to ffap package.
-
-\(fn)" nil nil)
-
-;;;***
-
-;;;### (autoloads (floatbg-mode) "floatbg" "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/floatbg.el"
-;;;;;;  (16013 59393))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/floatbg.el
-
-(autoload 'floatbg-mode "floatbg" "\
-Toggle floatbg mode
-
-\(fn &optional ARG)" t nil)
-
-;;;***
-
-;;;### (autoloads (folding-mode turn-on-folding-mode turn-off-folding-mode
-;;;;;;  folding-mode-add-find-file-hook folding-keep-hooked folding-install-hooks
-;;;;;;  folding-uninstall-hooks folding-mode-hook-no-regexp folding-mode-string
-;;;;;;  folding-inside-mode-name folding-default-mouse-keys-function
-;;;;;;  folding-default-keys-function) "folding" "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/folding.el"
-;;;;;;  (19104 31300))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/folding.el
-
-(defvar folding-mode nil "\
-When Non nil, Folding mode is active in the current buffer.")
-
-(defvar folding-default-keys-function 'folding-bind-default-keys "\
-*Function or list of functions used to define keys for Folding mode.
-Possible values are:
-  folding-bind-default-key
-        The standard keymap.
-
-  `folding-bind-backward-compatible-keys'
-        Keys used by older versions of Folding mode. This function
-        does not conform to Emacs 19.29 style conversions concerning
-        key bindings. The prefix key is C - c
-
-  `folding-bind-outline-compatible-keys'
-        Define keys compatible with Outline mode.
-
-  `folding-bind-foldout-compatible-keys'
-        Define some extra keys compatible with Foldout.
-
-All except `folding-bind-backward-compatible-keys' used the value of
-the variable `folding-mode-prefix-key' as prefix the key.
-The default is C - c @")
-
-(custom-autoload 'folding-default-keys-function "folding" t)
-
-(defvar folding-default-mouse-keys-function 'folding-bind-default-mouse "\
-*Function to bind default mouse keys to `folding-mode-map'.")
-
-(custom-autoload 'folding-default-mouse-keys-function "folding" t)
-
-(defvar folding-inside-mode-name "Fld" "\
-*Mode line addition to show inside levels of 'fold' .")
-
-(custom-autoload 'folding-inside-mode-name "folding" t)
-
-(defvar folding-mode-string "Fld" "\
-*The minor mode string displayed when mode is on.")
-
-(custom-autoload 'folding-mode-string "folding" t)
-
-(defvar folding-mode-hook-no-regexp "RMAIL" "\
-*Regexp which disable automatic folding mode turn on for certain files.")
-
-(custom-autoload 'folding-mode-hook-no-regexp "folding" t)
-
-(defvar folding-mode-marks-alist nil "\
-List of (major-mode . fold mark) default combinations to use.
-When Folding mode is started, the major mode is checked, and if there
-are fold marks for that major mode stored in `folding-mode-marks-alist',
-those marks are used by default. If none are found, the default values
-of \"{{{ \" and \"}}}\" are used.
-
-Use function  `folding-add-to-marks-list' to add more fold marks. The function
-also explains the alist use in details.
-
-Use function `folding-set-local-variables' if you change the current mode's
-folding marks during the session.")
-
-(autoload 'folding-uninstall-hooks "folding" "\
-Remove hooks set by folding.
-
-\(fn)" nil nil)
-
-(autoload 'folding-install-hooks "folding" "\
-Install folding hooks.
-
-\(fn)" nil nil)
-
-(autoload 'folding-keep-hooked "folding" "\
-Make sure hooks are in their places.
-
-\(fn)" nil nil)
-
-(autoload 'folding-mode-add-find-file-hook "folding" "\
-Append `folding-mode-find-file-hook' to the list `find-file-hooks'.
-
-This has the effect that afterwards, when a folded file is visited, if
-appropriate Emacs local variable entries are recognized at the end of
-the file, Folding mode is started automatically.
-
-If `inhibit-local-variables' is non-nil, this will not happen regardless
-of the setting of `find-file-hooks'.
-
-To declare a file to be folded, put `folded-file: t' in the file's
-local variables. eg., at the end of a C source file, put:
-
-/*
-Local variables:
-folded-file: t
-*/
-
-The local variables can be inside a fold.
-
-\(fn)" t nil)
-
-(autoload 'turn-off-folding-mode "folding" "\
-Turn off folding.
-
-\(fn)" nil nil)
-
-(autoload 'turn-on-folding-mode "folding" "\
-Turn on folding.
-
-\(fn)" nil nil)
-
-(autoload 'folding-mode "folding" "\
-A folding-editor-like minor mode. ARG INTER.
-
-These are the basic commands that Folding mode provides:
-
-\\{folding-mode-map}
-
-Keys starting with `folding-mode-prefix-key'
-
-\\{folding-mode-prefix-map}
-
-     folding-convert-buffer-for-printing:
-     `\\[folding-convert-buffer-for-printing]'
-     Makes a ready-to-print, formatted, unfolded copy in another buffer.
-
-     Read the documentation for the above functions for more information.
-
-Overview
-
-    Folds are a way of hierarchically organizing the text in a file, so
-    that the text can be viewed and edited at different levels. It is
-    similar to Outline mode in that parts of the text can be hidden from
-    view. A fold is a region of text, surrounded by special \"fold marks\",
-    which act like brackets, grouping the text. Fold mark pairs can be
-    nested, and they can have titles. When a fold is folded, the text is
-    hidden from view, except for the first line, which acts like a title
-    for the fold.
-
-    Folding mode is a minor mode, designed to cooperate with many other
-    major modes, so that many types of text can be folded while they are
-    being edited (eg., plain text, program source code, Texinfo, etc.).
-
-Folding-mode function
-
-    If Folding mode is not called interactively (`(interactive-p)' is nil),
-    and it is called with two or less arguments, all of which are nil, then
-    the point will not be altered if `folding-folding-on-startup' is set
-    and `folding-whole-buffer' is called. This is generally not a good
-    thing, as it can leave the point inside a hidden region of a fold, but
-    it is required if the local variables set \"mode: folding\" when the
-    file is first read (see `hack-local-variables').
-
-    Not that you should ever want to, but to call Folding mode from a
-    program with the default behavior (toggling the mode), call it with
-    something like `(folding-mode nil t)'.
-
-Fold marks
-
-    For most types of folded file, lines representing folds have \"{{{\"
-    near the beginning. To enter a fold, move the point to the folded line
-    and type `\\[folding-shift-in]'. You should no longer be able to see
-    the rest of the file, just the contents of the fold, which you couldn't
-    see before. You can use `\\[folding-shift-out]' to leave a fold, and
-    you can enter and exit folds to move around the structure of the file.
-
-    All of the text is present in a folded file all of the time. It is just
-    hidden. Folded text shows up as a line (the top fold mark) with \"...\"
-    at the end. If you are in a fold, the mode line displays \"inside n
-    folds Narrow\", and because the buffer is narrowed you can't see outside
-    of the current fold's text.
-
-    By arranging sections of a large file in folds, and maybe subsections
-    in sub-folds, you can move around a file quickly and easily, and only
-    have to scroll through a couple of pages at a time. If you pick the
-    titles for the folds carefully, they can be a useful form of
-    documentation, and make moving though the file a lot easier. In
-    general, searching through a folded file for a particular item is much
-    easier than without folds.
-
-Managing folds
-
-    To make a new fold, set the mark at one end of the text you want in the
-    new fold, and move the point to the other end. Then type
-    `\\[folding-fold-region]'. The text you selected will be made into a
-    fold, and the fold will be entered. If you just want a new, empty fold,
-    set the mark where you want the fold, and then create a new fold there
-    without moving the point. Don't worry if the point is in the middle of
-    a line of text, `folding-fold-region' will not break text in the middle
-    of a line. After making a fold, the fold is entered and the point is
-    positioned ready to enter a title for the fold. Do not delete the fold
-    marks, which are usually something like \"{{{\" and \"}}}\". There may
-    also be a bit of fold mark which goes after the fold title.
-
-    If the fold markers get messed up, or you just want to see the whole
-    unfolded file, use `\\[folding-open-buffer]' to unfolded the whole
-    file, so you can see all the text and all the marks. This is useful for
-    checking/correcting unbalanced fold markers, and for searching for
-    things. Use `\\[folding-whole-file]' to fold the buffer again.
-
-    `folding-shift-out' will attempt to tidy the current fold just before
-    exiting it. It will remove any extra blank lines at the top and bottom,
-    (outside the fold marks). It will then ensure that fold marks exists,
-    and if they are not, will add them (after asking). Finally, the number
-    of blank lines between the fold marks and the contents of the fold is
-    set to 1 (by default).
-
-Folding package customizations
-
-    If the fold marks are not set on entry to Folding mode, they are set to
-    a default for current major mode, as defined by
-    `folding-mode-marks-alist' or to \"{{{ \" and \"}}}\" if none are
-    specified.
-
-    To bind different commands to keys in Folding mode, set the bindings in
-    the keymap `folding-mode-map'.
-
-    The hooks `folding-mode-hook' and `<major-mode-name>-folding-hook' are
-    called before folding the buffer and applying the key bindings in
-    `folding-mode-map'. This is a good hook to set extra or different key
-    bindings in `folding-mode-map'. Note that key bindings in
-    `folding-mode-map' are only examined just after calling these hooks;
-    new bindings in those maps only take effect when Folding mode is being
-    started. The hook `folding-load-hook' is called when Folding mode is
-    loaded into Emacs.
-
-Mouse behavior
-
-    If you want folding to detect point of actual mouse click, please see
-    variable `folding-mouse-yank-at-p'.
-
-    To customise the mouse actions, look at `folding-behave-table'.
-
-\(fn &optional ARG INTER)" t nil)
-
-;;;***
-
-;;;### (autoloads (framepop-display-buffer framepop-enable framepop-disable)
-;;;;;;  "framepop" "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/framepop.el"
-;;;;;;  (16269 22230))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/framepop.el
-
-(autoload 'framepop-disable "framepop" "\
-Disable automatic pop-up temporary windows.
-
-\(fn)" t nil)
-
-(autoload 'framepop-enable "framepop" "\
-Enable automatic pop-up temporary windows.
-
-\(fn)" t nil)
-
-(autoload 'framepop-display-buffer "framepop" "\
-Display-buffer for FramePop.
-Displays BUF in a separate frame -- the FramePop frame.
-BUF bay be a buffer or a buffer name.
-
-You can display a buffer in the FramePop frame with \\[framepop-display-buffer].
-
-Several commands are available for manipulating the FramePop frame after
-typing the keymap prefix (default F2).
-
-\\{framepop-map}
-
-\(fn BUF)" t nil)
-
-;;;***
-
-;;;### (autoloads (graphviz-dot-mode) "graphviz-dot-mode" "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/graphviz-dot-mode.el"
-;;;;;;  (19810 28840))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/graphviz-dot-mode.el
-
-(autoload 'graphviz-dot-mode "graphviz-dot-mode" "\
-Major mode for the dot language. \\<graphviz-dot-mode-map> 
-TAB indents for graph lines. 
-
-\\[graphviz-dot-indent-graph]	- Indentaion function.
-\\[graphviz-dot-preview]	- Previews graph in a buffer.
-\\[graphviz-dot-view]	- Views graph in an external viewer.
-\\[graphviz-dot-indent-line]	- Indents current line of code.
-\\[graphviz-dot-complete-word]	- Completes the current word.
-\\[electric-graphviz-dot-terminate-line]	- Electric newline.
-\\[electric-graphviz-dot-open-brace]	- Electric open braces.
-\\[electric-graphviz-dot-close-brace]	- Electric close braces.
-\\[electric-graphviz-dot-semi]	- Electric semi colons.
-
-Variables specific to this mode:
-
-  graphviz-dot-dot-program            (default `dot')
-       Location of the dot program.
-  graphviz-dot-view-command           (default `doted %s')
-       Command to run when `graphviz-dot-view' is executed.
-  graphviz-dot-view-edit-command      (default nil)
-       If the user should be asked to edit the view command.
-  graphviz-dot-save-before-view       (default t)
-       Automatically save current buffer berore `graphviz-dot-view'.
-  graphviz-dot-preview-extension      (default `png')
-       File type to use for `graphviz-dot-preview'.
-  graphviz-dot-auto-indent-on-newline (default t)
-       Whether to run `electric-graphviz-dot-terminate-line' when 
-       newline is entered.
-  graphviz-dot-auto-indent-on-braces (default t)
-       Whether to run `electric-graphviz-dot-open-brace' and
-       `electric-graphviz-dot-close-brace' when braces are 
-       entered.
-  graphviz-dot-auto-indent-on-semi (default t)
-       Whether to run `electric-graphviz-dot-semi' when semi colon
-       is typed.
-  graphviz-dot-toggle-completions  (default nil)
-       If completions should be displayed in the buffer instead of a
-       completion buffer when \\[graphviz-dot-complete-word] is
-       pressed repeatedly.
-
-This mode can be customized by running \\[graphviz-dot-customize].
-
-Turning on Graphviz Dot mode calls the value of the variable 
-`graphviz-dot-mode-hook' with no args, if that value is non-nil.
-
-\(fn)" t nil)
-
-(add-to-list 'auto-mode-alist '("\\.dot\\'" . graphviz-dot-mode))
-
-;;;***
-
-;;;### (autoloads (highlight-beyond-fill-column) "highlight-beyond-fill-column"
-;;;;;;  "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/highlight-beyond-fill-column.el"
-;;;;;;  (20758 4093))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/highlight-beyond-fill-column.el
-
-(autoload 'highlight-beyond-fill-column "highlight-beyond-fill-column" "\
-Setup this buffer to highlight beyond the `fill-column'.
-
-\(fn)" t nil)
-
-;;;***
-
-;;;### (autoloads (highlight-current-line-minor-mode) "highlight-current-line"
-;;;;;;  "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/highlight-current-line.el"
-;;;;;;  (19104 31300))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/highlight-current-line.el
-
-(autoload 'highlight-current-line-minor-mode "highlight-current-line" "\
-Toggle highlight-current-line minor mode.
-With ARG, turn minor mode on if ARG is positive, off otherwise.
-You can customize the face of the highlighted line and whether the entire
-line is hightlighted by customizing the group highlight-current-line.
-
-\(fn &optional ARG)" t nil)
-
-;;;***
-
-;;;### (autoloads (home-end-end home-end-home) "home-end" "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/home-end.el"
-;;;;;;  (19812 22000))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/home-end.el
-
-(autoload 'home-end-home "home-end" "\
-Go to beginning of line/window/buffer.
-First hitting key goes to beginning of line, second in a row goes to
-beginning of window, third in a row goes to beginning of buffer.
-
-\(fn &optional ARG)" t nil)
-
-(autoload 'home-end-end "home-end" "\
-Go to end of line/window/buffer.
-First hitting key goes to end of line, second in a row goes to end
-of window, third in a row goes to end of buffer.
-
-\(fn &optional ARG)" t nil)
-
-;;;***
-
-;;;### (autoloads (htmlize-many-files-dired htmlize-many-files htmlize-file
-;;;;;;  htmlize-region htmlize-buffer) "htmlize" "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/htmlize.el"
-;;;;;;  (19103 48317))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/htmlize.el
-
-(autoload 'htmlize-buffer "htmlize" "\
-Convert BUFFER to HTML, preserving colors and decorations.
-
-The generated HTML is available in a new buffer, which is returned.
-When invoked interactively, the new buffer is selected in the current
-window.  The title of the generated document will be set to the buffer's
-file name or, if that's not available, to the buffer's name.
-
-Note that htmlize doesn't fontify your buffers, it only uses the
-decorations that are already present.  If you don't set up font-lock or
-something else to fontify your buffers, the resulting HTML will be
-plain.  Likewise, if you don't like the choice of colors, fix the mode
-that created them, or simply alter the faces it uses.
-
-\(fn &optional BUFFER)" t nil)
-
-(autoload 'htmlize-region "htmlize" "\
-Convert the region to HTML, preserving colors and decorations.
-See `htmlize-buffer' for details.
-
-\(fn BEG END)" t nil)
-
-(autoload 'htmlize-file "htmlize" "\
-Load FILE, fontify it, convert it to HTML, and save the result.
-
-Contents of FILE are inserted into a temporary buffer, whose major mode
-is set with `normal-mode' as appropriate for the file type.  The buffer
-is subsequently fontified with `font-lock' and converted to HTML.  Note
-that, unlike `htmlize-buffer', this function explicitly turns on
-font-lock.  If a form of highlighting other than font-lock is desired,
-please use `htmlize-buffer' directly on buffers so highlighted.
-
-Buffers currently visiting FILE are unaffected by this function.  The
-function does not change current buffer or move the point.
-
-If TARGET is specified and names a directory, the resulting file will be
-saved there instead of to FILE's directory.  If TARGET is specified and
-does not name a directory, it will be used as output file name.
-
-\(fn FILE &optional TARGET)" t nil)
-
-(autoload 'htmlize-many-files "htmlize" "\
-Convert FILES to HTML and save the corresponding HTML versions.
-
-FILES should be a list of file names to convert.  This function calls
-`htmlize-file' on each file; see that function for details.  When
-invoked interactively, you are prompted for a list of files to convert,
-terminated with RET.
-
-If TARGET-DIRECTORY is specified, the HTML files will be saved to that
-directory.  Normally, each HTML file is saved to the directory of the
-corresponding source file.
-
-\(fn FILES &optional TARGET-DIRECTORY)" t nil)
-
-(autoload 'htmlize-many-files-dired "htmlize" "\
-HTMLize dired-marked files.
-
-\(fn ARG &optional TARGET-DIRECTORY)" t nil)
-
-;;;***
-
-;;;### (autoloads (joc-toggle-buffer) "joc-toggle-buffer" "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/joc-toggle-buffer.el"
-;;;;;;  (20758 4093))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/joc-toggle-buffer.el
-
-(autoload 'joc-toggle-buffer "joc-toggle-buffer" "\
-Switch to previous active buffer.
-
-\(fn)" t nil)
-
-;;;***
-
-;;;### (autoloads (joc-toggle-case-by-region joc-toggle-case-by-word-backwards
-;;;;;;  joc-toggle-case-by-word joc-toggle-case-backwards joc-toggle-case)
-;;;;;;  "joc-toggle-case" "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/joc-toggle-case.el"
-;;;;;;  (20758 4093))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/joc-toggle-case.el
-
-(autoload 'joc-toggle-case "joc-toggle-case" "\
-Toggle the case of the character under point.
-If called with a PREFIX argument, it toggles that many
-characters (see joc-toggle-case-stop-at-eol).  If the prefix is
-negative, the case of the character before point is toggled, and
-if called with a prefix argument, N characters before point will
-have their case toggled (see also joc-toggle-case-backwards).
-
-\(fn PREFIX)" t nil)
-
-(autoload 'joc-toggle-case-backwards "joc-toggle-case" "\
-Convenience function to toggle case of character preceeding point.
-This is the same as calling joc-toggle-case with a negative
-prefix (and is in fact implemented that way).
-
-\(fn PREFIX)" t nil)
-
-(autoload 'joc-toggle-case-by-word "joc-toggle-case" "\
-Similar to joc-toggle-case except that the count (supplied by
-the prefix argument) is of the number of words, not letters, to
-be toggled.  It will start from point and move to the end of
-the first word at a minimum, and then take whole words from
-there.  If called with a negative prefix, then from point to
-beginning of current word will have their case toggled, going
-backwards for N words (see also
-joc-toggle-case-by-word-backwards).  Note that the
-joc-toggle-case-stop-at-eol setting will be honored.
-
-\(fn PREFIX)" t nil)
-
-(autoload 'joc-toggle-case-by-word-backwards "joc-toggle-case" "\
-Convenience function to toggle case by word, backwards.
-This is the same as calling joc-toggle-case-by-word with a
-negative prefix (and is in fact implemented that way).
-
-\(fn PREFIX)" t nil)
-
-(autoload 'joc-toggle-case-by-region "joc-toggle-case" "\
-Toggles the case of all characters in the current region.
-
-\(fn START END)" t nil)
-
-;;;***
-
-;;;### (autoloads (keydef) "keydef" "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/keydef.el"
-;;;;;;  (16013 59398))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/keydef.el
-
-(autoload 'keydef "keydef" "\
-Define the key sequence SEQ, written in kbd form, to run CMD.
-CMD is automatically wrapped in an anonymous interactive function if it
-is Emacs Lisp code rather than a command name. SEQ may also have the form
-\(MODE SEQ) where the car is a mode name; for example
-
-  (keydef (latex \"C-c %\") comment-region)
-
-means to define the given key in latex-mode-map. And this will work even
-if latex-mode is not loaded yet, provided that it is possible to deduce
-the file that it will be loaded from, either from the autoload info or
-by searching for a matching file name in the Emacs load path.
-
-For best results, the \"mode name\" that you use here should yield the
-proper foo-mode-map symbol when \"-mode-map\" is appended; although
-this will normally match the mode name as given in the mode line,
-Shell-script is one example I can think of where it doesn't---the map is
-named sh-mode-map. The common cases that I know about, including
-shell-script-mode and latex-mode, are handled as exceptions through the
-variable mode-map-alist. But for other cases you will need to look up
-the name of the mode-map that goes with the given mode.
-
-\(fn SEQ &rest CMD)" nil (quote macro))
-
-;;;***
-
-;;;### (autoloads (lcomp-keys-mode lcomp-mode) "lcomp" "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/lcomp.el"
-;;;;;;  (19331 13881))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/lcomp.el
-
-(defvar lcomp-mode nil "\
-Non-nil if Lcomp mode is enabled.
-See the command `lcomp-mode' for a description of this minor mode.
-Setting this variable directly does not take effect;
-either customize it (see the info node `Easy Customization')
-or call the function `lcomp-mode'.")
-
-(custom-autoload 'lcomp-mode "lcomp" nil)
-
-(autoload 'lcomp-mode "lcomp" "\
-Auto close completion window mode.
-
-\(fn &optional ARG)" t nil)
-
-(defvar lcomp-keys-mode nil "\
-Non-nil if Lcomp-Keys mode is enabled.
-See the command `lcomp-keys-mode' for a description of this minor mode.
-Setting this variable directly does not take effect;
-either customize it (see the info node `Easy Customization')
-or call the function `lcomp-keys-mode'.")
-
-(custom-autoload 'lcomp-keys-mode "lcomp" nil)
-
-(autoload 'lcomp-keys-mode "lcomp" "\
-Add keybindings to the completions buffer.
-
-\\{lcomp-keys-override-map}
-
-\(fn &optional ARG)" t nil)
-
-;;;***
-
-;;;### (autoloads (map-lines-copy map-lines-kill copy-line map-lines)
-;;;;;;  "map-lines" "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/map-lines.el"
-;;;;;;  (19381 25289))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/map-lines.el
-
-(autoload 'map-lines "map-lines" "\
-Map a COMMAND-C (kill, copying, or a custom command) over lines matching REGEX.
-
-\(fn COMMAND-C REGEX)" t nil)
-
-(autoload 'copy-line "map-lines" "\
-Copy a whole line to the kill ring.
-
-\(fn)" t nil)
-
-(autoload 'map-lines-kill "map-lines" "\
-Kill all lines matching REGEX.  Yanking will insert all killed lines.
-
-\(fn REGEX)" t nil)
-
-(autoload 'map-lines-copy "map-lines" "\
-Copy all lines matching REGEX to the kill ring.  Yanking will insert all such lines.
-
-\(fn REGEX)" t nil)
-
-;;;***
-
-;;;### (autoloads (markdown-mode) "markdown-mode" "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/markdown-mode.el"
-;;;;;;  (20043 182))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/markdown-mode.el
-
-(autoload 'markdown-mode "markdown-mode" "\
-Major mode for editing Markdown files.
-
-\(fn)" t nil)
-
-;;;***
-
-;;;### (autoloads (marker-visit-truncate-mark-ring marker-visit-next
-;;;;;;  marker-visit-prev) "marker-visit" "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/marker-visit.el"
-;;;;;;  (20758 4093))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/marker-visit.el
-
-(autoload 'marker-visit-prev "marker-visit" "\
-From point, visit the nearest mark earlier in the buffer.
-
-\(fn)" t nil)
-
-(autoload 'marker-visit-next "marker-visit" "\
-From point, visit the nearest mark later in the buffer.
-
-\(fn)" t nil)
-
-(autoload 'marker-visit-truncate-mark-ring "marker-visit" "\
-Truncate the `mark-ring'.
-
-\(fn)" t nil)
-
-;;;***
-
-;;;### (autoloads (matlab-shell matlab-mode) "matlab" "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/matlab.el"
-;;;;;;  (19223 14031))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/matlab.el
-
-(autoload 'matlab-mode "matlab" "\
-MATLAB(R) mode is a major mode for editing MATLAB dot-m files.
-\\<matlab-mode-map>
-Convenient editing commands are:
- \\[matlab-comment-region]   - Comment/Uncomment out a region of code.
- \\[matlab-fill-comment-line] - Fill the current comment line.
- \\[matlab-fill-region] - Fill code and comments in region.
- \\[matlab-fill-paragraph]     - Refill the current command or comment.
- \\[matlab-complete-symbol]   - Symbol completion of matlab symbolsbased on the local syntax.
- \\[matlab-indent-sexp] - Indent syntactic block of code.
-
-Convenient navigation commands are:
- \\[matlab-beginning-of-command]   - Move to the beginning of a command.
- \\[matlab-end-of-command]   - Move to the end of a command.
- \\[matlab-beginning-of-defun] - Move to the beginning of a function.
- \\[matlab-end-of-defun] - Move do the end of a function.
- \\[matlab-forward-sexp] - Move forward over a syntactic block of code.
- \\[matlab-backward-sexp] - Move backwards over a syntactic block of code.
-
-Convenient template insertion commands:
- \\[tempo-template-matlab-function] - Insert a function definition.
- \\[tempo-template-matlab-if] - Insert an IF END block.
- \\[tempo-template-matlab-for] - Insert a FOR END block.
- \\[tempo-template-matlab-switch] - Insert a SWITCH END statement.
- \\[matlab-insert-next-case] - Insert the next CASE condition in a SWITCH.
- \\[matlab-insert-end-block] - Insert a matched END statement.  With optional ARG, reindent.
- \\[matlab-stringify-region] - Convert plaintext in region to a string with correctly quoted chars.
-
-Variables:
-  `matlab-indent-level'		Level to indent blocks.
-  `matlab-cont-level'		Level to indent continuation lines.
-  `matlab-cont-requires-ellipsis' Does your MATLAB support implied elipsis.
-  `matlab-case-level'		Level to unindent case statements.
-  `matlab-indent-past-arg1-functions'
-                                Regexp of functions to indent past the first
-                                  argument on continuation lines.
-  `matlab-maximum-indents'      List of maximum indents during lineups.
-  `matlab-comment-column'       Goal column for on-line comments.
-  `fill-column'			Column used in auto-fill.
-  `matlab-indent-function-body' If non-nil, indents body of MATLAB functions.
-  `matlab-functions-have-end'	If non-nil, MATLAB functions terminate with end.
-  `matlab-return-function'	Customize RET handling with this function.
-  `matlab-auto-fill'            Non-nil, do auto-fill at startup.
-  `matlab-fill-code'            Non-nil, auto-fill code.
-  `matlab-fill-strings'         Non-nil, auto-fill strings.
-  `matlab-verify-on-save-flag'  Non-nil, enable code checks on save.
-  `matlab-highlight-block-match-flag'
-                                Enable matching block begin/end keywords.
-  `matlab-vers-on-startup'	If t, show version on start-up.
-  `matlab-handle-simulink'      If t, enable simulink keyword highlighting.
-
-All Key Bindings:
-\\{matlab-mode-map}
-
-\(fn)" t nil)
-
-(autoload 'matlab-shell "matlab" "\
-Create a buffer with MATLAB running as a subprocess.
-
-MATLAB shell cannot work on the MS Windows platform because MATLAB is not
-a console application.
-
-\(fn)" t nil)
-
-;;;***
-
-;;;### (autoloads (miniedit-install-for-xemacs miniedit-install miniedit
-;;;;;;  miniedit-introduction miniedit-quick-start) "miniedit" "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/miniedit.el"
-;;;;;;  (19387 53923))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/miniedit.el
-
-(autoload 'miniedit-quick-start "miniedit" "\
-Provides electric help for function `miniedit-quick-start'.
-
-\(fn)" t nil)
-
-(autoload 'miniedit-introduction "miniedit" "\
-Provides electric help for function `miniedit-introduction'.
-
-\(fn)" t nil)
-
-(autoload 'miniedit "miniedit" "\
-The main miniedit function.
-
-\(fn)" t nil)
-
-(autoload 'miniedit-install "miniedit" "\
-Install miniedit by frobbing your miniedit-local maps.
-
-\(fn)" t nil)
-
-(autoload 'miniedit-install-for-xemacs "miniedit" "\
-Try to Install miniedit for Xemacs.
-
-\(fn)" t nil)
-
-;;;***
-
-;;;### (autoloads (muttrc-mode) "muttrc-mode" "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/muttrc-mode.el"
-;;;;;;  (19030 17715))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/muttrc-mode.el
-
-(autoload 'muttrc-mode "muttrc-mode" "\
-Major mode for editing Muttrc files.
-This function ends by invoking the function(s) `muttrc-mode-hook'.
-
-\\{muttrc-mode-map}
-
-\(fn)" t nil)
-
-;;;***
-
-;;;### (autoloads (nuke-trailing-whitespace) "nuke-trailing-whitespace"
-;;;;;;  "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/nuke-trailing-whitespace.el"
-;;;;;;  (19104 31301))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/nuke-trailing-whitespace.el
-
-(autoload 'nuke-trailing-whitespace "nuke-trailing-whitespace" "\
-Nuke all trailing whitespace in the buffer.
-Whitespace in this case is just spaces or tabs.
-This is a useful function to put on write-file-hooks.
-
-Unless called interactively, this function uses
-`nuke-trailing-whitespace-p' to determine how to behave.
-However, even if this variable is `t', this function will query for
-replacement if the buffer is read-only.
-
-\(fn)" t nil)
-
-;;;***
-
-;;;### (autoloads (obfuscate-url) "obfusurl" "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/obfusurl.el"
-;;;;;;  (18431 47702))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/obfusurl.el
-
-(autoload 'obfuscate-url "obfusurl" "\
-Obfuscate an URL under `point'.
-
-This might be useful if you're writing out an URL for someone but the URL
-itself is a spoiler. The URL will still work but it won't be readable (by
-most mortals anyway).
-
-\(fn)" t nil)
-
-;;;***
-
-;;;### (autoloads (pack-windows) "pack-windows" "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/pack-windows.el"
-;;;;;;  (16313 9500))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/pack-windows.el
-
-(autoload 'pack-windows "pack-windows" "\
-Resize all windows vertically to display as much information as possible.
-
-Only windows that are on the left edge of the frame are taken into
-account. The vertical space available in the frame is first divided
-among all these windows. Then any window requireing less lines than it
-got to display its whole buffer is shrinked, and the freed space is
-divided equally among all the other windows.
-
-If some vertical space remains afterwards, it is given in totality to
-the currently selected window.
-
-Do not shrink any window to less than `window-min-height'.
-
-Shrink windows iteratively, performing at most `pack-windows-max-iteration'
-iterations. The number of iterations really performed will be
-displayed in the echo area if `pack-windows-verbose' is non-nil.
-
-\(fn)" t nil)
-
-;;;***
-
-;;;### (autoloads (perldoc-perl-hook perldoc-at-point perldoc) "perldoc"
-;;;;;;  "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/perldoc.el"
-;;;;;;  (19536 18952))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/perldoc.el
-
-(autoload 'perldoc "perldoc" "\
-Run perldoc on the given STRING.
-If the string is a recognised function then we can call `perldoc-function',
-otherwise we call `perldoc-module'.
-A non-nil interactive argument forces the caches to be updated.
-
-\(fn &optional STRING RE-CACHE)" t nil)
-
-(autoload 'perldoc-at-point "perldoc" "\
-Call `perldoc' for string at point.
-
-\(fn)" t nil)
-
-(autoload 'perldoc-perl-hook "perldoc" "\
-A hook which binds F1 to `perldoc-at-point'.
-
-\(fn)" nil nil)
-
-;;;***
-
-;;;### (autoloads (pod-mode) "pod-mode" "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/pod-mode.el"
-;;;;;;  (19536 20515))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/pod-mode.el
-
-(autoload 'pod-mode "pod-mode" "\
-Major mode for editing POD files (Plain Old Documentation for Perl).
-
-Commands:\\<pod-mode-map>
-\\[pod-link]  `pod-link'
-\\[pod-link-section]     `pod-link-section'
-\\[pod-link-module]     `pod-link-module'
-\\[pod-link-module-section]     `pod-link-module-section'
-
-Turning on pod mode calls the hooks in `pod-mode-hook'.
-
-\(fn)" t nil)
-
-;;;***
-
-;;;### (autoloads (refresh-pretty-control-l pp^L-^L-display-table-entry
-;;;;;;  pp^L-^L-string Pretty-Control-L) "pp-c-l" "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/pp-c-l.el"
-;;;;;;  (19416 52725))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/pp-c-l.el
-
-(let ((loads (get 'Pretty-Control-L 'custom-loads))) (if (member '"pp-c-l" loads) nil (put 'Pretty-Control-L 'custom-loads (cons '"pp-c-l" loads))))
-
-(defface pp^L-highlight (if (> emacs-major-version 21) '((((type x w32 mac graphic) (class color)) (:box (:line-width 3 :style pressed-button))) (t (:inverse-video t))) '((((type x w32 mac graphic) (class color)) (:foreground "Blue" :background "DarkSeaGreen1")) (t (:inverse-video t)))) "\
-*Face used to highlight `pp^L-^L-vector'." :group (quote Pretty-Control-L) :group (quote faces))
-
-(defvar pp^L-^L-string "          Section (Printable Page)          " "\
-*Highlighted string displayed in place of each Control-l (^L) character.
-If `pp^L-^L-string-function' is non-nil, then the string that function
-returns is used instead of `pp^L-^L-string'.")
-
-(custom-autoload 'pp^L-^L-string "pp-c-l" t)
-
-(unless (fboundp 'define-minor-mode) (defcustom pretty-control-l-mode nil "*Toggle pretty display of Control-l (`^L') characters.\nSetting this variable directly does not take effect;\nuse either \\[customize] or command `pretty-control-l-mode'." :set (lambda (symbol value) (pretty-control-l-mode (if value 1 -1))) :initialize 'custom-initialize-default :type 'boolean :group 'Pretty-Control-L))
-
-(autoload 'pp^L-^L-display-table-entry "pp-c-l" "\
-Returns the display-table entry for Control-l (`^L') char in WINDOW.
-A vector determining how a Control-l character is displayed in WINDOW.
-Either a vector of characters or nil.  The characters are displayed in
-place of the Control-l character.  nil means `^L' is displayed.
-
-In effect, this concatenates `pp^L-^L-string-pre', `pp^L-^L-string',
-and `pp^L-^L-string-post'.
-
-\(fn WINDOW)" nil nil)
-
-(if (fboundp 'define-minor-mode) (eval '(define-minor-mode pretty-control-l-mode "Toggle pretty display of Control-l (`^L') characters.\nWith ARG, turn pretty display of `^L' on if and only if ARG is positive." :init-value nil :global t :group 'Pretty-Control-L :link `(url-link :tag "Send Bug Report" ,(concat "mailto:" "drew.adams" "@" "oracle" ".com?subject=pp-c-l.el bug: &body=Describe bug here, starting with `emacs -q'.  Don't forget to mention your Emacs and library versions.")) :link '(url-link :tag "Other Libraries by Drew" "http://www.emacswiki.org/cgi-bin/wiki/DrewsElispLibraries") :link '(url-link :tag "Download" "http://www.emacswiki.org/cgi-bin/wiki/pp-c-l.el") :link '(url-link :tag "Description" "http://www.emacswiki.org/cgi-bin/wiki/PrettyControlL") :link '(emacs-commentary-link :tag "Commentary" "pp-c-l") (if pretty-control-l-mode (add-hook 'window-configuration-change-hook 'refresh-pretty-control-l) (remove-hook 'window-configuration-change-hook 'refresh-pretty-control-l)) (walk-windows (lambda (window) (let ((display-table (or (window-display-table window) (make-display-table)))) (aset display-table 12 (and pretty-control-l-mode (pp^L-^L-display-table-entry window))) (set-window-display-table window display-table))) 'no-minibuf 'visible))) (defun pretty-control-l-mode (&optional arg) "Toggle pretty display of Control-l (`^L') characters.\nWith ARG, turn pretty display of `^L' on if and only if ARG is positive." (interactive "P") (setq pretty-control-l-mode (if arg (> (prefix-numeric-value arg) 0) (not pretty-control-l-mode))) (if pretty-control-l-mode (add-hook 'window-configuration-change-hook 'refresh-pretty-control-l) (remove-hook 'window-configuration-change-hook 'refresh-pretty-control-l)) (walk-windows (lambda (window) (let ((display-table (or (window-display-table window) (make-display-table)))) (aset display-table 12 (and pretty-control-l-mode (pp^L-^L-display-table-entry window))) (set-window-display-table window display-table))) 'no-minibuf 'visible)))
-
-(autoload 'refresh-pretty-control-l "pp-c-l" "\
-Reinitialize `pretty-control-l-mode', if on, to update the display.
-
-\(fn)" t nil)
-
-;;;***
-
-;;;### (autoloads (preseed-mode) "preseed" "emacs-goodies-el/emacs-goodies-el/elisp/debian-el/preseed.el"
-;;;;;;  (17245 35005))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/debian-el/preseed.el
-
-(autoload 'preseed-mode "preseed" "\
-Major mode for editing debian-installer preseed files colourfully.
-
-\(fn)" t nil)
-
-;;;***
-
-;;;### (autoloads (project-add) "projects" "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/projects.el"
-;;;;;;  (19487 45802))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/projects.el
-
-(autoload 'project-add "projects" "\
-Add the project named NAME with root directory DIRECTORY.
-
-\(fn NAME DIRECTORY)" t nil)
-
-;;;***
-
-;;;### (autoloads (protect-process-buffer-from-kill-mode protect-buffer-from-kill-mode)
-;;;;;;  "protbuf" "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/protbuf.el"
-;;;;;;  (20758 4093))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/protbuf.el
-
-(defvar protect-buffer-from-kill-mode nil "\
-*If non-nil, then prevent buffer from being accidentally killed.
-This variable is local to all buffers.")
-
-(defvar protect-process-buffer-from-kill-mode nil "\
-*If non-nil, then protect buffer with live process from being killed.
-This variable is local to all buffers.")
-
-(defvar protect-process-buffer-from-kill-preserve-function nil "\
-*Function to run to determine whether to kill a process buffer.
-If function returns non-nil, buffer is preserved.  Otherwise, the buffer
-may be killed.
-
-If this variable is undefined, default action is to test whether a process
-object is using this buffer as a process buffer.
-
-This variable is buffer-local when set.")
-
-(autoload 'protect-buffer-from-kill-mode "protbuf" "\
-Toggle `kill-buffer' protection on current buffer.
-Optionally, set a PREFIX argument to set or unset protection, and specify
-alternate BUFFER.
-
-\(fn &optional PREFIX BUFFER)" t nil)
-
-(autoload 'protect-process-buffer-from-kill-mode "protbuf" "\
-Toggle `kill-buffer' protection on current buffer with active process.
-Protection only applies as long as the buffer has an active process.
-Optionally, set a PREFIX argument to set or unset protection, and specify
-alternate BUFFER.
-
-\(fn &optional PREFIX BUFFER)" t nil)
-
-;;;***
-
-;;;### (autoloads (protocols-clear-cache protocols-lookup) "protocols"
-;;;;;;  "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/protocols.el"
-;;;;;;  (18431 47702))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/protocols.el
-
-(autoload 'protocols-lookup "protocols" "\
-Find a protocol and display its details.
-
-\(fn SEARCH)" t nil)
-
-(autoload 'protocols-clear-cache "protocols" "\
-Clear the protocols \"cache\".
-
-\(fn)" t nil)
-
-;;;***
-
-;;;### (autoloads (quack-install quack-pltfile-mode quack-scheme-mode-hookfunc
-;;;;;;  quack-inferior-scheme-mode-hookfunc) "quack" "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/quack.el"
-;;;;;;  (20758 4093))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/quack.el
-(add-to-list 'auto-mode-alist '("\\.plt\\'" . quack-pltfile-mode))
-
-(autoload 'quack-inferior-scheme-mode-hookfunc "quack" "\
+;;;### (autoloads (ghc-init) "ghc" "ghc-mod/elisp/ghc.el" (21233
+;;;;;;  10453))
+;;; Generated autoloads from ghc-mod/elisp/ghc.el
+
+(autoload 'ghc-init "ghc" "\
 Not documented
 
 \(fn)" nil nil)
 
-(autoload 'quack-scheme-mode-hookfunc "quack" "\
+;;;***
+
+;;;### (autoloads (ghc-core-mode ghc-core-create-core) "ghc-core"
+;;;;;;  "haskell-mode/ghc-core.el" (21233 11601))
+;;; Generated autoloads from haskell-mode/ghc-core.el
+
+(autoload 'ghc-core-create-core "ghc-core" "\
+Compile and load the current buffer as tidy core.
+
+\(fn)" t nil)
+
+(add-to-list 'auto-mode-alist '("\\.hcr\\'" . ghc-core-mode))
+
+(autoload 'ghc-core-mode "ghc-core" "\
+Major mode for GHC Core files.
+
+\(fn)" t nil)
+
+;;;***
+
+;;;### (autoloads (git-reblame git-blame-mode) "git-blame" "git-emacs/git-blame.el"
+;;;;;;  (21233 10628))
+;;; Generated autoloads from git-emacs/git-blame.el
+
+(autoload 'git-blame-mode "git-blame" "\
+Toggle minor mode for displaying Git blame
+
+With prefix ARG, turn the mode on if ARG is positive.
+
+\(fn &optional ARG)" t nil)
+
+(autoload 'git-reblame "git-blame" "\
+Recalculate all blame information in the current buffer
+
+\(fn)" t nil)
+
+;;;***
+
+;;;### (autoloads (git-commit-mode) "git-commit-mode" "git-modes/git-commit-mode.el"
+;;;;;;  (21233 10441))
+;;; Generated autoloads from git-modes/git-commit-mode.el
+
+(autoload 'git-commit-mode "git-commit-mode" "\
+Major mode for editing git commit messages.
+
+This mode helps with editing git commit messages both by
+providing commands to do common tasks, and by highlighting the
+basic structure of and errors in git commit messages.
+
+\(fn)" t nil)
+
+(dolist (pattern '("/COMMIT_EDITMSG\\'" "/NOTES_EDITMSG\\'" "/MERGE_MSG\\'" "/TAG_EDITMSG\\'" "/PULLREQ_EDITMSG\\'")) (add-to-list 'auto-mode-alist (cons pattern 'git-commit-mode)))
+
+;;;***
+
+;;;### (autoloads (git-rebase-mode) "git-rebase-mode" "git-modes/git-rebase-mode.el"
+;;;;;;  (21233 10441))
+;;; Generated autoloads from git-modes/git-rebase-mode.el
+
+(autoload 'git-rebase-mode "git-rebase-mode" "\
+Major mode for editing of a Git rebase file.
+
+Rebase files are generated when you run 'git rebase -i' or run
+`magit-interactive-rebase'.  They describe how Git should perform
+the rebase.  See the documentation for git-rebase (e.g., by
+running 'man git-rebase' at the command line) for details.
+
+\(fn)" t nil)
+
+(add-to-list 'auto-mode-alist '("/git-rebase-todo\\'" . git-rebase-mode))
+
+;;;***
+
+;;;### (autoloads (gitattributes-mode) "gitattributes-mode" "git-modes/gitattributes-mode.el"
+;;;;;;  (21233 10441))
+;;; Generated autoloads from git-modes/gitattributes-mode.el
+
+(autoload 'gitattributes-mode "gitattributes-mode" "\
+A major mode for editing .gitattributes files.
+\\{gitattributes-mode-map}
+
+\(fn)" t nil)
+
+(dolist (pattern '("/\\.gitattributes\\'" "/\\.git/info/attributes\\'" "/git/attributes\\'")) (add-to-list 'auto-mode-alist (cons pattern #'gitattributes-mode)))
+
+;;;***
+
+;;;### (autoloads (gitconfig-mode) "gitconfig-mode" "git-modes/gitconfig-mode.el"
+;;;;;;  (21233 10441))
+;;; Generated autoloads from git-modes/gitconfig-mode.el
+
+(autoload 'gitconfig-mode "gitconfig-mode" "\
+A major mode for editing .gitconfig files.
+
+\(fn)" t nil)
+
+(dolist (pattern '("/\\.gitconfig\\'" "/\\.git/config\\'" "/git/config\\'" "/\\.gitmodules\\'")) (add-to-list 'auto-mode-alist (cons pattern 'gitconfig-mode)))
+
+;;;***
+
+;;;### (autoloads (gitignore-mode) "gitignore-mode" "git-modes/gitignore-mode.el"
+;;;;;;  (21233 10441))
+;;; Generated autoloads from git-modes/gitignore-mode.el
+
+(autoload 'gitignore-mode "gitignore-mode" "\
+A major mode for editing .gitignore files.
+
+\(fn)" t nil)
+
+(dolist (pattern (list "/\\.gitignore\\'" "/\\.git/info/exclude\\'" "/git/ignore\\'")) (add-to-list 'auto-mode-alist (cons pattern 'gitignore-mode)))
+
+;;;***
+
+;;;### (autoloads (gmm-tool-bar-from-list gmm-widget-p gmm-error
+;;;;;;  gmm-message gmm-regexp-concat) "gmm-utils" "gnus/lisp/gmm-utils.el"
+;;;;;;  (21233 11095))
+;;; Generated autoloads from gnus/lisp/gmm-utils.el
+
+(autoload 'gmm-regexp-concat "gmm-utils" "\
+Potentially concat a list of regexps into a single one.
+The concatenation is done with logical ORs.
+
+\(fn REGEXP)" nil nil)
+
+(autoload 'gmm-message "gmm-utils" "\
+If LEVEL is lower than `gmm-verbose' print ARGS using `message'.
+
+Guideline for numbers:
+1 - error messages
+3 - non-serious error messages
+5 - messages for things that take a long time
+7 - not very important messages on stuff
+9 - messages inside loops.
+
+\(fn LEVEL &rest ARGS)" nil nil)
+
+(autoload 'gmm-error "gmm-utils" "\
+Beep an error if LEVEL is equal to or less than `gmm-verbose'.
+ARGS are passed to `message'.
+
+\(fn LEVEL &rest ARGS)" nil nil)
+
+(autoload 'gmm-widget-p "gmm-utils" "\
+Non-nil if SYMBOL is a widget.
+
+\(fn SYMBOL)" nil nil)
+
+(autoload 'gmm-tool-bar-from-list "gmm-utils" "\
+Make a tool bar from ICON-LIST.
+
+Within each entry of ICON-LIST, the first element is a menu
+command, the second element is an icon file name and the third
+element is a test function.  You can use \\[describe-key]
+<menu-entry> to find out the name of a menu command.  The fourth
+and all following elements are passed as the PROPS argument to the
+function `tool-bar-local-item'.
+
+If ZAP-LIST is a list, remove those item from the default
+`tool-bar-map'.  If it is t, start with a new sparse map.  You
+can use \\[describe-key] <icon> to find out the name of an icon
+item.  When \\[describe-key] <icon> shows \"<tool-bar> <new-file>
+runs the command find-file\", then use `new-file' in ZAP-LIST.
+
+DEFAULT-MAP specifies the default key map for ICON-LIST.
+
+\(fn ICON-LIST ZAP-LIST DEFAULT-MAP)" nil nil)
+
+;;;***
+
+;;;### (autoloads (gnuplot-make-buffer gnuplot-mode) "gnuplot" "gnuplot-mode/gnuplot.el"
+;;;;;;  (21233 11539))
+;;; Generated autoloads from gnuplot-mode/gnuplot.el
+
+(autoload 'gnuplot-mode "gnuplot" "\
+Major mode for editing and executing GNUPLOT scripts.
+This was written with version 4.6 of gnuplot in mind, but should
+work with newer and older versions.
+
+Report bugs in `gnuplot-mode' using \\[gnuplot-bug-report].
+
+			    ------O------
+
+Gnuplot-mode includes two different systems for keyword
+completion and documentation lookup: a newer one,
+`gnuplot-context-sensitive-mode' (enabled by default), and a
+older one which extracts keywords from gnuplot's Info file.  Both
+systems allow looking up documentation in the Info file.  The
+older system also depends having the info file properly installed
+to make a list of keywords.
+
+The info file should be installed by default with the Gnuplot
+distribution, or is available at the `gnuplot-mode' web page:
+http://github.com/bruceravel/gnuplot-mode/
+
+With the new context-sensitive mode active, gnuplot-mode can also
+provide `eldoc-mode' syntax hints as you type.  This requires a
+separate file of strings, `gnuplot-eldoc.el', which is also
+provided by recent Gnuplot distributions.
+
+			    ------O------
+
+There are several known shortcomings of `gnuplot-mode', version 0.5g
+and up.  Many of the shortcomings involve the graphical interface
+\(refered to as the GUI) to setting arguments to plot options.  Here is
+a list:
+
+ 1.  Currently there is no way for `gnuplot-mode' to know if information
+     sent to gnuplot was correctly plotted.
+ 2.  \"plot\", \"splot\", and \"fit\" are handled in the GUI, but are
+     a bit flaky.  Their arguments may not be read correctly from
+     existing text, and continuation lines (common for plot and splot)
+     are not supported.
+ 3.  The GUI does not know how to read from continuation lines.
+ 4.  Comma separated position arguments to plot options are
+     unsupported in the GUI.  Colon separated datafile modifiers (used
+     for plot, splot, and fit) are not supported either.  Arguments
+     not yet supported by the GUI generate messages printed in grey
+     text.
+ 5.  The GUI handling of \"hidden3d\" is flaky and \"cntrparam\" is
+     unsupported.
+
+			    ------O------
+
+ Key bindings:
+ \\{gnuplot-mode-map}
+
+\(fn)" t nil)
+
+(autoload 'gnuplot-make-buffer "gnuplot" "\
+Open a new buffer in `gnuplot-mode'.
+When invoked, it switches to a new, empty buffer visiting no file
+and then starts `gnuplot-mode'.
+
+It is convenient to bind this function to a global key sequence.  For
+example, to make the F10 key open a gnuplot script buffer, put the
+following in your .emacs file:
+     (autoload 'gnuplot-make-buffer \"gnuplot\"
+               \"open a buffer in gnuplot mode\" t)
+     (global-set-key [(f10)] 'gnuplot-make-buffer)
+
+\(fn)" t nil)
+
+;;;***
+
+;;;### (autoloads (gnus gnus-other-frame gnus-slave gnus-no-server
+;;;;;;  gnus-slave-no-server) "gnus" "gnus/lisp/gnus.el" (21233 11096))
+;;; Generated autoloads from gnus/lisp/gnus.el
+(when (fboundp 'custom-autoload)
+ (custom-autoload 'gnus-select-method "gnus"))
+
+(autoload 'gnus-slave-no-server "gnus" "\
+Read network news as a slave, without connecting to the local server.
+
+\(fn &optional ARG)" t nil)
+
+(autoload 'gnus-no-server "gnus" "\
+Read network news.
+If ARG is a positive number, Gnus will use that as the startup
+level. If ARG is nil, Gnus will be started at level 2.  If ARG is
+non-nil and not a positive number, Gnus will prompt the user for the
+name of an NNTP server to use.
+As opposed to `gnus', this command will not connect to the local
+server.
+
+\(fn &optional ARG SLAVE)" t nil)
+
+(autoload 'gnus-slave "gnus" "\
+Read news as a slave.
+
+\(fn &optional ARG)" t nil)
+
+(autoload 'gnus-other-frame "gnus" "\
+Pop up a frame to read news.
+This will call one of the Gnus commands which is specified by the user
+option `gnus-other-frame-function' (default `gnus') with the argument
+ARG if Gnus is not running, otherwise pop up a Gnus frame and run the
+command specified by `gnus-other-frame-resume-function'.
+The optional second argument DISPLAY should be a standard display string
+such as \"unix:0\" to specify where to pop up a frame.  If DISPLAY is
+omitted or the function `make-frame-on-display' is not available, the
+current display is used.
+
+\(fn &optional ARG DISPLAY)" t nil)
+
+(autoload 'gnus "gnus" "\
+Read network news.
+If ARG is non-nil and a positive number, Gnus will use that as the
+startup level.  If ARG is non-nil and not a positive number, Gnus will
+prompt the user for the name of an NNTP server to use.
+
+\(fn &optional ARG DONT-CONNECT SLAVE)" t nil)
+
+;;;***
+
+;;;### (autoloads (gnus-agent-regenerate gnus-agent-batch gnus-agent-batch-fetch
+;;;;;;  gnus-agent-find-parameter gnus-agent-possibly-alter-active
+;;;;;;  gnus-agent-get-undownloaded-list gnus-agent-delete-group
+;;;;;;  gnus-agent-rename-group gnus-agent-possibly-save-gcc gnus-agentize
+;;;;;;  gnus-slave-unplugged gnus-plugged gnus-unplugged) "gnus-agent"
+;;;;;;  "gnus/lisp/gnus-agent.el" (21233 11095))
+;;; Generated autoloads from gnus/lisp/gnus-agent.el
+
+(autoload 'gnus-unplugged "gnus-agent" "\
+Start Gnus unplugged.
+
+\(fn)" t nil)
+
+(autoload 'gnus-plugged "gnus-agent" "\
+Start Gnus plugged.
+
+\(fn)" t nil)
+
+(autoload 'gnus-slave-unplugged "gnus-agent" "\
+Read news as a slave unplugged.
+
+\(fn &optional ARG)" t nil)
+
+(autoload 'gnus-agentize "gnus-agent" "\
+Allow Gnus to be an offline newsreader.
+
+The gnus-agentize function is now called internally by gnus when
+gnus-agent is set.  If you wish to avoid calling gnus-agentize,
+customize gnus-agent to nil.
+
+This will modify the `gnus-setup-news-hook', and
+`message-send-mail-real-function' variables, and install the Gnus agent
+minor mode in all Gnus buffers.
+
+\(fn)" t nil)
+
+(autoload 'gnus-agent-possibly-save-gcc "gnus-agent" "\
+Save GCC if Gnus is unplugged.
+
+\(fn)" nil nil)
+
+(autoload 'gnus-agent-rename-group "gnus-agent" "\
+Rename fully-qualified OLD-GROUP as NEW-GROUP.
+Always updates the agent, even when disabled, as the old agent
+files would corrupt gnus when the agent was next enabled.
+Depends upon the caller to determine whether group renaming is
+supported.
+
+\(fn OLD-GROUP NEW-GROUP)" nil nil)
+
+(autoload 'gnus-agent-delete-group "gnus-agent" "\
+Delete fully-qualified GROUP.
+Always updates the agent, even when disabled, as the old agent
+files would corrupt gnus when the agent was next enabled.
+Depends upon the caller to determine whether group deletion is
+supported.
+
+\(fn GROUP)" nil nil)
+
+(autoload 'gnus-agent-get-undownloaded-list "gnus-agent" "\
+Construct list of articles that have not been downloaded.
+
+\(fn)" nil nil)
+
+(autoload 'gnus-agent-possibly-alter-active "gnus-agent" "\
+Possibly expand a group's active range to include articles
+downloaded into the agent.
+
+\(fn GROUP ACTIVE &optional INFO)" nil nil)
+
+(autoload 'gnus-agent-find-parameter "gnus-agent" "\
+Search for GROUPs SYMBOL in the group's parameters, the group's
+topic parameters, the group's category, or the customizable
+variables.  Returns the first non-nil value found.
+
+\(fn GROUP SYMBOL)" nil nil)
+
+(autoload 'gnus-agent-batch-fetch "gnus-agent" "\
+Start Gnus and fetch session.
+
+\(fn)" t nil)
+
+(autoload 'gnus-agent-batch "gnus-agent" "\
+Start Gnus, send queue and fetch session.
+
+\(fn)" t nil)
+
+(autoload 'gnus-agent-regenerate "gnus-agent" "\
+Regenerate all agent covered files.
+CLEAN is obsolete and ignored.
+
+\(fn &optional _CLEAN REREAD)" t nil)
+
+;;;***
+
+;;;### (autoloads (gnus-article-prepare-display) "gnus-art" "gnus/lisp/gnus-art.el"
+;;;;;;  (21233 11096))
+;;; Generated autoloads from gnus/lisp/gnus-art.el
+
+(autoload 'gnus-article-prepare-display "gnus-art" "\
+Make the current buffer look like a nice article.
+
+\(fn)" nil nil)
+
+;;;***
+
+;;;### (autoloads (gnus-bookmark-bmenu-list gnus-bookmark-jump gnus-bookmark-set)
+;;;;;;  "gnus-bookmark" "gnus/lisp/gnus-bookmark.el" (21233 11096))
+;;; Generated autoloads from gnus/lisp/gnus-bookmark.el
+
+(autoload 'gnus-bookmark-set "gnus-bookmark" "\
+Set a bookmark for this article.
+
+\(fn)" t nil)
+
+(autoload 'gnus-bookmark-jump "gnus-bookmark" "\
+Jump to a Gnus bookmark (BMK-NAME).
+
+\(fn &optional BMK-NAME)" t nil)
+
+(autoload 'gnus-bookmark-bmenu-list "gnus-bookmark" "\
+Display a list of existing Gnus bookmarks.
+The list is displayed in a buffer named `*Gnus Bookmark List*'.
+The leftmost column displays a D if the bookmark is flagged for
+deletion, or > if it is flagged for displaying.
+
+\(fn)" t nil)
+
+;;;***
+
+;;;### (autoloads (gnus-cache-delete-group gnus-cache-rename-group
+;;;;;;  gnus-cache-generate-nov-databases gnus-cache-generate-active
+;;;;;;  gnus-jog-cache) "gnus-cache" "gnus/lisp/gnus-cache.el" (21233
+;;;;;;  11096))
+;;; Generated autoloads from gnus/lisp/gnus-cache.el
+
+(autoload 'gnus-jog-cache "gnus-cache" "\
+Go through all groups and put the articles into the cache.
+
+Usage:
+$ emacs -batch -l ~/.emacs -l gnus -f gnus-jog-cache
+
+\(fn)" t nil)
+
+(autoload 'gnus-cache-generate-active "gnus-cache" "\
+Generate the cache active file.
+
+\(fn &optional DIRECTORY)" t nil)
+
+(autoload 'gnus-cache-generate-nov-databases "gnus-cache" "\
+Generate NOV files recursively starting in DIR.
+
+\(fn DIR)" t nil)
+
+(autoload 'gnus-cache-rename-group "gnus-cache" "\
+Rename OLD-GROUP as NEW-GROUP.
+Always updates the cache, even when disabled, as the old cache
+files would corrupt Gnus when the cache was next enabled.  It
+depends on the caller to determine whether group renaming is
+supported.
+
+\(fn OLD-GROUP NEW-GROUP)" nil nil)
+
+(autoload 'gnus-cache-delete-group "gnus-cache" "\
+Delete GROUP from the cache.
+Always updates the cache, even when disabled, as the old cache
+files would corrupt gnus when the cache was next enabled.
+Depends upon the caller to determine whether group deletion is
+supported.
+
+\(fn GROUP)" nil nil)
+
+;;;***
+
+;;;### (autoloads (gnus-delay-initialize gnus-delay-send-queue gnus-delay-article)
+;;;;;;  "gnus-delay" "gnus/lisp/gnus-delay.el" (21233 11096))
+;;; Generated autoloads from gnus/lisp/gnus-delay.el
+
+(autoload 'gnus-delay-article "gnus-delay" "\
+Delay this article by some time.
+DELAY is a string, giving the length of the time.  Possible values are:
+
+* <digits><units> for <units> in minutes (`m'), hours (`h'), days (`d'),
+  weeks (`w'), months (`M'), or years (`Y');
+
+* YYYY-MM-DD for a specific date.  The time of day is given by the
+  variable `gnus-delay-default-hour', minute and second are zero.
+
+* hh:mm for a specific time.  Use 24h format.  If it is later than this
+  time, then the deadline is tomorrow, else today.
+
+\(fn DELAY)" t nil)
+
+(autoload 'gnus-delay-send-queue "gnus-delay" "\
+Send all the delayed messages that are due now.
+
+\(fn)" t nil)
+
+(autoload 'gnus-delay-initialize "gnus-delay" "\
+Initialize the gnus-delay package.
+This sets up a key binding in `message-mode' to delay a message.
+This tells Gnus to look for delayed messages after getting new news.
+
+The optional arg NO-KEYMAP is ignored.
+Checking delayed messages is skipped if optional arg NO-CHECK is non-nil.
+
+\(fn &optional NO-KEYMAP NO-CHECK)" nil nil)
+
+;;;***
+
+;;;### (autoloads (gnus-user-format-function-D gnus-user-format-function-d)
+;;;;;;  "gnus-diary" "gnus/lisp/gnus-diary.el" (21233 11096))
+;;; Generated autoloads from gnus/lisp/gnus-diary.el
+
+(autoload 'gnus-user-format-function-d "gnus-diary" "\
 Not documented
 
-\(fn)" nil nil)
+\(fn HEADER)" nil nil)
 
-(autoload 'quack-pltfile-mode "quack" "\
+(autoload 'gnus-user-format-function-D "gnus-diary" "\
 Not documented
 
-\(fn)" t nil)
-
-(autoload 'quack-install "quack" "\
-Install quack.el into scheme-mode.
-
-\(fn)" nil nil)
+\(fn HEADER)" nil nil)
 
 ;;;***
 
-;;;### (autoloads (readme-debian-mode) "readme-debian" "emacs-goodies-el/emacs-goodies-el/elisp/dpkg-dev-el/readme-debian.el"
-;;;;;;  (19181 42024))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/dpkg-dev-el/readme-debian.el
+;;;### (autoloads (turn-on-gnus-dired-mode) "gnus-dired" "gnus/lisp/gnus-dired.el"
+;;;;;;  (21233 11096))
+;;; Generated autoloads from gnus/lisp/gnus-dired.el
 
-(autoload 'readme-debian-mode "readme-debian" "\
-Mode for reading and editing README.Debian files.
-Upon saving the visited README.Debian file, the timestamp at the bottom
-will be updated.
-
-\\{readme-debian-mode-map}
-
-\(fn)" t nil)
-(add-to-list 'auto-mode-alist '("debian/.*README.*Debian$" . readme-debian-mode))
-(add-to-list 'auto-mode-alist '("^/usr/share/doc/.*/README.*Debian.*$" . readme-debian-mode))
-
-;;;***
-
-;;;### (autoloads (rfcview-mode rfcview-find-index rfcview-find-rfc
-;;;;;;  rfcview-customize) "rfcview" "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/rfcview.el"
-;;;;;;  (19104 31301))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/rfcview.el
-
-(autoload 'rfcview-customize "rfcview" "\
-Enter the RFCview Custom group.
-
-\(fn)" t nil)
-
-(autoload 'rfcview-find-rfc "rfcview" "\
-Find RFC NUMBER and view it in RFcview mode.
-Interactively, prompt for the number.
-See `rfcview-rfc-location-pattern' for where to search.
-
-\(fn NUMBER)" t nil)
-
-(autoload 'rfcview-find-index "rfcview" "\
-Find the RFC index and hyperlink it.
-
-\(fn)" t nil)
-
-(autoload 'rfcview-mode "rfcview" "\
-Major mode for viewing Internet RFCs.
-
-http://www.loveshack.ukfsn.org/emacs/rfcview.el
-http://www.neilvandyke.org/rfcview/
-
-Key bindings:
-\\{rfcview-mode-map}
+(autoload 'turn-on-gnus-dired-mode "gnus-dired" "\
+Convenience method to turn on gnus-dired-mode.
 
 \(fn)" t nil)
 
 ;;;***
 
-;;;### (autoloads (services-clear-cache services-lookup) "services"
-;;;;;;  "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/services.el"
-;;;;;;  (18431 47702))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/services.el
+;;;### (autoloads (gnus-draft-reminder) "gnus-draft" "gnus/lisp/gnus-draft.el"
+;;;;;;  (21233 11096))
+;;; Generated autoloads from gnus/lisp/gnus-draft.el
 
-(autoload 'services-lookup "services" "\
-Find a service and display its details.
-
-\(fn SEARCH PROTOCOL)" t nil)
-
-(autoload 'services-clear-cache "services" "\
-Clear the services \"cache\".
+(autoload 'gnus-draft-reminder "gnus-draft" "\
+Reminder user if there are unsent drafts.
 
 \(fn)" t nil)
 
 ;;;***
 
-;;;### (autoloads (session-jump-to-last-change) "session" "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/session.el"
-;;;;;;  (20758 4093))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/session.el
+;;;### (autoloads (gnus-insert-random-face-header gnus-random-face
+;;;;;;  gnus-convert-png-to-face gnus-convert-face-to-png gnus-face-from-file
+;;;;;;  gnus-x-face-from-file gnus-insert-random-x-face-header gnus-random-x-face
+;;;;;;  gnus--random-face-with-type) "gnus-fun" "gnus/lisp/gnus-fun.el"
+;;;;;;  (21233 11096))
+;;; Generated autoloads from gnus/lisp/gnus-fun.el
 
-(autoload 'session-jump-to-last-change "session" "\
-Jump to the position of the last change.
-Without prefix arg, jump successively to previous change positions which
-differ by at least `session-jump-undo-threshold' characters by repeated
-invocation of this command.  With prefix argument 0, jump to end of last
-change.  With numeric prefix argument, jump to start of first change in
-the ARG's undo block in the `buffer-undo-list'.
+(autoload 'gnus--random-face-with-type "gnus-fun" "\
+Return file from DIR with extension EXT, omitting matches of OMIT, processed by FUN.
 
-With non-numeric prefix argument (\\[universal-argument] only), set
-point as oldest change position.  It might change slightly if you jump
-to it due to intermediate insert/delete elements in the
-`buffer-undo-list'.
+\(fn DIR EXT OMIT FUN)" nil nil)
 
-\(fn &optional ARG)" t nil)
+(autoload 'message-goto-eoh "message" nil t)
 
-;;;***
-
-;;;### (autoloads (turn-on-setnu-mode setnu-mode) "setnu" "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/setnu.el"
-;;;;;;  (20758 4093))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/setnu.el
+(autoload 'gnus-random-x-face "gnus-fun" "\
+Return X-Face header data chosen randomly from `gnus-x-face-directory'.
 
-(autoload 'setnu-mode "setnu" "\
-Toggle `setnu-mode'.
-With prefix argument ARG, turn `setnu-mode' on if argument is positive.
-When `setnu-mode' is enabled, a line number will appear at the left
-margin of each line.
-
-\(fn &optional ARG)" t nil)
-
-(autoload 'turn-on-setnu-mode "setnu" "\
-Turn on `setnu-mode'.
-Useful for adding to a `major-mode' hook variable.
-Example:
-    (add-hook 'text-mode-hook 'turn-on-setnu-mode)
-to automatically turn on line numbering when enterting `text-mode'.
-
-\(fn)" nil nil)
-
-;;;***
-
-;;;### (autoloads (shell-command-completion-mode) "shell-command"
-;;;;;;  "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/shell-command.el"
-;;;;;;  (19104 31301))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/shell-command.el
-
-(autoload 'shell-command-completion-mode "shell-command" "\
-Enable or disable tab-completion for some commands.
-The commands are `shell-command', `shell-command-on-region', `grep',
-`grep-find' and `compile'.
-
-\(fn &optional ARG)" t nil)
-
-;;;***
-
-;;;### (autoloads (show-ws-toggle-show-trailing-whitespace show-ws-toggle-show-hard-spaces
-;;;;;;  show-ws-toggle-show-tabs) "show-wspace" "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/show-wspace.el"
-;;;;;;  (19104 31301))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/show-wspace.el
-
-(defalias 'toggle-show-tabs-show-ws 'show-ws-toggle-show-tabs)
-
-(autoload 'show-ws-toggle-show-tabs "show-wspace" "\
-Toggle highlighting of TABs, using face `show-ws-tab'.
+Files matching `gnus-x-face-omit-files' are not considered.
 
 \(fn)" t nil)
 
-(defalias 'toggle-show-hard-spaces-show-ws 'show-ws-toggle-show-hard-spaces)
-
-(autoload 'show-ws-toggle-show-hard-spaces "show-wspace" "\
-Toggle highlighting of non-breaking space characters (`\240').
-Uses face `show-ws-hard-space'.
+(autoload 'gnus-insert-random-x-face-header "gnus-fun" "\
+Insert a random X-Face header from `gnus-x-face-directory'.
 
 \(fn)" t nil)
 
-(defalias 'toggle-show-trailing-whitespace-show-ws 'show-ws-toggle-show-trailing-whitespace)
+(autoload 'gnus-x-face-from-file "gnus-fun" "\
+Insert an X-Face header based on an image FILE.
 
-(autoload 'show-ws-toggle-show-trailing-whitespace "show-wspace" "\
-Toggle highlighting of trailing whitespace.
-Uses face `show-ws-trailing-whitespace'.
-
-\(fn)" t nil)
-
-;;;***
-
-;;;### (autoloads (sm-add-all-headers sm-add-random-header) "silly-mail"
-;;;;;;  "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/silly-mail.el"
-;;;;;;  (20758 4093))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/silly-mail.el
-
-(autoload 'sm-add-random-header "silly-mail" "\
-Insert a random silly mail header.
-The choice of available headers is taken from `sm-mail-header-table'.
-If a random header was already inserted, it it removed in favor of a new one.
-
-\(fn)" t nil)
-
-(autoload 'sm-add-all-headers "silly-mail" "\
-Insert one of every kind of silly mail header defined.
-The choice of available headers is taken from `sm-mail-header-table'.
-
-\(fn)" t nil)
-
-;;;***
-
-;;;### (autoloads (slang-mode) "slang-mode" "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/slang-mode.el"
-;;;;;;  (20758 4093))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/slang-mode.el
-
-(autoload 'slang-mode "slang-mode" "\
-Major mode for editing slang scripts.
-The following keys are bound:
-\\{slang-mode-map}
-
-\(fn)" t nil)
-
-;;;***
-
-;;;### (autoloads (sys-apropos) "sys-apropos" "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/sys-apropos.el"
-;;;;;;  (16013 59403))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/sys-apropos.el
-
-(autoload 'sys-apropos "sys-apropos" "\
-Ask the system apropos command for man-pages matching QUERY.
-
-\(fn QUERY)" t nil)
-
-;;;***
-
-;;;### (autoloads (tabbar-mwheel-mode tabbar-mode tabbar-local-mode
-;;;;;;  tabbar-mwheel-switch-group tabbar-mwheel-switch-tab tabbar-mwheel-forward-tab
-;;;;;;  tabbar-mwheel-backward-tab tabbar-mwheel-forward-group tabbar-mwheel-backward-group
-;;;;;;  tabbar-mwheel-forward tabbar-mwheel-backward tabbar-press-scroll-right
-;;;;;;  tabbar-press-scroll-left tabbar-press-home tabbar-forward-tab
-;;;;;;  tabbar-backward-tab tabbar-forward-group tabbar-backward-group
-;;;;;;  tabbar-forward tabbar-backward) "tabbar" "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/tabbar.el"
-;;;;;;  (18106 17053))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/tabbar.el
-
-(autoload 'tabbar-backward "tabbar" "\
-Select the previous available tab.
-Depend on the setting of the option `tabbar-cycle-scope'.
-
-\(fn)" t nil)
-
-(autoload 'tabbar-forward "tabbar" "\
-Select the next available tab.
-Depend on the setting of the option `tabbar-cycle-scope'.
-
-\(fn)" t nil)
-
-(autoload 'tabbar-backward-group "tabbar" "\
-Go to selected tab in the previous available group.
-
-\(fn)" t nil)
-
-(autoload 'tabbar-forward-group "tabbar" "\
-Go to selected tab in the next available group.
-
-\(fn)" t nil)
-
-(autoload 'tabbar-backward-tab "tabbar" "\
-Select the previous visible tab.
-
-\(fn)" t nil)
-
-(autoload 'tabbar-forward-tab "tabbar" "\
-Select the next visible tab.
-
-\(fn)" t nil)
-
-(autoload 'tabbar-press-home "tabbar" "\
-Press the tab bar home button.
-That is, simulate a mouse click on that button.
-A numeric prefix ARG value of 2, or 3, respectively simulates a
-mouse-2, or mouse-3 click.  The default is a mouse-1 click.
-
-\(fn &optional ARG)" t nil)
-
-(autoload 'tabbar-press-scroll-left "tabbar" "\
-Press the tab bar scroll-left button.
-That is, simulate a mouse click on that button.
-A numeric prefix ARG value of 2, or 3, respectively simulates a
-mouse-2, or mouse-3 click.  The default is a mouse-1 click.
-
-\(fn &optional ARG)" t nil)
-
-(autoload 'tabbar-press-scroll-right "tabbar" "\
-Press the tab bar scroll-right button.
-That is, simulate a mouse click on that button.
-A numeric prefix ARG value of 2, or 3, respectively simulates a
-mouse-2, or mouse-3 click.  The default is a mouse-1 click.
-
-\(fn &optional ARG)" t nil)
-
-(autoload 'tabbar-mwheel-backward "tabbar" "\
-Select the previous available tab.
-EVENT is the mouse event that triggered this command.
-Mouse-enabled equivalent of the command `tabbar-backward'.
-
-\(fn EVENT)" t nil)
-
-(autoload 'tabbar-mwheel-forward "tabbar" "\
-Select the next available tab.
-EVENT is the mouse event that triggered this command.
-Mouse-enabled equivalent of the command `tabbar-forward'.
-
-\(fn EVENT)" t nil)
-
-(autoload 'tabbar-mwheel-backward-group "tabbar" "\
-Go to selected tab in the previous available group.
-If there is only one group, select the previous visible tab.
-EVENT is the mouse event that triggered this command.
-Mouse-enabled equivalent of the command `tabbar-backward-group'.
-
-\(fn EVENT)" t nil)
-
-(autoload 'tabbar-mwheel-forward-group "tabbar" "\
-Go to selected tab in the next available group.
-If there is only one group, select the next visible tab.
-EVENT is the mouse event that triggered this command.
-Mouse-enabled equivalent of the command `tabbar-forward-group'.
-
-\(fn EVENT)" t nil)
-
-(autoload 'tabbar-mwheel-backward-tab "tabbar" "\
-Select the previous visible tab.
-EVENT is the mouse event that triggered this command.
-Mouse-enabled equivalent of the command `tabbar-backward-tab'.
-
-\(fn EVENT)" t nil)
-
-(autoload 'tabbar-mwheel-forward-tab "tabbar" "\
-Select the next visible tab.
-EVENT is the mouse event that triggered this command.
-Mouse-enabled equivalent of the command `tabbar-forward-tab'.
-
-\(fn EVENT)" t nil)
-
-(autoload 'tabbar-mwheel-switch-tab "tabbar" "\
-Select the next or previous tab according to EVENT.
-
-\(fn EVENT)" t nil)
-
-(autoload 'tabbar-mwheel-switch-group "tabbar" "\
-Select the next or previous group of tabs according to EVENT.
-
-\(fn EVENT)" t nil)
-
-(autoload 'tabbar-local-mode "tabbar" "\
-Toggle local display of the tab bar.
-With prefix argument ARG, turn on if positive, otherwise off.
-Returns non-nil if the new state is enabled.
-When turned on, if a local header line is shown, it is hidden to show
-the tab bar.  The tab bar is locally hidden otherwise.  When turned
-off, if a local header line is hidden or the tab bar is locally
-hidden, it is shown again.  Signal an error if Tabbar mode is off.
-
-\(fn &optional ARG)" t nil)
-
-(defvar tabbar-mode nil "\
-Non-nil if Tabbar mode is enabled.
-See the command `tabbar-mode' for a description of this minor mode.
-Setting this variable directly does not take effect;
-either customize it (see the info node `Easy Customization')
-or call the function `tabbar-mode'.")
-
-(custom-autoload 'tabbar-mode "tabbar" nil)
-
-(autoload 'tabbar-mode "tabbar" "\
-Toggle display of a tab bar in the header line.
-With prefix argument ARG, turn on if positive, otherwise off.
-Returns non-nil if the new state is enabled.
-
-\\{tabbar-mode-map}
-
-\(fn &optional ARG)" t nil)
-
-(defvar tabbar-mwheel-mode nil "\
-Non-nil if Tabbar-Mwheel mode is enabled.
-See the command `tabbar-mwheel-mode' for a description of this minor mode.
-Setting this variable directly does not take effect;
-either customize it (see the info node `Easy Customization')
-or call the function `tabbar-mwheel-mode'.")
-
-(custom-autoload 'tabbar-mwheel-mode "tabbar" nil)
-
-(autoload 'tabbar-mwheel-mode "tabbar" "\
-Toggle use of the mouse wheel to navigate through tabs or groups.
-With prefix argument ARG, turn on if positive, otherwise off.
-Returns non-nil if the new state is enabled.
-
-\\{tabbar-mwheel-mode-map}
-
-\(fn &optional ARG)" t nil)
-
-;;;***
-
-;;;### (autoloads (tail-command tail-file) "tail" "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/tail.el"
-;;;;;;  (19536 20905))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/tail.el
-
-(autoload 'tail-file "tail" "\
-Tails FILE specified with argument FILE inside a new buffer.
-FILE *cannot* be a remote file specified with ange-ftp syntax because it is
-passed to the Unix tail command.
+Depending on `gnus-convert-image-to-x-face-command' it may accept
+different input formats.
 
 \(fn FILE)" t nil)
 
-(autoload 'tail-command "tail" "\
-Tails COMMAND with arguments ARGS inside a new buffer.
-It is also called by `tail-file'
+(autoload 'gnus-face-from-file "gnus-fun" "\
+Return a Face header based on an image FILE.
 
-\(fn COMMAND &rest ARGS)" t nil)
+Depending on `gnus-convert-image-to-face-command' it may accept
+different input formats.
 
-;;;***
-
-;;;### (autoloads (trivial-cite) "tc" "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/tc.el"
-;;;;;;  (16295 5169))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/tc.el
+\(fn FILE)" t nil)
 
-(autoload 'trivial-cite "tc" "\
-A simple citation function for use in news/mailreaders.
-It parses the headers via the functions defined in `tc-header-funs', then
-makes a attribution for the citation using `tc-make-attribution' and indents
-the inserted text with `tc-indent-citation'.
-Numeric prefix arguments is how many lines of body to cite (useful for citing
-mails with long attachments).
-Usage:  (auto-load 'trivial-cite \"tc\" t t)
-        (add-hook 'mail-citation-hook 'trivial-cite)
-Bugs:  Not very intelligent about old citation marks other than '>'.
-Customization:  See variables tc-fill-column, tc-remove-signature,
-tc-citation-string, tc-make-attribution and tc-header-funs.
+(autoload 'gnus-convert-face-to-png "gnus-fun" "\
+Convert FACE (which is base64-encoded) to a PNG.
+The PNG is returned as a string.
+
+\(fn FACE)" nil nil)
+
+(autoload 'gnus-convert-png-to-face "gnus-fun" "\
+Convert FILE to a Face.
+FILE should be a PNG file that's 48x48 and smaller than or equal to
+726 bytes.
+
+\(fn FILE)" nil nil)
+
+(autoload 'gnus-random-face "gnus-fun" "\
+Return randomly chosen Face from `gnus-face-directory'.
+
+Files matching `gnus-face-omit-files' are not considered.
+
+\(fn)" t nil)
+
+(autoload 'gnus-insert-random-face-header "gnus-fun" "\
+Insert a randome Face header from `gnus-face-directory'.
 
 \(fn)" nil nil)
 
 ;;;***
 
-;;;### (autoloads (thinks-maybe-region thinks-yank thinks-region
-;;;;;;  thinks) "thinks" "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/thinks.el"
-;;;;;;  (18431 47702))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/thinks.el
+;;;### (autoloads (gnus-treat-mail-gravatar gnus-treat-from-gravatar)
+;;;;;;  "gnus-gravatar" "gnus/lisp/gnus-gravatar.el" (21233 11096))
+;;; Generated autoloads from gnus/lisp/gnus-gravatar.el
 
-(autoload 'thinks "thinks" "\
-Insert TEXT wrapped in a think bubble.
+(autoload 'gnus-treat-from-gravatar "gnus-gravatar" "\
+Display gravatar in the From header.
+If gravatar is already displayed, remove it.
 
-Prefix a call to this function with \\[universal-argument] if you don't want
-the text to be filled for you.
+\(fn &optional FORCE)" t nil)
 
-\(fn TEXT)" t nil)
+(autoload 'gnus-treat-mail-gravatar "gnus-gravatar" "\
+Display gravatars in the Cc and To headers.
+If gravatars are already displayed, remove them.
 
-(autoload 'thinks-region "thinks" "\
-Bubble wrap region bounding START and END.
+\(fn &optional FORCE)" t nil)
 
-Prefix a call to this function with \\[universal-argument] if you don't want
-the text to be filled for you.
+;;;***
+
+;;;### (autoloads (gnus-fetch-group-other-frame gnus-fetch-group)
+;;;;;;  "gnus-group" "gnus/lisp/gnus-group.el" (21233 11096))
+;;; Generated autoloads from gnus/lisp/gnus-group.el
+
+(autoload 'gnus-fetch-group "gnus-group" "\
+Start Gnus if necessary and enter GROUP.
+If ARTICLES, display those articles.
+Returns whether the fetching was successful or not.
+
+\(fn GROUP &optional ARTICLES)" t nil)
+
+(autoload 'gnus-fetch-group-other-frame "gnus-group" "\
+Pop up a frame and enter GROUP.
+
+\(fn GROUP)" t nil)
+
+;;;***
+
+;;;### (autoloads (gnus-html-prefetch-images gnus-article-html) "gnus-html"
+;;;;;;  "gnus/lisp/gnus-html.el" (21233 11096))
+;;; Generated autoloads from gnus/lisp/gnus-html.el
+
+(autoload 'gnus-article-html "gnus-html" "\
+Not documented
+
+\(fn &optional HANDLE)" nil nil)
+
+(autoload 'gnus-html-prefetch-images "gnus-html" "\
+Not documented
+
+\(fn SUMMARY)" nil nil)
+
+;;;***
+
+;;;### (autoloads (gnus-batch-score) "gnus-kill" "gnus/lisp/gnus-kill.el"
+;;;;;;  (21233 11096))
+;;; Generated autoloads from gnus/lisp/gnus-kill.el
+
+(defalias 'gnus-batch-kill 'gnus-batch-score)
+
+(autoload 'gnus-batch-score "gnus-kill" "\
+Run batched scoring.
+Usage: emacs -batch -l ~/.emacs -l gnus -f gnus-batch-score
+
+\(fn)" t nil)
+
+;;;***
+
+;;;### (autoloads (gnus-mailing-list-mode gnus-mailing-list-insinuate
+;;;;;;  turn-on-gnus-mailing-list-mode) "gnus-ml" "gnus/lisp/gnus-ml.el"
+;;;;;;  (21233 11096))
+;;; Generated autoloads from gnus/lisp/gnus-ml.el
+
+(autoload 'turn-on-gnus-mailing-list-mode "gnus-ml" "\
+Not documented
+
+\(fn)" nil nil)
+
+(autoload 'gnus-mailing-list-insinuate "gnus-ml" "\
+Setup group parameters from List-Post header.
+If FORCE is non-nil, replace the old ones.
+
+\(fn &optional FORCE)" t nil)
+
+(autoload 'gnus-mailing-list-mode "gnus-ml" "\
+Minor mode for providing mailing-list commands.
+
+\\{gnus-mailing-list-mode-map}
+
+\(fn &optional ARG)" t nil)
+
+;;;***
+
+;;;### (autoloads (gnus-group-split-fancy gnus-group-split gnus-group-split-update
+;;;;;;  gnus-group-split-setup) "gnus-mlspl" "gnus/lisp/gnus-mlspl.el"
+;;;;;;  (21233 11096))
+;;; Generated autoloads from gnus/lisp/gnus-mlspl.el
+
+(autoload 'gnus-group-split-setup "gnus-mlspl" "\
+Set up the split for `nnmail-split-fancy'.
+Sets things up so that nnmail-split-fancy is used for mail
+splitting, and defines the variable nnmail-split-fancy according with
+group parameters.
+
+If AUTO-UPDATE is non-nil (prefix argument accepted, if called
+interactively), it makes sure nnmail-split-fancy is re-computed before
+getting new mail, by adding `gnus-group-split-update' to
+`nnmail-pre-get-new-mail-hook'.
+
+A non-nil CATCH-ALL replaces the current value of
+`gnus-group-split-default-catch-all-group'.  This variable is only used
+by gnus-group-split-update, and only when its CATCH-ALL argument is
+nil.  This argument may contain any fancy split, that will be added as
+the last split in a `|' split produced by `gnus-group-split-fancy',
+unless overridden by any group marked as a catch-all group.  Typical
+uses are as simple as the name of a default mail group, but more
+elaborate fancy splits may also be useful to split mail that doesn't
+match any of the group-specified splitting rules.  See
+`gnus-group-split-fancy' for details.
+
+\(fn &optional AUTO-UPDATE CATCH-ALL)" t nil)
+
+(autoload 'gnus-group-split-update "gnus-mlspl" "\
+Computes nnmail-split-fancy from group params and CATCH-ALL.
+It does this by calling by calling (gnus-group-split-fancy nil
+nil CATCH-ALL).
+
+If CATCH-ALL is nil, `gnus-group-split-default-catch-all-group' is used
+instead.  This variable is set by `gnus-group-split-setup'.
+
+\(fn &optional CATCH-ALL)" t nil)
+
+(autoload 'gnus-group-split "gnus-mlspl" "\
+Use information from group parameters in order to split mail.
+See `gnus-group-split-fancy' for more information.
+
+`gnus-group-split' is a valid value for `nnmail-split-methods'.
+
+\(fn)" nil nil)
+
+(autoload 'gnus-group-split-fancy "gnus-mlspl" "\
+Uses information from group parameters in order to split mail.
+It can be embedded into `nnmail-split-fancy' lists with the SPLIT
+
+\(: gnus-group-split-fancy GROUPS NO-CROSSPOST CATCH-ALL)
+
+GROUPS may be a regular expression or a list of group names, that will
+be used to select candidate groups.  If it is omitted or nil, all
+existing groups are considered.
+
+if NO-CROSSPOST is omitted or nil, a & split will be returned,
+otherwise, a | split, that does not allow crossposting, will be
+returned.
+
+For each selected group, a SPLIT is composed like this: if SPLIT-SPEC
+is specified, this split is returned as-is (unless it is nil: in this
+case, the group is ignored).  Otherwise, if TO-ADDRESS, TO-LIST and/or
+EXTRA-ALIASES are specified, a regexp that matches any of them is
+constructed (extra-aliases may be a list).  Additionally, if
+SPLIT-REGEXP is specified, the regexp will be extended so that it
+matches this regexp too, and if SPLIT-EXCLUDE is specified, RESTRICT
+clauses will be generated.
+
+If CATCH-ALL is nil, no catch-all handling is performed, regardless of
+catch-all marks in group parameters.  Otherwise, if there is no
+selected group whose SPLIT-REGEXP matches the empty string, nor is
+there a selected group whose SPLIT-SPEC is 'catch-all, this fancy
+split (say, a group name) will be appended to the returned SPLIT list,
+as the last element of a '| SPLIT.
+
+For example, given the following group parameters:
+
+nnml:mail.bar:
+\((to-address . \"bar@femail.com\")
+ (split-regexp . \".*@femail\\\\.com\"))
+nnml:mail.foo:
+\((to-list . \"foo@nowhere.gov\")
+ (extra-aliases \"foo@localhost\" \"foo-redist@home\")
+ (split-exclude \"bugs-foo\" \"rambling-foo\")
+ (admin-address . \"foo-request@nowhere.gov\"))
+nnml:mail.others:
+\((split-spec . catch-all))
+
+Calling (gnus-group-split-fancy nil nil \"mail.others\") returns:
+
+\(| (& (any \"\\\\(bar@femail\\\\.com\\\\|.*@femail\\\\.com\\\\)\"
+	   \"mail.bar\")
+      (any \"\\\\(foo@nowhere\\\\.gov\\\\|foo@localhost\\\\|foo-redist@home\\\\)\"
+	   - \"bugs-foo\" - \"rambling-foo\" \"mail.foo\"))
+   \"mail.others\")
+
+\(fn &optional GROUPS NO-CROSSPOST CATCH-ALL)" nil nil)
+
+;;;***
+
+;;;### (autoloads (gnus-button-reply gnus-button-mailto gnus-msg-mail)
+;;;;;;  "gnus-msg" "gnus/lisp/gnus-msg.el" (21233 11096))
+;;; Generated autoloads from gnus/lisp/gnus-msg.el
+
+(autoload 'gnus-msg-mail "gnus-msg" "\
+Start editing a mail message to be sent.
+Like `message-mail', but with Gnus paraphernalia, particularly the
+Gcc: header for archiving purposes.
+If Gnus isn't running, a plain `message-mail' setup is used
+instead.
+
+\(fn &optional TO SUBJECT OTHER-HEADERS CONTINUE SWITCH-ACTION YANK-ACTION SEND-ACTIONS RETURN-ACTION)" t nil)
+
+(autoload 'gnus-button-mailto "gnus-msg" "\
+Mail to ADDRESS.
+
+\(fn ADDRESS)" nil nil)
+
+(autoload 'gnus-button-reply "gnus-msg" "\
+Like `message-reply'.
+
+\(fn &optional TO-ADDRESS WIDE)" t nil)
+
+(define-mail-user-agent 'gnus-user-agent 'gnus-msg-mail 'message-send-and-exit 'message-kill-buffer 'message-send-hook)
+
+;;;***
+
+;;;### (autoloads (gnus-notifications) "gnus-notifications" "gnus/lisp/gnus-notifications.el"
+;;;;;;  (21233 11096))
+;;; Generated autoloads from gnus/lisp/gnus-notifications.el
+
+(autoload 'gnus-notifications "gnus-notifications" "\
+Send a notification on new message.
+This check for new messages that are in group with a level lower
+or equal to `gnus-notifications-minimum-level' and send a
+notification using `notifications-notify' for it.
+
+This is typically a function to add in
+`gnus-after-getting-new-news-hook'
+
+\(fn)" nil nil)
+
+;;;***
+
+;;;### (autoloads (gnus-treat-newsgroups-picon gnus-treat-mail-picon
+;;;;;;  gnus-treat-from-picon) "gnus-picon" "gnus/lisp/gnus-picon.el"
+;;;;;;  (21233 11096))
+;;; Generated autoloads from gnus/lisp/gnus-picon.el
+
+(autoload 'gnus-treat-from-picon "gnus-picon" "\
+Display picons in the From header.
+If picons are already displayed, remove them.
+
+\(fn)" t nil)
+
+(autoload 'gnus-treat-mail-picon "gnus-picon" "\
+Display picons in the Cc and To headers.
+If picons are already displayed, remove them.
+
+\(fn)" t nil)
+
+(autoload 'gnus-treat-newsgroups-picon "gnus-picon" "\
+Display picons in the Newsgroups and Followup-To headers.
+If picons are already displayed, remove them.
+
+\(fn)" t nil)
+
+;;;***
+
+;;;### (autoloads (gnus-add-to-sorted-list gnus-sorted-nunion gnus-sorted-union
+;;;;;;  gnus-sorted-nintersection gnus-sorted-range-intersection
+;;;;;;  gnus-sorted-intersection gnus-intersection gnus-sorted-complement
+;;;;;;  gnus-sorted-ndifference gnus-sorted-difference) "gnus-range"
+;;;;;;  "gnus/lisp/gnus-range.el" (21233 11096))
+;;; Generated autoloads from gnus/lisp/gnus-range.el
+
+(autoload 'gnus-sorted-difference "gnus-range" "\
+Return a list of elements of LIST1 that do not appear in LIST2.
+Both lists have to be sorted over <.
+The tail of LIST1 is not copied.
+
+\(fn LIST1 LIST2)" nil nil)
+
+(autoload 'gnus-sorted-ndifference "gnus-range" "\
+Return a list of elements of LIST1 that do not appear in LIST2.
+Both lists have to be sorted over <.
+LIST1 is modified.
+
+\(fn LIST1 LIST2)" nil nil)
+
+(autoload 'gnus-sorted-complement "gnus-range" "\
+Return a list of elements that are in LIST1 or LIST2 but not both.
+Both lists have to be sorted over <.
+
+\(fn LIST1 LIST2)" nil nil)
+
+(autoload 'gnus-intersection "gnus-range" "\
+Not documented
+
+\(fn LIST1 LIST2)" nil nil)
+
+(autoload 'gnus-sorted-intersection "gnus-range" "\
+Return intersection of LIST1 and LIST2.
+LIST1 and LIST2 have to be sorted over <.
+
+\(fn LIST1 LIST2)" nil nil)
+
+(autoload 'gnus-sorted-range-intersection "gnus-range" "\
+Return intersection of RANGE1 and RANGE2.
+RANGE1 and RANGE2 have to be sorted over <.
+
+\(fn RANGE1 RANGE2)" nil nil)
+
+(defalias 'gnus-set-sorted-intersection 'gnus-sorted-nintersection)
+
+(autoload 'gnus-sorted-nintersection "gnus-range" "\
+Return intersection of LIST1 and LIST2 by modifying cdr pointers of LIST1.
+LIST1 and LIST2 have to be sorted over <.
+
+\(fn LIST1 LIST2)" nil nil)
+
+(autoload 'gnus-sorted-union "gnus-range" "\
+Return union of LIST1 and LIST2.
+LIST1 and LIST2 have to be sorted over <.
+
+\(fn LIST1 LIST2)" nil nil)
+
+(autoload 'gnus-sorted-nunion "gnus-range" "\
+Return union of LIST1 and LIST2 by modifying cdr pointers of LIST1.
+LIST1 and LIST2 have to be sorted over <.
+
+\(fn LIST1 LIST2)" nil nil)
+
+(autoload 'gnus-add-to-sorted-list "gnus-range" "\
+Add NUM into sorted LIST by side effect.
+
+\(fn LIST NUM)" nil nil)
+
+;;;***
+
+;;;### (autoloads (gnus-registry-install-hooks gnus-registry-initialize)
+;;;;;;  "gnus-registry" "gnus/lisp/gnus-registry.el" (21233 11096))
+;;; Generated autoloads from gnus/lisp/gnus-registry.el
+
+(autoload 'gnus-registry-initialize "gnus-registry" "\
+Initialize the Gnus registry.
+
+\(fn)" t nil)
+
+(autoload 'gnus-registry-install-hooks "gnus-registry" "\
+Install the registry hooks.
+
+\(fn)" t nil)
+
+;;;***
+
+;;;### (autoloads (gnus-sieve-article-add-rule gnus-sieve-generate
+;;;;;;  gnus-sieve-update) "gnus-sieve" "gnus/lisp/gnus-sieve.el"
+;;;;;;  (21233 11096))
+;;; Generated autoloads from gnus/lisp/gnus-sieve.el
+
+(autoload 'gnus-sieve-update "gnus-sieve" "\
+Update the Sieve script in gnus-sieve-file, by replacing the region
+between gnus-sieve-region-start and gnus-sieve-region-end with
+\(gnus-sieve-script gnus-sieve-select-method gnus-sieve-crosspost), then
+execute gnus-sieve-update-shell-command.
+See the documentation for these variables and functions for details.
+
+\(fn)" t nil)
+
+(autoload 'gnus-sieve-generate "gnus-sieve" "\
+Generate the Sieve script in gnus-sieve-file, by replacing the region
+between gnus-sieve-region-start and gnus-sieve-region-end with
+\(gnus-sieve-script gnus-sieve-select-method gnus-sieve-crosspost).
+See the documentation for these variables and functions for details.
+
+\(fn)" t nil)
+
+(autoload 'gnus-sieve-article-add-rule "gnus-sieve" "\
+Not documented
+
+\(fn)" t nil)
+
+;;;***
+
+;;;### (autoloads (gnus-update-format) "gnus-spec" "gnus/lisp/gnus-spec.el"
+;;;;;;  (21233 11096))
+;;; Generated autoloads from gnus/lisp/gnus-spec.el
+
+(autoload 'gnus-update-format "gnus-spec" "\
+Update the format specification near point.
+
+\(fn VAR)" t nil)
+
+;;;***
+
+;;;### (autoloads (gnus-declare-backend) "gnus-start" "gnus/lisp/gnus-start.el"
+;;;;;;  (21233 11096))
+;;; Generated autoloads from gnus/lisp/gnus-start.el
+
+(autoload 'gnus-declare-backend "gnus-start" "\
+Declare back end NAME with ABILITIES as a Gnus back end.
+
+\(fn NAME &rest ABILITIES)" nil nil)
+
+;;;***
+
+;;;### (autoloads (gnus-summary-bookmark-jump) "gnus-sum" "gnus/lisp/gnus-sum.el"
+;;;;;;  (21233 11096))
+;;; Generated autoloads from gnus/lisp/gnus-sum.el
+
+(autoload 'gnus-summary-bookmark-jump "gnus-sum" "\
+Handler function for record returned by `gnus-summary-bookmark-make-record'.
+BOOKMARK is a bookmark name or a bookmark record.
+
+\(fn BOOKMARK)" nil nil)
+
+;;;***
+
+;;;### (autoloads (gnus-sync-install-hooks gnus-sync-initialize)
+;;;;;;  "gnus-sync" "gnus/lisp/gnus-sync.el" (21233 11096))
+;;; Generated autoloads from gnus/lisp/gnus-sync.el
+
+(autoload 'gnus-sync-initialize "gnus-sync" "\
+Initialize the Gnus sync facility.
+
+\(fn)" t nil)
+
+(autoload 'gnus-sync-install-hooks "gnus-sync" "\
+Install the sync hooks.
+
+\(fn)" t nil)
+
+;;;***
+
+;;;### (autoloads (gnus-add-configuration) "gnus-win" "gnus/lisp/gnus-win.el"
+;;;;;;  (21233 11096))
+;;; Generated autoloads from gnus/lisp/gnus-win.el
+
+(autoload 'gnus-add-configuration "gnus-win" "\
+Add the window configuration CONF to `gnus-buffer-configuration'.
+
+\(fn CONF)" nil nil)
+
+;;;***
+
+;;;### (autoloads (gravatar-retrieve-synchronously gravatar-retrieve)
+;;;;;;  "gravatar" "gnus/lisp/gravatar.el" (21233 11096))
+;;; Generated autoloads from gnus/lisp/gravatar.el
+
+(autoload 'gravatar-retrieve "gravatar" "\
+Retrieve MAIL-ADDRESS gravatar and call CB on retrieval.
+You can provide a list of argument to pass to CB in CBARGS.
+
+\(fn MAIL-ADDRESS CB &optional CBARGS)" nil nil)
+
+(autoload 'gravatar-retrieve-synchronously "gravatar" "\
+Retrieve MAIL-ADDRESS gravatar and returns it.
+
+\(fn MAIL-ADDRESS)" nil nil)
+
+;;;***
+
+;;;### (autoloads (mail-check-payment mail-add-payment-async mail-add-payment
+;;;;;;  hashcash-verify-payment hashcash-insert-payment-async hashcash-insert-payment)
+;;;;;;  "hashcash" "gnus/lisp/hashcash.el" (21233 11096))
+;;; Generated autoloads from gnus/lisp/hashcash.el
+
+(autoload 'hashcash-insert-payment "hashcash" "\
+Insert X-Payment and X-Hashcash headers with a payment for ARG
+
+\(fn ARG)" t nil)
+
+(autoload 'hashcash-insert-payment-async "hashcash" "\
+Insert X-Payment and X-Hashcash headers with a payment for ARG
+Only start calculation.  Results are inserted when ready.
+
+\(fn ARG)" t nil)
+
+(autoload 'hashcash-verify-payment "hashcash" "\
+Verify a hashcash payment
+
+\(fn TOKEN &optional RESOURCE AMOUNT)" nil nil)
+
+(autoload 'mail-add-payment "hashcash" "\
+Add X-Payment: and X-Hashcash: headers with a hashcash payment
+for each recipient address.  Prefix arg sets default payment temporarily.
+Set ASYNC to t to start asynchronous calculation.  (See
+`mail-add-payment-async').
+
+\(fn &optional ARG ASYNC)" t nil)
+
+(autoload 'mail-add-payment-async "hashcash" "\
+Add X-Payment: and X-Hashcash: headers with a hashcash payment
+for each recipient address.  Prefix arg sets default payment temporarily.
+Calculation is asynchronous.
+
+\(fn &optional ARG)" t nil)
+
+(autoload 'mail-check-payment "hashcash" "\
+Look for a valid X-Payment: or X-Hashcash: header.
+Prefix arg sets default accept amount temporarily.
+
+\(fn &optional ARG)" t nil)
+
+;;;***
+
+;;;### (autoloads (haskell-align-imports) "haskell-align-imports"
+;;;;;;  "haskell-mode/haskell-align-imports.el" (21233 11601))
+;;; Generated autoloads from haskell-mode/haskell-align-imports.el
+
+(autoload 'haskell-align-imports "haskell-align-imports" "\
+Align all the imports in the buffer.
+
+\(fn)" t nil)
+
+;;;***
+
+;;;### (autoloads (haskell-c-mode) "haskell-c" "haskell-mode/haskell-c.el"
+;;;;;;  (21233 11601))
+;;; Generated autoloads from haskell-mode/haskell-c.el
+
+(add-to-list 'auto-mode-alist '("\\.hsc\\'" . haskell-c-mode))
+
+(autoload 'haskell-c-mode "haskell-c" "\
+Major mode for Haskell FFI files.
+
+\(fn)" t nil)
+
+;;;***
+
+;;;### (autoloads (haskell-cabal-visit-file haskell-cabal-get-dir
+;;;;;;  haskell-cabal-mode) "haskell-cabal" "haskell-mode/haskell-cabal.el"
+;;;;;;  (21233 11601))
+;;; Generated autoloads from haskell-mode/haskell-cabal.el
+
+(add-to-list 'auto-mode-alist '("\\.cabal\\'" . haskell-cabal-mode))
+
+(autoload 'haskell-cabal-mode "haskell-cabal" "\
+Major mode for Cabal package description files.
+
+\(fn)" t nil)
+
+(autoload 'haskell-cabal-get-dir "haskell-cabal" "\
+Get the Cabal dir for a new project. Various ways of figuring this out,
+   and indeed just prompting the user. Do them all.
+
+\(fn)" nil nil)
+
+(autoload 'haskell-cabal-visit-file "haskell-cabal" "\
+Locate and visit package description file for file visited by current buffer.
+This uses `haskell-cabal-find-file' to locate the closest
+\".cabal\" file and open it.  This command assumes a common Cabal
+project structure where the \".cabal\" file is in the top-folder
+of the project, and all files related to the project are in or
+below the top-folder.  If called with non-nil prefix argument
+OTHER-WINDOW use `find-file-other-window'.
+
+\(fn OTHER-WINDOW)" t nil)
+
+;;;***
+
+;;;### (autoloads (haskell-compile) "haskell-compile" "haskell-mode/haskell-compile.el"
+;;;;;;  (21233 11601))
+;;; Generated autoloads from haskell-mode/haskell-compile.el
+
+(autoload 'haskell-compile "haskell-compile" "\
+Compile the Haskell program including the current buffer.
+Tries to locate the next cabal description in current or parent
+folders via `haskell-cabal-find-dir' and if found, invoke
+`haskell-compile-cabal-build-command' from the cabal package root
+folder. If no cabal package could be detected,
+`haskell-compile-command' is used instead.
+
+If prefix argument EDIT-COMMAND is non-nil (and not a negative
+prefix `-'), `haskell-compile' prompts for custom compile
+command.
+
+If EDIT-COMMAND contains the negative prefix argument `-',
+`haskell-compile' calls the alternative command defined in
+`haskell-compile-cabal-build-alt-command' if a cabal package was
+detected.
+
+`haskell-compile' uses `haskell-compilation-mode' which is
+derived from `compilation-mode'. See Info
+node `(haskell-mode)compilation' for more details.
+
+\(fn &optional EDIT-COMMAND)" t nil)
+
+;;;***
+
+;;;### (autoloads (haskell-decl-scan-mode turn-on-haskell-decl-scan
+;;;;;;  haskell-ds-create-imenu-index) "haskell-decl-scan" "haskell-mode/haskell-decl-scan.el"
+;;;;;;  (21233 11601))
+;;; Generated autoloads from haskell-mode/haskell-decl-scan.el
+
+(autoload 'haskell-ds-create-imenu-index "haskell-decl-scan" "\
+Function for finding `imenu' declarations in Haskell mode.
+Finds all declarations (classes, variables, imports, instances and
+datatypes) in a Haskell file for the `imenu' package.
+
+\(fn)" nil nil)
+
+(autoload 'turn-on-haskell-decl-scan "haskell-decl-scan" "\
+Unconditionally activate `haskell-decl-scan-mode'.
+
+\(fn)" t nil)
+
+(autoload 'haskell-decl-scan-mode "haskell-decl-scan" "\
+Toggle Haskell declaration scanning minor mode on or off.
+With a prefix argument ARG, enable minor mode if ARG is
+positive, and disable it otherwise.  If called from Lisp, enable
+the mode if ARG is omitted or nil, and toggle it if ARG is `toggle'.
+
+See also info node `(haskell-mode)haskell-decl-scan-mode' for
+more details about this minor mode.
+
+Top-level declarations are scanned and listed in the menu item
+\"Declarations\" (if enabled via option
+`haskell-decl-scan-add-to-menubar').  Selecting an item from this
+menu will take point to the start of the declaration.
+
+\\[beginning-of-defun] and \\[end-of-defun] move forward and backward to the start of a declaration.
+
+This may link with `haskell-doc-mode'.
+
+For non-literate and LaTeX-style literate scripts, we assume the
+common convention that top-level declarations start at the first
+column.  For Bird-style literate scripts, we assume the common
+convention that top-level declarations start at the third column,
+ie. after \"> \".
+
+Anything in `font-lock-comment-face' is not considered for a
+declaration.  Therefore, using Haskell font locking with comments
+coloured in `font-lock-comment-face' improves declaration scanning.
+
+Literate Haskell scripts are supported: If the value of
+`haskell-literate' (set automatically by `literate-haskell-mode')
+is `bird', a Bird-style literate script is assumed.  If it is nil
+or `tex', a non-literate or LaTeX-style literate script is
+assumed, respectively.
+
+Invokes `haskell-decl-scan-mode-hook' on activation.
+
+\(fn &optional ARG)" t nil)
+
+;;;***
+
+;;;### (autoloads (haskell-doc-show-type haskell-doc-current-info
+;;;;;;  haskell-doc-mode) "haskell-doc" "haskell-mode/haskell-doc.el"
+;;;;;;  (21233 11601))
+;;; Generated autoloads from haskell-mode/haskell-doc.el
+
+(autoload 'haskell-doc-mode "haskell-doc" "\
+Enter `haskell-doc-mode' for showing fct types in the echo area.
+See variable docstring.
+
+\(fn &optional ARG)" t nil)
+
+(defalias 'turn-on-haskell-doc-mode 'haskell-doc-mode)
+
+(defalias 'turn-on-haskell-doc 'haskell-doc-mode)
+
+(autoload 'haskell-doc-current-info "haskell-doc" "\
+Return the info about symbol at point.
+Meant for `eldoc-documentation-function'.
+
+\(fn)" nil nil)
+
+(autoload 'haskell-doc-show-type "haskell-doc" "\
+Show the type of the function near point.
+For the function under point, show the type in the echo area.
+This information is extracted from the `haskell-doc-prelude-types' alist
+of prelude functions and their types, or from the local functions in the
+current buffer.
+
+\(fn &optional SYM)" t nil)
+
+;;;***
+
+;;;### (autoloads (haskell-font-lock-choose-keywords) "haskell-font-lock"
+;;;;;;  "haskell-mode/haskell-font-lock.el" (21233 11601))
+;;; Generated autoloads from haskell-mode/haskell-font-lock.el
+
+(autoload 'haskell-font-lock-choose-keywords "haskell-font-lock" "\
+Not documented
+
+\(fn)" nil nil)
+
+;;;***
+
+;;;### (autoloads (haskell-indent-mode turn-on-haskell-indent) "haskell-indent"
+;;;;;;  "haskell-mode/haskell-indent.el" (21233 11601))
+;;; Generated autoloads from haskell-mode/haskell-indent.el
+
+(autoload 'turn-on-haskell-indent "haskell-indent" "\
+Turn on ``intelligent'' Haskell indentation mode.
+
+\(fn)" nil nil)
+
+(autoload 'haskell-indent-mode "haskell-indent" "\
+``Intelligent'' Haskell indentation mode.
+This deals with the layout rule of Haskell.
+\\[haskell-indent-cycle] starts the cycle which proposes new
+possibilities as long as the TAB key is pressed.  Any other key
+or mouse click terminates the cycle and is interpreted except for
+RET which merely exits the cycle.
+Other special keys are:
+    \\[haskell-indent-insert-equal]
+      inserts an =
+    \\[haskell-indent-insert-guard]
+      inserts an |
+    \\[haskell-indent-insert-otherwise]
+      inserts an | otherwise =
+these functions also align the guards and rhs of the current definition
+    \\[haskell-indent-insert-where]
+      inserts a where keyword
+    \\[haskell-indent-align-guards-and-rhs]
+      aligns the guards and rhs of the region
+    \\[haskell-indent-put-region-in-literate]
+      makes the region a piece of literate code in a literate script
+
+Invokes `haskell-indent-hook' if not nil.
+
+\(fn &optional ARG)" t nil)
+
+;;;***
+
+;;;### (autoloads (turn-on-haskell-indentation haskell-indentation-mode)
+;;;;;;  "haskell-indentation" "haskell-mode/haskell-indentation.el"
+;;;;;;  (21233 11601))
+;;; Generated autoloads from haskell-mode/haskell-indentation.el
+
+(autoload 'haskell-indentation-mode "haskell-indentation" "\
+Haskell indentation mode that deals with the layout rule.
+It rebinds RET, DEL and BACKSPACE, so that indentations can be
+set and deleted as if they were real tabs.  It supports
+autofill-mode.
+
+\(fn &optional ARG)" t nil)
+
+(autoload 'turn-on-haskell-indentation "haskell-indentation" "\
+Turn on the haskell-indentation minor mode.
+
+\(fn)" t nil)
+
+;;;***
+
+;;;### (autoloads (haskell-interactive-mode-reset-error haskell-interactive-mode-echo
+;;;;;;  haskell-interactive-switch haskell-interactive-bring haskell-interactive-mode)
+;;;;;;  "haskell-interactive-mode" "haskell-mode/haskell-interactive-mode.el"
+;;;;;;  (21233 11601))
+;;; Generated autoloads from haskell-mode/haskell-interactive-mode.el
+
+(autoload 'haskell-interactive-mode "haskell-interactive-mode" "\
+Interactive mode for Haskell.
+
+See Info node `(haskell-mode)haskell-interactive-mode' for more
+information.
+
+Key bindings:
+\\{haskell-interactive-mode-map}
+
+\(fn)" t nil)
+
+(autoload 'haskell-interactive-bring "haskell-interactive-mode" "\
+Bring up the interactive mode for this session.
+
+\(fn)" t nil)
+
+(autoload 'haskell-interactive-switch "haskell-interactive-mode" "\
+Switch to the interactive mode for this session.
+
+\(fn)" t nil)
+
+(autoload 'haskell-interactive-mode-echo "haskell-interactive-mode" "\
+Echo a read only piece of text before the prompt.
+
+\(fn SESSION MESSAGE &optional MODE)" nil nil)
+
+(autoload 'haskell-interactive-mode-reset-error "haskell-interactive-mode" "\
+Reset the error cursor position.
+
+\(fn SESSION)" t nil)
+
+;;;***
+
+;;;### (autoloads (haskell-menu) "haskell-menu" "haskell-mode/haskell-menu.el"
+;;;;;;  (21233 11601))
+;;; Generated autoloads from haskell-mode/haskell-menu.el
+
+(autoload 'haskell-menu "haskell-menu" "\
+Launch the Haskell sessions menu.
+
+\(fn)" t nil)
+
+;;;***
+
+;;;### (autoloads (haskell-hayoo haskell-hoogle literate-haskell-mode
+;;;;;;  haskell-mode haskell-customize haskell-mode-view-news haskell-version)
+;;;;;;  "haskell-mode" "haskell-mode/haskell-mode.el" (21233 11601))
+;;; Generated autoloads from haskell-mode/haskell-mode.el
+
+(autoload 'haskell-version "haskell-mode" "\
+Show the `haskell-mode` version in the echo area.
+With prefix argument HERE, insert it at point.
+When FULL is non-nil, use a verbose version string.
+When MESSAGE is non-nil, display a message with the version.
+
+\(fn &optional HERE)" t nil)
+
+(autoload 'haskell-mode-view-news "haskell-mode" "\
+Display information on recent changes to haskell-mode.
+
+\(fn)" t nil)
+
+(autoload 'haskell-customize "haskell-mode" "\
+Browse the haskell customize sub-tree.
+This calls 'customize-browse' with haskell as argument and makes
+sure all haskell customize definitions have been loaded.
+
+\(fn)" t nil)
+
+(defvar haskell-mode-map (let ((map (make-sparse-keymap))) (define-key map [24 4] 'inferior-haskell-send-decl) (define-key map [3 26] 'switch-to-haskell) (define-key map [3 12] 'inferior-haskell-load-file) (define-key map [3 2] 'switch-to-haskell) (define-key map (kbd "C-c C-t") 'inferior-haskell-type) (define-key map (kbd "C-c C-i") 'inferior-haskell-info) (define-key map (kbd "C-c M-.") 'inferior-haskell-find-definition) (define-key map (kbd "C-c C-d") 'inferior-haskell-find-haddock) (define-key map [3 22] 'haskell-check) (define-key map (kbd "C-c C-.") 'haskell-mode-format-imports) (define-key map [remap delete-indentation] 'haskell-delete-indentation) map) "\
+Keymap used in Haskell mode.")
+
+(autoload 'haskell-mode "haskell-mode" "\
+Major mode for editing Haskell programs.
+
+See also Info node `(haskell-mode)Getting Started' for more
+information about this mode.
+
+\\<haskell-mode-map>
+Literate scripts are supported via `literate-haskell-mode'.
+The variable `haskell-literate' indicates the style of the script in the
+current buffer.  See the documentation on this variable for more details.
+
+Use `haskell-version' to find out what version of Haskell mode you are
+currently using.
+
+Additional Haskell mode modules can be hooked in via `haskell-mode-hook';
+see documentation for that variable for more details.
+
+\(fn)" t nil)
+
+(autoload 'literate-haskell-mode "haskell-mode" "\
+As `haskell-mode' but for literate scripts.
+
+\(fn)" t nil)
+(add-to-list 'auto-mode-alist        '("\\.\\(?:[gh]s\\|hi\\)\\'" . haskell-mode))
+(add-to-list 'auto-mode-alist        '("\\.l[gh]s\\'" . literate-haskell-mode))
+(add-to-list 'interpreter-mode-alist '("runghc" . haskell-mode))
+(add-to-list 'interpreter-mode-alist '("runhaskell" . haskell-mode))
+
+(autoload 'haskell-hoogle "haskell-mode" "\
+Do a Hoogle search for QUERY.
+
+\(fn QUERY)" t nil)
+
+(defalias 'hoogle 'haskell-hoogle)
+
+(autoload 'haskell-hayoo "haskell-mode" "\
+Do a Hayoo search for QUERY.
+
+\(fn QUERY)" t nil)
+
+(defalias 'hayoo 'haskell-hayoo)
+
+;;;***
+
+;;;### (autoloads (haskell-move-nested-left haskell-move-nested-right
+;;;;;;  haskell-move-nested) "haskell-move-nested" "haskell-mode/haskell-move-nested.el"
+;;;;;;  (21233 11601))
+;;; Generated autoloads from haskell-mode/haskell-move-nested.el
+
+(autoload 'haskell-move-nested "haskell-move-nested" "\
+Shift the nested off-side-rule block adjacent to point by COLS columns to the right.
+
+In Transient Mark mode, if the mark is active, operate on the contents
+of the region instead.
+
+\(fn COLS)" nil nil)
+
+(autoload 'haskell-move-nested-right "haskell-move-nested" "\
+Increase indentation of the following off-side-rule block adjacent to point.
+
+Use a numeric prefix argument to indicate amount of indentation to apply.
+
+In Transient Mark mode, if the mark is active, operate on the contents
+of the region instead.
+
+\(fn COLS)" t nil)
+
+(autoload 'haskell-move-nested-left "haskell-move-nested" "\
+Decrease indentation of the following off-side-rule block adjacent to point.
+
+Use a numeric prefix argument to indicate amount of indentation to apply.
+
+In Transient Mark mode, if the mark is active, operate on the contents
+of the region instead.
+
+\(fn COLS)" t nil)
+
+;;;***
+
+;;;### (autoloads (haskell-navigate-imports-return haskell-navigate-imports-go
+;;;;;;  haskell-navigate-imports) "haskell-navigate-imports" "haskell-mode/haskell-navigate-imports.el"
+;;;;;;  (21233 11601))
+;;; Generated autoloads from haskell-mode/haskell-navigate-imports.el
+
+(autoload 'haskell-navigate-imports "haskell-navigate-imports" "\
+Cycle the Haskell import lines or return to point (with prefix arg).
+
+\(fn &optional RETURN)" t nil)
+
+(autoload 'haskell-navigate-imports-go "haskell-navigate-imports" "\
+Go to the first line of a list of consequtive import lines. Cycles.
+
+\(fn)" t nil)
+
+(autoload 'haskell-navigate-imports-return "haskell-navigate-imports" "\
+Return to the non-import point we were at before going to the module list.
+   If we were originally at an import list, we can just cycle through easily.
+
+\(fn)" t nil)
+
+;;;***
+
+;;;### (autoloads (haskell-process haskell-process-start haskell-process-cabal
+;;;;;;  haskell-process-cabal-build haskell-process-load-or-reload
+;;;;;;  haskell-process-reload-file haskell-process-load-file haskell-process-do-info
+;;;;;;  haskell-process-do-type haskell-process-generate-tags) "haskell-process"
+;;;;;;  "haskell-mode/haskell-process.el" (21233 11601))
+;;; Generated autoloads from haskell-mode/haskell-process.el
+
+(autoload 'haskell-process-generate-tags "haskell-process" "\
+Regenerate the TAGS table.
+
+\(fn &optional AND-THEN-FIND-THIS-TAG)" t nil)
+
+(autoload 'haskell-process-do-type "haskell-process" "\
+Print the type of the given expression.
+
+\(fn &optional INSERT-VALUE)" t nil)
+
+(autoload 'haskell-process-do-info "haskell-process" "\
+Print info on the identifier at point.
+If PROMPT-VALUE is non-nil, request identifier via mini-buffer.
+
+\(fn &optional PROMPT-VALUE)" t nil)
+
+(autoload 'haskell-process-load-file "haskell-process" "\
+Load the current buffer file.
+
+\(fn)" t nil)
+
+(autoload 'haskell-process-reload-file "haskell-process" "\
+Re-load the current buffer file.
+
+\(fn)" t nil)
+
+(autoload 'haskell-process-load-or-reload "haskell-process" "\
+Load or reload. Universal argument toggles which.
+
+\(fn &optional TOGGLE)" t nil)
+
+(autoload 'haskell-process-cabal-build "haskell-process" "\
+Build the Cabal project.
+
+\(fn)" t nil)
+
+(autoload 'haskell-process-cabal "haskell-process" "\
+Prompts for a Cabal command to run.
+
+\(fn)" t nil)
+
+(autoload 'haskell-process-start "haskell-process" "\
+Start the inferior Haskell process.
+
+\(fn SESSION)" nil nil)
+
+(autoload 'haskell-process "haskell-process" "\
+Get the current process from the current session.
+
+\(fn)" nil nil)
+
+;;;***
+
+;;;### (autoloads (haskell-session-process haskell-session haskell-session-maybe
+;;;;;;  haskell-session-installed-modules haskell-session-all-modules)
+;;;;;;  "haskell-session" "haskell-mode/haskell-session.el" (21233
+;;;;;;  11601))
+;;; Generated autoloads from haskell-mode/haskell-session.el
+
+(autoload 'haskell-session-all-modules "haskell-session" "\
+Get all modules -- installed or in the current project.
+If DONTCREATE is non-nil don't create a new session.
+
+\(fn &optional DONTCREATE)" nil nil)
+
+(autoload 'haskell-session-installed-modules "haskell-session" "\
+Get the modules installed in the current package set.
+If DONTCREATE is non-nil don't create a new session.
+
+\(fn &optional DONTCREATE)" nil nil)
+
+(autoload 'haskell-session-maybe "haskell-session" "\
+Maybe get the Haskell session, return nil if there isn't one.
+
+\(fn)" nil nil)
+
+(autoload 'haskell-session "haskell-session" "\
+Get the Haskell session, prompt if there isn't one or fail.
+
+\(fn)" nil nil)
+
+(autoload 'haskell-session-process "haskell-session" "\
+Get the session process.
+
+\(fn S)" nil nil)
+
+;;;***
+
+;;;### (autoloads (haskell-show-parse haskell-show-parse-and-insert
+;;;;;;  haskell-show-replace) "haskell-show" "haskell-mode/haskell-show.el"
+;;;;;;  (21233 11601))
+;;; Generated autoloads from haskell-mode/haskell-show.el
+
+(autoload 'haskell-show-replace "haskell-show" "\
+Replace the given region containing a Show value with a pretty
+  printed collapsible version.
+
+\(fn START END)" nil nil)
+
+(autoload 'haskell-show-parse-and-insert "haskell-show" "\
+Parse a `string' containing a Show instance value and insert
+  it pretty printed into the current buffer.
+
+\(fn GIVEN)" nil nil)
+
+(autoload 'haskell-show-parse "haskell-show" "\
+Parse the given input into a tree.
+
+\(fn GIVEN)" nil nil)
+
+;;;***
+
+;;;### (autoloads (turn-on-haskell-simple-indent haskell-simple-indent-mode)
+;;;;;;  "haskell-simple-indent" "haskell-mode/haskell-simple-indent.el"
+;;;;;;  (21233 11601))
+;;; Generated autoloads from haskell-mode/haskell-simple-indent.el
+
+(autoload 'haskell-simple-indent-mode "haskell-simple-indent" "\
+Simple Haskell indentation mode that uses simple heuristic.
+In this minor mode, `indent-for-tab-command' (bound to <tab> by
+default) will move the cursor to the next indent point in the
+previous nonblank line, whereas `haskell-simple-indent-backtab'
+\(bound to <backtab> by default) will move the cursor the
+previous indent point.  An indent point is a non-whitespace
+character following whitespace.
+
+Runs `haskell-simple-indent-hook' on activation.
+
+\(fn &optional ARG)" t nil)
+
+(autoload 'turn-on-haskell-simple-indent "haskell-simple-indent" "\
+Turn on function `haskell-simple-indent-mode'.
+
+\(fn)" t nil)
+
+;;;***
+
+;;;### (autoloads (haskell-sort-imports) "haskell-sort-imports" "haskell-mode/haskell-sort-imports.el"
+;;;;;;  (21233 11601))
+;;; Generated autoloads from haskell-mode/haskell-sort-imports.el
+
+(autoload 'haskell-sort-imports "haskell-sort-imports" "\
+Sort the import list at the point.
+
+\(fn)" t nil)
+
+;;;***
+
+;;;### (autoloads (haskell-is-prefix-of haskell-string-take haskell-trim)
+;;;;;;  "haskell-string" "haskell-mode/haskell-string.el" (21233
+;;;;;;  11601))
+;;; Generated autoloads from haskell-mode/haskell-string.el
+
+(autoload 'haskell-trim "haskell-string" "\
+Not documented
+
+\(fn STRING)" nil nil)
+
+(autoload 'haskell-string-take "haskell-string" "\
+Take n chars from string.
+
+\(fn STRING N)" nil nil)
+
+(autoload 'haskell-is-prefix-of "haskell-string" "\
+Is x string a prefix of y string?
+
+\(fn X Y)" nil nil)
+
+;;;***
+
+;;;### (autoloads (turn-on-haskell-unicode-input-method) "haskell-unicode-input-method"
+;;;;;;  "haskell-mode/haskell-unicode-input-method.el" (21233 11601))
+;;; Generated autoloads from haskell-mode/haskell-unicode-input-method.el
+
+(autoload 'turn-on-haskell-unicode-input-method "haskell-unicode-input-method" "\
+Set input method `haskell-unicode'.
+See Info node `Unicode(haskell-mode)' for more details.
+
+\(fn)" t nil)
+
+;;;***
+
+;;;### (autoloads (haskell-yas-complete) "haskell-yas" "haskell-mode/haskell-yas.el"
+;;;;;;  (21233 11601))
+;;; Generated autoloads from haskell-mode/haskell-yas.el
+
+(autoload 'haskell-yas-complete "haskell-yas" "\
+Not documented
+
+\(fn &rest ARGS)" nil nil)
+
+;;;***
+
+;;;### (autoloads (html2text) "html2text" "gnus/lisp/html2text.el"
+;;;;;;  (21233 11096))
+;;; Generated autoloads from gnus/lisp/html2text.el
+
+(autoload 'html2text "html2text" "\
+Convert HTML to plain text in the current buffer.
+
+\(fn)" t nil)
+
+;;;***
+
+;;;### (autoloads (inferior-haskell-find-haddock inferior-haskell-find-definition
+;;;;;;  inferior-haskell-info inferior-haskell-kind inferior-haskell-type
+;;;;;;  inferior-haskell-send-decl inferior-haskell-load-and-run
+;;;;;;  inferior-haskell-load-file switch-to-haskell) "inf-haskell"
+;;;;;;  "haskell-mode/inf-haskell.el" (21233 11601))
+;;; Generated autoloads from haskell-mode/inf-haskell.el
+
+(defalias 'run-haskell 'switch-to-haskell)
+
+(autoload 'switch-to-haskell "inf-haskell" "\
+Show the inferior-haskell buffer.  Start the process if needed.
+
+\(fn &optional ARG)" t nil)
+
+(autoload 'inferior-haskell-load-file "inf-haskell" "\
+Pass the current buffer's file to the inferior haskell process.
+If prefix arg \\[universal-argument] is given, just reload the previous file.
+
+\(fn &optional RELOAD)" t nil)
+
+(autoload 'inferior-haskell-load-and-run "inf-haskell" "\
+Pass the current buffer's file to haskell and then run a COMMAND.
+
+\(fn COMMAND)" t nil)
+
+(autoload 'inferior-haskell-send-decl "inf-haskell" "\
+Send current declaration to inferior-haskell process.
+
+\(fn)" t nil)
+
+(autoload 'inferior-haskell-type "inf-haskell" "\
+Query the haskell process for the type of the given expression.
+If optional argument `insert-value' is non-nil, insert the type above point
+in the buffer.  This can be done interactively with the \\[universal-argument] prefix.
+The returned info is cached for reuse by `haskell-doc-mode'.
+
+\(fn EXPR &optional INSERT-VALUE)" t nil)
+
+(autoload 'inferior-haskell-kind "inf-haskell" "\
+Query the haskell process for the kind of the given expression.
+
+\(fn TYPE)" t nil)
+
+(autoload 'inferior-haskell-info "inf-haskell" "\
+Query the haskell process for the info of the given expression.
+
+\(fn SYM)" t nil)
+
+(autoload 'inferior-haskell-find-definition "inf-haskell" "\
+Attempt to locate and jump to the definition of the given expression.
+
+\(fn SYM)" t nil)
+
+(autoload 'inferior-haskell-find-haddock "inf-haskell" "\
+Find and open the Haddock documentation of SYM.
+Make sure to load the file into GHCi or Hugs first by using C-c C-l.
+Only works for functions in a package installed with ghc-pkg, or
+whatever the value of `haskell-package-manager-name' is.
+
+This function needs to find which package a given module belongs
+to.  In order to do this, it computes a module-to-package lookup
+alist, which is expensive to compute (it takes upwards of five
+seconds with more than about thirty installed packages).  As a
+result, we cache it across sessions using the cache file
+referenced by `inferior-haskell-module-alist-file'. We test to
+see if this is newer than `haskell-package-conf-file' every time
+we load it.
+
+\(fn SYM)" t nil)
+
+;;;***
+
+;;;### (autoloads (message-unbold-region message-bold-region message-news-other-frame
+;;;;;;  message-news-other-window message-mail-other-frame message-mail-other-window
+;;;;;;  message-bounce message-resend message-insinuate-rmail message-forward-rmail-make-body
+;;;;;;  message-forward-make-body message-forward message-recover
+;;;;;;  message-supersede message-cancel-news message-followup message-wide-reply
+;;;;;;  message-reply message-news message-mail message-mode) "message"
+;;;;;;  "gnus/lisp/message.el" (21233 11096))
+;;; Generated autoloads from gnus/lisp/message.el
+
+(define-mail-user-agent 'message-user-agent 'message-mail 'message-send-and-exit 'message-kill-buffer 'message-send-hook)
+
+(autoload 'message-mode "message" "\
+Major mode for editing mail and news to be sent.
+Like Text Mode but with these additional commands:\\<message-mode-map>
+C-c C-s  `message-send' (send the message)  C-c C-c  `message-send-and-exit'
+C-c C-d  Postpone sending the message       C-c C-k  Kill the message
+C-c C-f  move to a header field (and create it if there isn't):
+	 C-c C-f C-t  move to To	C-c C-f C-s  move to Subject
+	 C-c C-f C-c  move to Cc	C-c C-f C-b  move to Bcc
+	 C-c C-f C-w  move to Fcc	C-c C-f C-r  move to Reply-To
+	 C-c C-f C-u  move to Summary	C-c C-f C-n  move to Newsgroups
+	 C-c C-f C-k  move to Keywords	C-c C-f C-d  move to Distribution
+	 C-c C-f C-o  move to From (\"Originator\")
+	 C-c C-f C-f  move to Followup-To
+	 C-c C-f C-m  move to Mail-Followup-To
+	 C-c C-f C-e  move to Expires
+	 C-c C-f C-i  cycle through Importance values
+	 C-c C-f s    change subject and append \"(was: <Old Subject>)\"
+	 C-c C-f x    crossposting with FollowUp-To header and note in body
+	 C-c C-f t    replace To: header with contents of Cc: or Bcc:
+	 C-c C-f a    Insert X-No-Archive: header and a note in the body
+C-c C-t  `message-insert-to' (add a To header to a news followup)
+C-c C-l  `message-to-list-only' (removes all but list address in to/cc)
+C-c C-n  `message-insert-newsgroups' (add a Newsgroup header to a news reply)
+C-c C-b  `message-goto-body' (move to beginning of message text).
+C-c C-i  `message-goto-signature' (move to the beginning of the signature).
+C-c C-w  `message-insert-signature' (insert `message-signature-file' file).
+C-c C-y  `message-yank-original' (insert current message, if any).
+C-c C-q  `message-fill-yanked-message' (fill what was yanked).
+C-c C-e  `message-elide-region' (elide the text between point and mark).
+C-c C-v  `message-delete-not-region' (remove the text outside the region).
+C-c C-z  `message-kill-to-signature' (kill the text up to the signature).
+C-c C-r  `message-caesar-buffer-body' (rot13 the message body).
+C-c C-a  `mml-attach-file' (attach a file as MIME).
+C-c C-u  `message-insert-or-toggle-importance'  (insert or cycle importance).
+C-c M-n  `message-insert-disposition-notification-to'  (request receipt).
+C-c M-m  `message-mark-inserted-region' (mark region with enclosing tags).
+C-c M-f  `message-mark-insert-file' (insert file marked with enclosing tags).
+M-RET    `message-newline-and-reformat' (break the line and reformat).
+
+\(fn)" t nil)
+
+(autoload 'message-mail "message" "\
+Start editing a mail message to be sent.
+OTHER-HEADERS is an alist of header/value pairs.  CONTINUE says whether
+to continue editing a message already being composed.  SWITCH-FUNCTION
+is a function used to switch to and display the mail buffer.
+
+\(fn &optional TO SUBJECT OTHER-HEADERS CONTINUE SWITCH-FUNCTION YANK-ACTION SEND-ACTIONS RETURN-ACTION &rest IGNORED)" t nil)
+
+(autoload 'message-news "message" "\
+Start editing a news article to be sent.
+
+\(fn &optional NEWSGROUPS SUBJECT)" t nil)
+
+(autoload 'message-reply "message" "\
+Start editing a reply to the article in the current buffer.
+
+\(fn &optional TO-ADDRESS WIDE SWITCH-FUNCTION)" t nil)
+
+(autoload 'message-wide-reply "message" "\
+Make a \"wide\" reply to the message in the current buffer.
+
+\(fn &optional TO-ADDRESS)" t nil)
+
+(autoload 'message-followup "message" "\
+Follow up to the message in the current buffer.
+If TO-NEWSGROUPS, use that as the new Newsgroups line.
+
+\(fn &optional TO-NEWSGROUPS)" t nil)
+
+(autoload 'message-cancel-news "message" "\
+Cancel an article you posted.
+If ARG, allow editing of the cancellation message.
+
+\(fn &optional ARG)" t nil)
+
+(autoload 'message-supersede "message" "\
+Start composing a message to supersede the current message.
+This is done simply by taking the old article and adding a Supersedes
+header line with the old Message-ID.
+
+\(fn)" t nil)
+
+(autoload 'message-recover "message" "\
+Reread contents of current buffer from its last auto-save file.
+
+\(fn)" t nil)
+
+(autoload 'message-forward "message" "\
+Forward the current message via mail.
+Optional NEWS will use news to forward instead of mail.
+Optional DIGEST will use digest to forward.
+
+\(fn &optional NEWS DIGEST)" t nil)
+
+(autoload 'message-forward-make-body "message" "\
+Not documented
+
+\(fn FORWARD-BUFFER &optional DIGEST)" nil nil)
+
+(autoload 'message-forward-rmail-make-body "message" "\
+Not documented
+
+\(fn FORWARD-BUFFER)" nil nil)
+
+(autoload 'message-insinuate-rmail "message" "\
+Let RMAIL use message to forward.
+
+\(fn)" t nil)
+
+(autoload 'message-resend "message" "\
+Resend the current article to ADDRESS.
+
+\(fn ADDRESS)" t nil)
+
+(autoload 'message-bounce "message" "\
+Re-mail the current message.
+This only makes sense if the current message is a bounce message that
+contains some mail you have written which has been bounced back to
+you.
+
+\(fn)" t nil)
+
+(autoload 'message-mail-other-window "message" "\
+Like `message-mail' command, but display mail buffer in another window.
+
+\(fn &optional TO SUBJECT)" t nil)
+
+(autoload 'message-mail-other-frame "message" "\
+Like `message-mail' command, but display mail buffer in another frame.
+
+\(fn &optional TO SUBJECT)" t nil)
+
+(autoload 'message-news-other-window "message" "\
+Start editing a news article to be sent.
+
+\(fn &optional NEWSGROUPS SUBJECT)" t nil)
+
+(autoload 'message-news-other-frame "message" "\
+Start editing a news article to be sent.
+
+\(fn &optional NEWSGROUPS SUBJECT)" t nil)
+
+(autoload 'message-bold-region "message" "\
+Bold all nonblank characters in the region.
+Works by overstriking characters.
+Called from program, takes two arguments START and END
+which specify the range to operate on.
 
 \(fn START END)" t nil)
 
-(autoload 'thinks-yank "thinks" "\
-Do a `yank' and bubble wrap the yanked text.
+(autoload 'message-unbold-region "message" "\
+Remove all boldness (overstruck characters) in the region.
+Called from program, takes two arguments START and END
+which specify the range to operate on.
 
-Prefix a call to this function with \\[universal-argument] if you don't want
-the text to be filled for you.
+\(fn START END)" t nil)
+
+;;;***
+
+;;;### (autoloads (mew-user-agent-compose mew-send mew) "mew" "mew/mew.el"
+;;;;;;  (21267 28336))
+;;; Generated autoloads from mew/mew.el
+
+(autoload 'mew "mew" "\
+Execute Mew first unless Mew is running. And retrieve arrived
+messages or just visit to the default folder.
+
+'proto' is determined by 'mew-proto' and 'mew-case'.
+
+If 'proto' is '+' (ie a local folder), a mailbox is determined
+according to 'mew-mailbox-type'. Otherwise (ie a remote folder), an
+appropriate protocol to retrieve messages is chosen according to
+'proto'.
+
+If 'mew-auto-get' is 't', arrived messages are asynchronously fetched
+and listed up in Summary mode.
+
+'mew-auto-get' is 'nil', just visit to the folder determined by
+'proto'.
+
+When executed with '\\[universal-argument]', 'mew-auto-get' is
+considered reversed.
+
+\(fn &optional ARG)" t nil)
+
+(autoload 'mew-send "mew" "\
+Execute Mew then prepare a draft. This may be used as library
+function.
+
+\(fn &optional TO CC SUBJECT)" t nil)
+
+(autoload 'mew-user-agent-compose "mew" "\
+Set up message composition draft with Mew.
+This is 'mail-user-agent' entry point to Mew.
+
+The optional arguments TO and SUBJECT specify recipients and the
+initial Subject field, respectively.
+
+OTHER-HEADERS is an alist specifying additional
+header fields.  Elements look like (HEADER . VALUE) where both
+HEADER and VALUE are strings.
+
+A Draft buffer is prepared according to SWITCH-FUNCTION.
+
+CONTINUE, YANK-ACTION and SEND-ACTIONS are ignored.
+
+\(fn &optional TO SUBJECT OTHER-HEADERS CONTINUE SWITCH-FUNCTION YANK-ACTION SEND-ACTIONS &rest DUMMY)" nil nil)
+
+;;;***
+
+;;;### (autoloads (mm-default-file-encoding) "mm-encode" "gnus/lisp/mm-encode.el"
+;;;;;;  (21233 11096))
+;;; Generated autoloads from gnus/lisp/mm-encode.el
+
+(autoload 'mm-default-file-encoding "mm-encode" "\
+Return a default encoding for FILE.
+
+\(fn FILE)" nil nil)
+
+;;;***
+
+;;;### (autoloads (mm-inline-external-body mm-extern-cache-contents)
+;;;;;;  "mm-extern" "gnus/lisp/mm-extern.el" (21233 11096))
+;;; Generated autoloads from gnus/lisp/mm-extern.el
+
+(autoload 'mm-extern-cache-contents "mm-extern" "\
+Put the external-body part of HANDLE into its cache.
+
+\(fn HANDLE)" nil nil)
+
+(autoload 'mm-inline-external-body "mm-extern" "\
+Show the external-body part of HANDLE.
+This function replaces the buffer of HANDLE with a buffer contains
+the entire message.
+If NO-DISPLAY is nil, display it. Otherwise, do nothing after replacing.
+
+\(fn HANDLE &optional NO-DISPLAY)" nil nil)
+
+;;;***
+
+;;;### (autoloads (mm-inline-partial) "mm-partial" "gnus/lisp/mm-partial.el"
+;;;;;;  (21233 11096))
+;;; Generated autoloads from gnus/lisp/mm-partial.el
+
+(autoload 'mm-inline-partial "mm-partial" "\
+Show the partial part of HANDLE.
+This function replaces the buffer of HANDLE with a buffer contains
+the entire message.
+If NO-DISPLAY is nil, display it. Otherwise, do nothing after replacing.
+
+\(fn HANDLE &optional NO-DISPLAY)" nil nil)
+
+;;;***
+
+;;;### (autoloads (mm-url-insert-file-contents-external mm-url-insert-file-contents)
+;;;;;;  "mm-url" "gnus/lisp/mm-url.el" (21233 11096))
+;;; Generated autoloads from gnus/lisp/mm-url.el
+
+(autoload 'mm-url-insert-file-contents "mm-url" "\
+Insert file contents of URL.
+If `mm-url-use-external' is non-nil, use `mm-url-program'.
+
+\(fn URL)" nil nil)
+
+(autoload 'mm-url-insert-file-contents-external "mm-url" "\
+Insert file contents of URL using `mm-url-program'.
+
+\(fn URL)" nil nil)
+
+;;;***
+
+;;;### (autoloads (mm-uu-dissect-text-parts mm-uu-dissect) "mm-uu"
+;;;;;;  "gnus/lisp/mm-uu.el" (21233 11096))
+;;; Generated autoloads from gnus/lisp/mm-uu.el
+
+(autoload 'mm-uu-dissect "mm-uu" "\
+Dissect the current buffer and return a list of uu handles.
+The optional NOHEADER means there's no header in the buffer.
+MIME-TYPE specifies a MIME type and parameters, which defaults to the
+value of `mm-uu-text-plain-type'.
+
+\(fn &optional NOHEADER MIME-TYPE)" nil nil)
+
+(autoload 'mm-uu-dissect-text-parts "mm-uu" "\
+Dissect text parts and put uu handles into HANDLE.
+Assume text has been decoded if DECODED is non-nil.
+
+\(fn HANDLE &optional DECODED)" nil nil)
+
+;;;***
+
+;;;### (autoloads (mml-attach-file mml-to-mime) "mml" "gnus/lisp/mml.el"
+;;;;;;  (21233 11096))
+;;; Generated autoloads from gnus/lisp/mml.el
+
+(autoload 'mml-to-mime "mml" "\
+Translate the current buffer from MML to MIME.
+
+\(fn)" nil nil)
+
+(autoload 'mml-attach-file "mml" "\
+Attach a file to the outgoing MIME message.
+The file is not inserted or encoded until you send the message with
+`\\[message-send-and-exit]' or `\\[message-send]' in Message mode,
+or `\\[mail-send-and-exit]' or `\\[mail-send]' in Mail mode.
+
+FILE is the name of the file to attach.  TYPE is its
+content-type, a string of the form \"type/subtype\".  DESCRIPTION
+is a one-line description of the attachment.  The DISPOSITION
+specifies how the attachment is intended to be displayed.  It can
+be either \"inline\" (displayed automatically within the message
+body) or \"attachment\" (separate from the body).
+
+\(fn FILE &optional TYPE DESCRIPTION DISPOSITION)" t nil)
+
+;;;***
+
+;;;### (autoloads (mml1991-sign mml1991-encrypt) "mml1991" "gnus/lisp/mml1991.el"
+;;;;;;  (21233 11096))
+;;; Generated autoloads from gnus/lisp/mml1991.el
+
+(autoload 'mml1991-encrypt "mml1991" "\
+Not documented
+
+\(fn CONT &optional SIGN)" nil nil)
+
+(autoload 'mml1991-sign "mml1991" "\
+Not documented
+
+\(fn CONT)" nil nil)
+
+;;;***
+
+;;;### (autoloads (mml2015-self-encrypt mml2015-sign mml2015-encrypt
+;;;;;;  mml2015-verify-test mml2015-verify mml2015-decrypt-test mml2015-decrypt)
+;;;;;;  "mml2015" "gnus/lisp/mml2015.el" (21233 11096))
+;;; Generated autoloads from gnus/lisp/mml2015.el
+
+(autoload 'mml2015-decrypt "mml2015" "\
+Not documented
+
+\(fn HANDLE CTL)" nil nil)
+
+(autoload 'mml2015-decrypt-test "mml2015" "\
+Not documented
+
+\(fn HANDLE CTL)" nil nil)
+
+(autoload 'mml2015-verify "mml2015" "\
+Not documented
+
+\(fn HANDLE CTL)" nil nil)
+
+(autoload 'mml2015-verify-test "mml2015" "\
+Not documented
+
+\(fn HANDLE CTL)" nil nil)
+
+(autoload 'mml2015-encrypt "mml2015" "\
+Not documented
+
+\(fn CONT &optional SIGN)" nil nil)
+
+(autoload 'mml2015-sign "mml2015" "\
+Not documented
+
+\(fn CONT)" nil nil)
+
+(autoload 'mml2015-self-encrypt "mml2015" "\
+Not documented
+
+\(fn)" nil nil)
+
+;;;***
+
+;;;### (autoloads (netrc-credentials) "netrc" "gnus/lisp/netrc.el"
+;;;;;;  (21233 11096))
+;;; Generated autoloads from gnus/lisp/netrc.el
+
+(autoload 'netrc-credentials "netrc" "\
+Return a user name/password pair.
+Port specifications will be prioritized in the order they are
+listed in the PORTS list.
+
+\(fn MACHINE &rest PORTS)" nil nil)
+
+;;;***
+
+;;;### (autoloads (nndiary-generate-nov-databases) "nndiary" "gnus/lisp/nndiary.el"
+;;;;;;  (21233 11096))
+;;; Generated autoloads from gnus/lisp/nndiary.el
+
+(autoload 'nndiary-generate-nov-databases "nndiary" "\
+Generate NOV databases in all nndiary directories.
+
+\(fn &optional SERVER)" t nil)
+
+;;;***
+
+;;;### (autoloads (nndoc-add-type) "nndoc" "gnus/lisp/nndoc.el" (21233
+;;;;;;  11096))
+;;; Generated autoloads from gnus/lisp/nndoc.el
+
+(autoload 'nndoc-add-type "nndoc" "\
+Add document DEFINITION to the list of nndoc document definitions.
+If POSITION is nil or `last', the definition will be added
+as the last checked definition, if t or `first', add as the
+first definition, and if any other symbol, add after that
+symbol in the alist.
+
+\(fn DEFINITION &optional POSITION)" nil nil)
+
+;;;***
+
+;;;### (autoloads (nnfolder-generate-active-file) "nnfolder" "gnus/lisp/nnfolder.el"
+;;;;;;  (21233 11096))
+;;; Generated autoloads from gnus/lisp/nnfolder.el
+
+(autoload 'nnfolder-generate-active-file "nnfolder" "\
+Look for mbox folders in the nnfolder directory and make them into groups.
+This command does not work if you use short group names.
 
 \(fn)" t nil)
 
-(autoload 'thinks-maybe-region "thinks" "\
-If region is active, bubble wrap region bounding START and END.
-If not, query for text to insert in bubble.
+;;;***
+
+;;;### (autoloads (nnml-generate-nov-databases) "nnml" "gnus/lisp/nnml.el"
+;;;;;;  (21233 11096))
+;;; Generated autoloads from gnus/lisp/nnml.el
+
+(autoload 'nnml-generate-nov-databases "nnml" "\
+Generate NOV databases in all nnml directories.
+
+\(fn &optional SERVER)" t nil)
+
+;;;***
+
+;;;### (autoloads (parse-time-string) "parse-time" "gnus/lisp/parse-time.el"
+;;;;;;  (21233 11096))
+;;; Generated autoloads from gnus/lisp/parse-time.el
+(put 'parse-time-rules 'risky-local-variable t)
+
+(autoload 'parse-time-string "parse-time" "\
+Parse the time-string STRING into (SEC MIN HOUR DAY MON YEAR DOW DST TZ).
+The values are identical to those of `decode-time', but any values that are
+unknown are returned as nil.
+
+\(fn STRING)" nil nil)
+
+;;;***
+
+;;;### (autoloads (password-in-cache-p password-cache-expiry password-cache)
+;;;;;;  "password-cache" "gnus/lisp/password-cache.el" (21233 11096))
+;;; Generated autoloads from gnus/lisp/password-cache.el
+
+(defvar password-cache t "\
+Whether to cache passwords.")
+
+(custom-autoload 'password-cache "password-cache" t)
+
+(defvar password-cache-expiry 16 "\
+How many seconds passwords are cached, or nil to disable expiring.
+Whether passwords are cached at all is controlled by `password-cache'.")
+
+(custom-autoload 'password-cache-expiry "password-cache" t)
+
+(autoload 'password-in-cache-p "password-cache" "\
+Check if KEY is in the cache.
+
+\(fn KEY)" nil nil)
+
+;;;***
+
+;;;### (autoloads (plstore-mode plstore-open) "plstore" "gnus/lisp/plstore.el"
+;;;;;;  (21233 11096))
+;;; Generated autoloads from gnus/lisp/plstore.el
+
+(autoload 'plstore-open "plstore" "\
+Create a plstore instance associated with FILE.
+
+\(fn FILE)" nil nil)
+
+(autoload 'plstore-mode "plstore" "\
+Major mode for editing PLSTORE files.
 
 \(fn)" t nil)
 
 ;;;***
 
-;;;### (autoloads (tlc-mode) "tlc" "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/tlc.el"
-;;;;;;  (20738 53960))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/tlc.el
+;;;### (autoloads (pop3-movemail) "pop3" "gnus/lisp/pop3.el" (21233
+;;;;;;  11096))
+;;; Generated autoloads from gnus/lisp/pop3.el
 
-(autoload 'tlc-mode "tlc" "\
-Major mode for editing Tlc files, or files found in tlc directories.
+(autoload 'pop3-movemail "pop3" "\
+Transfer contents of a maildrop to the specified FILE.
+Use streaming commands.
+
+\(fn FILE)" nil nil)
+
+;;;***
+
+;;;### (autoloads (open-protocol-stream) "proto-stream" "gnus/lisp/proto-stream.el"
+;;;;;;  (21233 11096))
+;;; Generated autoloads from gnus/lisp/proto-stream.el
+
+(autoload 'open-protocol-stream "proto-stream" "\
+Open a network stream to HOST, possibly with encryption.
+Normally, return a network process object; with a non-nil
+:return-list parameter, return a list instead (see below).
+
+The first four parameters, NAME, BUFFER, HOST, and SERVICE, have
+the same meanings as in `open-network-stream'.  The remaining
+PARAMETERS should be a sequence of keywords and values:
+
+:type specifies the connection type, one of the following:
+  nil or `network'
+             -- Begin with an ordinary network connection, and if
+                the parameters :success and :capability-command
+                are also supplied, try to upgrade to an encrypted
+                connection via STARTTLS.  Even if that
+                fails (e.g. if HOST does not support TLS), retain
+                an unencrypted connection.
+  `plain'    -- An ordinary, unencrypted network connection.
+  `starttls' -- Begin with an ordinary connection, and try
+                upgrading via STARTTLS.  If that fails for any
+                reason, drop the connection; in that case the
+                returned object is a killed process.
+  `tls'      -- A TLS connection.
+  `ssl'      -- Equivalent to `tls'.
+  `shell'    -- A shell connection.
+
+:return-list specifies this function's return value.
+  If omitted or nil, return a process object.  A non-nil means to
+  return (PROC . PROPS), where PROC is a process object and PROPS
+  is a plist of connection properties, with these keywords:
+   :greeting -- the greeting returned by HOST (a string), or nil.
+   :capabilities -- a string representing HOST's capabilities,
+                    or nil if none could be found.
+   :type -- the resulting connection type; `plain' (unencrypted)
+            or `tls' (TLS-encrypted).
+
+:end-of-command specifies a regexp matching the end of a command.
+  If non-nil, it defaults to \"\\n\".
+
+:end-of-capability specifies a regexp matching the end of the
+  response to the command specified for :capability-command.
+  It defaults to the regexp specified for :end-of-command.
+
+:success specifies a regexp matching a message indicating a
+  successful STARTTLS negotiation.  For instance, the default
+  should be \"^3\" for an NNTP connection.
+
+:capability-command specifies a command used to query the HOST
+  for its capabilities.  For instance, for IMAP this should be
+  \"1 CAPABILITY\\r\\n\".
+
+:starttls-function specifies a function for handling STARTTLS.
+  This function should take one parameter, the response to the
+  capability command, and should return the command to switch on
+  STARTTLS if the server supports STARTTLS, and nil otherwise.
+
+\(fn NAME BUFFER HOST SERVICE &rest PARAMETERS)" nil nil)
+
+;;;***
+
+;;;### (autoloads (quoted-printable-decode-region) "qp" "gnus/lisp/qp.el"
+;;;;;;  (21233 11096))
+;;; Generated autoloads from gnus/lisp/qp.el
+
+(autoload 'quoted-printable-decode-region "qp" "\
+Decode quoted-printable in the region between FROM and TO, per RFC 2045.
+If CODING-SYSTEM is non-nil, decode bytes into characters with that
+coding-system.
+
+Interactively, you can supply the CODING-SYSTEM argument
+with \\[universal-coding-system-argument].
+
+The CODING-SYSTEM argument is a historical hangover and is deprecated.
+QP encodes raw bytes and should be decoded into raw bytes.  Decoding
+them into characters should be done separately.
+
+\(fn FROM TO &optional CODING-SYSTEM)" t nil)
+
+;;;***
+
+;;;### (autoloads (gnus-score-mode) "score-mode" "gnus/lisp/score-mode.el"
+;;;;;;  (21233 11096))
+;;; Generated autoloads from gnus/lisp/score-mode.el
+
+(autoload 'gnus-score-mode "score-mode" "\
+Mode for editing Gnus score files.
+This mode is an extended emacs-lisp mode.
+
+\\{gnus-score-mode-map}
 
 \(fn)" t nil)
-(add-to-list 'auto-mode-alist '("\\.tlc\\'" .tlc-mode))
 
 ;;;***
 
-;;;### (autoloads (tld) "tld" "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/tld.el"
-;;;;;;  (18431 47702))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/tld.el
+;;;### (autoloads (sha1) "sha1" "gnus/lisp/sha1.el" (21233 11096))
+;;; Generated autoloads from gnus/lisp/sha1.el
 
-(autoload 'tld "tld" "\
-Search the TLD list.
+(autoload 'sha1 "sha1" "\
+Return the SHA1 (Secure Hash Algorithm) of an object.
+OBJECT is either a string or a buffer.
+Optional arguments BEG and END denote buffer positions for computing the
+hash of a portion of OBJECT.
+If BINARY is non-nil, return a string in binary form.
 
-\(fn SEARCH)" t nil)
-
-;;;***
-
-;;;### (autoloads (twiddle-compile twiddle-start) "twiddle" "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/twiddle.el"
-;;;;;;  (16013 59409))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/twiddle.el
-
-(autoload 'twiddle-start "twiddle" "\
-Start a mode line display hack.
-If called interactively with a prefix argument, prompt for the name of
-a hack to run.  If called from lisp, optional argument HACK is the name of
-a hack to run.
-Named hacks are defined in the table `twiddle-hacks'.
-
-\(fn &optional HACK)" t nil)
-
-(autoload 'twiddle-compile "twiddle" "\
-Like \\[compile], but run a twiddle hack during compilation.
-If called with a prefix argument, prompt for a specific hack to run.
-
-\(fn &rest COMPILE-ARGS)" t nil)
+\(fn OBJECT &optional BEG END BINARY)" nil nil)
 
 ;;;***
 
-;;;### (autoloads (underhat-region) "under" "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/under.el"
-;;;;;;  (16262 60507))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/under.el
+;;;### (autoloads (sieve-upload-and-kill sieve-upload-and-bury sieve-upload
+;;;;;;  sieve-manage) "sieve" "gnus/lisp/sieve.el" (21233 11096))
+;;; Generated autoloads from gnus/lisp/sieve.el
 
-(autoload 'underhat-region "under" "\
-Underline the region.
+(autoload 'sieve-manage "sieve" "\
+Not documented
+
+\(fn SERVER &optional PORT)" t nil)
+
+(autoload 'sieve-upload "sieve" "\
+Not documented
+
+\(fn &optional NAME)" t nil)
+
+(autoload 'sieve-upload-and-bury "sieve" "\
+Not documented
+
+\(fn &optional NAME)" t nil)
+
+(autoload 'sieve-upload-and-kill "sieve" "\
+Not documented
+
+\(fn &optional NAME)" t nil)
+
+;;;***
+
+;;;### (autoloads (sieve-mode) "sieve-mode" "gnus/lisp/sieve-mode.el"
+;;;;;;  (21233 11096))
+;;; Generated autoloads from gnus/lisp/sieve-mode.el
+
+(autoload 'sieve-mode "sieve-mode" "\
+Major mode for editing Sieve code.
+This is much like C mode except for the syntax of comments.  Its keymap
+inherits from C mode's and it has the same variables for customizing
+indentation.  It has its own abbrev table and its own syntax table.
+
+Turning on Sieve mode runs `sieve-mode-hook'.
 
 \(fn)" t nil)
 
 ;;;***
 
-;;;### (autoloads (vm-bogofilter-setup) "vm-bogofilter" "emacs-goodies-el/emacs-goodies-el/elisp/vm-bonus-el/vm-bogofilter.el"
-;;;;;;  (20758 4093))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/vm-bonus-el/vm-bogofilter.el
+;;;### (autoloads (smiley-buffer smiley-region) "smiley" "gnus/lisp/smiley.el"
+;;;;;;  (21233 11096))
+;;; Generated autoloads from gnus/lisp/smiley.el
 
-(autoload 'vm-bogofilter-setup "vm-bogofilter" "\
-Initialize vm-bogofilter.
+(autoload 'smiley-region "smiley" "\
+Replace in the region `smiley-regexp-alist' matches with corresponding images.
+A list of images is returned.
+
+\(fn START END)" t nil)
+
+(autoload 'smiley-buffer "smiley" "\
+Run `smiley-region' at the BUFFER, specified in the argument or
+interactively.  If there's no argument, do it at the current buffer.
+
+\(fn &optional BUFFER)" t nil)
+
+;;;***
+
+;;;### (autoloads nil "solarized-definitions" "color-theme-solarized/solarized-definitions.el"
+;;;;;;  (21257 43447))
+;;; Generated autoloads from color-theme-solarized/solarized-definitions.el
+
+(when (boundp 'custom-theme-load-path) (add-to-list 'custom-theme-load-path (file-name-as-directory (file-name-directory load-file-name))))
+
+;;;***
+
+;;;### (autoloads (spam-initialize) "spam" "gnus/lisp/spam.el" (21233
+;;;;;;  11096))
+;;; Generated autoloads from gnus/lisp/spam.el
+
+(autoload 'spam-initialize "spam" "\
+Install the spam.el hooks and do other initialization.
+When SYMBOLS is given, set those variables to t.  This is so you
+can call `spam-initialize' before you set spam-use-* variables on
+explicitly, and matters only if you need the extra headers
+installed through `spam-necessary-extra-headers'.
+
+\(fn &rest SYMBOLS)" t nil)
+
+;;;***
+
+;;;### (autoloads (spam-report-deagentize spam-report-agentize spam-report-url-to-file
+;;;;;;  spam-report-url-ping-mm-url spam-report-process-queue) "spam-report"
+;;;;;;  "gnus/lisp/spam-report.el" (21233 11096))
+;;; Generated autoloads from gnus/lisp/spam-report.el
+
+(autoload 'spam-report-process-queue "spam-report" "\
+Report all queued requests from `spam-report-requests-file'.
+
+If FILE is given, use it instead of `spam-report-requests-file'.
+If KEEP is t, leave old requests in the file.  If KEEP is the
+symbol `ask', query before flushing the queue file.
+
+\(fn &optional FILE KEEP)" t nil)
+
+(autoload 'spam-report-url-ping-mm-url "spam-report" "\
+Ping a host through HTTP, addressing a specific GET resource. Use
+the external program specified in `mm-url-program' to connect to
+server.
+
+\(fn HOST REPORT)" nil nil)
+
+(autoload 'spam-report-url-to-file "spam-report" "\
+Collect spam report requests in `spam-report-requests-file'.
+Customize `spam-report-url-ping-function' to use this function.
+
+\(fn HOST REPORT)" nil nil)
+
+(autoload 'spam-report-agentize "spam-report" "\
+Add spam-report support to the Agent.
+Spam reports will be queued with \\[spam-report-url-to-file] when
+the Agent is unplugged, and will be submitted in a batch when the
+Agent is plugged.
+
+\(fn)" t nil)
+
+(autoload 'spam-report-deagentize "spam-report" "\
+Remove spam-report support from the Agent.
+Spam reports will be queued with the method used when
+\\[spam-report-agentize] was run.
 
 \(fn)" t nil)
 
 ;;;***
 
-;;;### (autoloads (xrdb-mode) "xrdb-mode" "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/xrdb-mode.el"
-;;;;;;  (19391 54726))
-;;; Generated autoloads from emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/xrdb-mode.el
+;;;### (autoloads (starttls-open-stream) "starttls" "gnus/lisp/starttls.el"
+;;;;;;  (21233 11096))
+;;; Generated autoloads from gnus/lisp/starttls.el
 
-(autoload 'xrdb-mode "xrdb-mode" "\
-Major mode for editing xrdb config files.
-\\{xrdb-mode-map}
+(autoload 'starttls-open-stream "starttls" "\
+Open a TLS connection for a port to a host.
+Returns a subprocess object to represent the connection.
+Input and output work as for subprocesses; `delete-process' closes it.
+Args are NAME BUFFER HOST PORT.
+NAME is name for process.  It is modified if necessary to make it unique.
+BUFFER is the buffer (or `buffer-name') to associate with the process.
+ Process output goes at end of that buffer, unless you specify
+ an output stream or filter function to handle the output.
+ BUFFER may be also nil, meaning that this process is not associated
+ with any buffer
+Third arg is name of the host to connect to, or its IP address.
+Fourth arg PORT is an integer specifying a port to connect to.
+If `starttls-use-gnutls' is nil, this may also be a service name, but
+GnuTLS requires a port number.
+
+\(fn NAME BUFFER HOST PORT)" nil nil)
+
+;;;***
+
+;;;### (autoloads (tabulated-list-mode) "tabulated-list" "tabulated-list/tabulated-list.el"
+;;;;;;  (21233 10429))
+;;; Generated autoloads from tabulated-list/tabulated-list.el
+
+(autoload 'tabulated-list-mode "tabulated-list" "\
+Generic major mode for browsing a list of items.
+This mode is usually not used directly; instead, other major
+modes are derived from it, using `define-derived-mode'.
+
+In this major mode, the buffer is divided into multiple columns,
+which are labelled using the header line.  Each non-empty line
+belongs to one \"entry\", and the entries can be sorted according
+to their column values.
+
+An inheriting mode should usually do the following in their body:
+
+ - Set `tabulated-list-format', specifying the column format.
+ - Set `tabulated-list-revert-hook', if the buffer contents need
+   to be specially recomputed prior to `revert-buffer'.
+ - Maybe set a `tabulated-list-entries' function (see below).
+ - Maybe set `tabulated-list-printer' (see below).
+ - Maybe set `tabulated-list-padding'.
+ - Call `tabulated-list-init-header' to initialize `header-line-format'
+   according to `tabulated-list-format'.
+
+An inheriting mode is usually accompanied by a \"list-FOO\"
+command (e.g. `list-packages', `list-processes').  This command
+creates or switches to a buffer and enables the major mode in
+that buffer.  If `tabulated-list-entries' is not a function, the
+command should initialize it to a list of entries for displaying.
+Finally, it should call `tabulated-list-print'.
+
+`tabulated-list-print' calls the printer function specified by
+`tabulated-list-printer', once for each entry.  The default
+printer is `tabulated-list-print-entry', but a mode that keeps
+data in an ewoc may instead specify a printer function (e.g., one
+that calls `ewoc-enter-last'), with `tabulated-list-print-entry'
+as the ewoc pretty-printer.
 
 \(fn)" t nil)
 
 ;;;***
 
-;;;### (autoloads nil nil ("auto-complete+/auto-complete+.el" "el-get/el-get-autoloads.el"
+;;;### (autoloads (format-seconds safe-date-to-time time-to-days
+;;;;;;  time-to-day-in-year date-leap-year-p days-between date-to-day
+;;;;;;  time-add time-subtract time-since days-to-time time-less-p
+;;;;;;  seconds-to-time date-to-time) "time-date" "gnus/lisp/time-date.el"
+;;;;;;  (21233 11096))
+;;; Generated autoloads from gnus/lisp/time-date.el
+
+(autoload 'date-to-time "time-date" "\
+Parse a string DATE that represents a date-time and return a time value.
+If DATE lacks timezone information, GMT is assumed.
+
+\(fn DATE)" nil nil)
+(if (or (featurep 'emacs)
+       (and (fboundp 'float-time)
+            (subrp (symbol-function 'float-time))))
+   (defalias 'time-to-seconds 'float-time)
+ (autoload 'time-to-seconds "time-date"))
+
+(autoload 'seconds-to-time "time-date" "\
+Convert SECONDS (a floating point number) to a time value.
+
+\(fn SECONDS)" nil nil)
+
+(autoload 'time-less-p "time-date" "\
+Return non-nil if time value T1 is earlier than time value T2.
+
+\(fn T1 T2)" nil nil)
+
+(autoload 'days-to-time "time-date" "\
+Convert DAYS into a time value.
+
+\(fn DAYS)" nil nil)
+
+(autoload 'time-since "time-date" "\
+Return the time elapsed since TIME.
+TIME should be either a time value or a date-time string.
+
+\(fn TIME)" nil nil)
+
+(defalias 'subtract-time 'time-subtract)
+
+(autoload 'time-subtract "time-date" "\
+Subtract two time values, T1 minus T2.
+Return the difference in the format of a time value.
+
+\(fn T1 T2)" nil nil)
+
+(autoload 'time-add "time-date" "\
+Add two time values T1 and T2.  One should represent a time difference.
+
+\(fn T1 T2)" nil nil)
+
+(autoload 'date-to-day "time-date" "\
+Return the number of days between year 1 and DATE.
+DATE should be a date-time string.
+
+\(fn DATE)" nil nil)
+
+(autoload 'days-between "time-date" "\
+Return the number of days between DATE1 and DATE2.
+DATE1 and DATE2 should be date-time strings.
+
+\(fn DATE1 DATE2)" nil nil)
+
+(autoload 'date-leap-year-p "time-date" "\
+Return t if YEAR is a leap year.
+
+\(fn YEAR)" nil nil)
+
+(autoload 'time-to-day-in-year "time-date" "\
+Return the day number within the year corresponding to TIME.
+
+\(fn TIME)" nil nil)
+
+(autoload 'time-to-days "time-date" "\
+The number of days between the Gregorian date 0001-12-31bce and TIME.
+TIME should be a time value.
+The Gregorian date Sunday, December 31, 1bce is imaginary.
+
+\(fn TIME)" nil nil)
+
+(autoload 'safe-date-to-time "time-date" "\
+Parse a string DATE that represents a date-time and return a time value.
+If DATE is malformed, return a time value of zeros.
+
+\(fn DATE)" nil nil)
+
+(autoload 'format-seconds "time-date" "\
+Use format control STRING to format the number SECONDS.
+The valid format specifiers are:
+%y is the number of (365-day) years.
+%d is the number of days.
+%h is the number of hours.
+%m is the number of minutes.
+%s is the number of seconds.
+%z is a non-printing control flag (see below).
+%% is a literal \"%\".
+
+Upper-case specifiers are followed by the unit-name (e.g. \"years\").
+Lower-case specifiers return only the unit.
+
+\"%\" may be followed by a number specifying a width, with an
+optional leading \".\" for zero-padding.  For example, \"%.3Y\" will
+return something of the form \"001 year\".
+
+The \"%z\" specifier does not print anything.  When it is used, specifiers
+must be given in order of decreasing size.  To the left of \"%z\", nothing
+is output until the first non-zero unit is encountered.
+
+This function does not work for SECONDS greater than `most-positive-fixnum'.
+
+\(fn STRING SECONDS)" nil nil)
+
+;;;***
+
+;;;### (autoloads (utf7-encode) "utf7" "gnus/lisp/utf7.el" (21233
+;;;;;;  11096))
+;;; Generated autoloads from gnus/lisp/utf7.el
+
+(autoload 'utf7-encode "utf7" "\
+Encode UTF-7 STRING.  Use IMAP modification if FOR-IMAP is non-nil.
+
+\(fn STRING &optional FOR-IMAP)" nil nil)
+
+;;;***
+
+;;;### (autoloads (uudecode-decode-region uudecode-decode-region-internal
+;;;;;;  uudecode-decode-region-external) "uudecode" "gnus/lisp/uudecode.el"
+;;;;;;  (21233 11096))
+;;; Generated autoloads from gnus/lisp/uudecode.el
+
+(autoload 'uudecode-decode-region-external "uudecode" "\
+Uudecode region between START and END using external program.
+If FILE-NAME is non-nil, save the result to FILE-NAME.  The program
+used is specified by `uudecode-decoder-program'.
+
+\(fn START END &optional FILE-NAME)" t nil)
+
+(autoload 'uudecode-decode-region-internal "uudecode" "\
+Uudecode region between START and END without using an external program.
+If FILE-NAME is non-nil, save the result to FILE-NAME.
+
+\(fn START END &optional FILE-NAME)" t nil)
+
+(autoload 'uudecode-decode-region "uudecode" "\
+Uudecode region between START and END.
+If FILE-NAME is non-nil, save the result to FILE-NAME.
+
+\(fn START END &optional FILE-NAME)" nil nil)
+
+;;;***
+
+;;;### (autoloads (yenc-extract-filename yenc-decode-region) "yenc"
+;;;;;;  "gnus/lisp/yenc.el" (21233 11096))
+;;; Generated autoloads from gnus/lisp/yenc.el
+
+(autoload 'yenc-decode-region "yenc" "\
+Yenc decode region between START and END using an internal decoder.
+
+\(fn START END)" t nil)
+
+(autoload 'yenc-extract-filename "yenc" "\
+Extract file name from an yenc header.
+
+\(fn)" nil nil)
+
+;;;***
+
+;;;### (autoloads nil nil ("auto-complete+/auto-complete+.el" "color-theme-solarized/color-theme-solarized-pkg.el"
+;;;;;;  "color-theme-solarized/solarized-dark-theme.el" "color-theme-solarized/solarized-light-theme.el"
+;;;;;;  "cscope/cscope.el" "deferred/concurrent-sample.el" "deferred/concurrent.el"
+;;;;;;  "deferred/deferred-samples.el" "deferred/deferred.el" "deferred/test-concurrent.el"
+;;;;;;  "deferred/test-deferred.el" "e2wm/e2wm-config.el" "e2wm/e2wm-vcs.el"
+;;;;;;  "e2wm/e2wm.el" "e2wm/test-e2wm-pst-class.el" "el-get/el-get-autoloads.el"
 ;;;;;;  "el-get/el-get-build.el" "el-get/el-get-byte-compile.el"
 ;;;;;;  "el-get/el-get-core.el" "el-get/el-get-custom.el" "el-get/el-get-dependencies.el"
 ;;;;;;  "el-get/el-get-install.el" "el-get/el-get-methods.el" "el-get/el-get-notify.el"
-;;;;;;  "el-get/el-get-recipes.el" "el-get/el-get-status.el" "emacs-goodies-el/emacs-goodies-el/elisp/debian-el/debian-el-loaddefs.el"
-;;;;;;  "emacs-goodies-el/emacs-goodies-el/elisp/debian-el/debian-el.el"
-;;;;;;  "emacs-goodies-el/emacs-goodies-el/elisp/debian-el/gnus-BTS.el"
-;;;;;;  "emacs-goodies-el/emacs-goodies-el/elisp/devscripts-el/devscripts.el"
-;;;;;;  "emacs-goodies-el/emacs-goodies-el/elisp/devscripts-el/pbuilder-log-view-mode.el"
-;;;;;;  "emacs-goodies-el/emacs-goodies-el/elisp/devscripts-el/pbuilder-mode.el"
-;;;;;;  "emacs-goodies-el/emacs-goodies-el/elisp/dpkg-dev-el/dpkg-dev-el-loaddefs.el"
-;;;;;;  "emacs-goodies-el/emacs-goodies-el/elisp/dpkg-dev-el/dpkg-dev-el.el"
-;;;;;;  "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/auto-fill-inhibit.el"
-;;;;;;  "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/clipper.el"
-;;;;;;  "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/coffee.el"
-;;;;;;  "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/color-theme-library.el"
-;;;;;;  "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/color-theme_seldefcustom.el"
-;;;;;;  "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/csv-mode.el"
-;;;;;;  "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/dict.el"
-;;;;;;  "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/dir-locals.el"
-;;;;;;  "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/emacs-goodies-build.el"
-;;;;;;  "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/emacs-goodies-custom.el"
-;;;;;;  "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/emacs-goodies-el.el"
-;;;;;;  "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/emacs-goodies-loaddefs.el"
-;;;;;;  "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/eproject.el"
-;;;;;;  "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/filladapt.el"
-;;;;;;  "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/highlight-completion.el"
-;;;;;;  "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/initsplit.el"
-;;;;;;  "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/keywiz.el"
-;;;;;;  "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/maplev.el"
-;;;;;;  "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/minibuf-electric.el"
-;;;;;;  "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/minibuffer-complete-cycle.el"
-;;;;;;  "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/mutt-alias.el"
-;;;;;;  "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/todoo.el"
-;;;;;;  "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/toggle-option.el"
-;;;;;;  "emacs-goodies-el/emacs-goodies-el/elisp/emacs-goodies-el/upstart-mode.el"
-;;;;;;  "popup/popup.el") (20758 4132 257537))
+;;;;;;  "el-get/el-get-recipes.el" "el-get/el-get-status.el" "ewb/ewb.el"
+;;;;;;  "ghc-mod/elisp/ghc-command.el" "ghc-mod/elisp/ghc-comp.el"
+;;;;;;  "ghc-mod/elisp/ghc-doc.el" "ghc-mod/elisp/ghc-flymake.el"
+;;;;;;  "ghc-mod/elisp/ghc-func.el" "ghc-mod/elisp/ghc-indent.el"
+;;;;;;  "ghc-mod/elisp/ghc-info.el" "ghc-mod/elisp/ghc-ins-mod.el"
+;;;;;;  "ghc-mod/elisp/ghc-pkg.el" "git-emacs/git--test.el" "git-emacs/git-emacs-autoloads.el"
+;;;;;;  "git-emacs/git-emacs.el" "git-emacs/git-global-keys.el" "git-emacs/git-log.el"
+;;;;;;  "git-emacs/git-modeline.el" "git-emacs/git-status.el" "gnuplot-mode/dot.el"
+;;;;;;  "gnuplot-mode/dotemacs.el" "gnuplot-mode/gnuplot-context.el"
+;;;;;;  "gnuplot-mode/gnuplot-debug-context.el" "gnuplot-mode/gnuplot-gui.el"
+;;;;;;  "gnuplot-mode/gnuplot-test-context.el" "gnus/lisp/compface.el"
+;;;;;;  "gnus/lisp/dgnushack.el" "gnus/lisp/dns.el" "gnus/lisp/format-spec.el"
+;;;;;;  "gnus/lisp/gnus-async.el" "gnus/lisp/gnus-bcklg.el" "gnus/lisp/gnus-cite.el"
+;;;;;;  "gnus/lisp/gnus-cloud.el" "gnus/lisp/gnus-compat.el" "gnus/lisp/gnus-cus.el"
+;;;;;;  "gnus/lisp/gnus-demon.el" "gnus/lisp/gnus-dup.el" "gnus/lisp/gnus-eform.el"
+;;;;;;  "gnus/lisp/gnus-ems.el" "gnus/lisp/gnus-icalendar.el" "gnus/lisp/gnus-int.el"
+;;;;;;  "gnus/lisp/gnus-load.el" "gnus/lisp/gnus-logic.el" "gnus/lisp/gnus-mh.el"
+;;;;;;  "gnus/lisp/gnus-salt.el" "gnus/lisp/gnus-score.el" "gnus/lisp/gnus-srvr.el"
+;;;;;;  "gnus/lisp/gnus-topic.el" "gnus/lisp/gnus-undo.el" "gnus/lisp/gnus-util.el"
+;;;;;;  "gnus/lisp/gnus-uu.el" "gnus/lisp/gnus-vm.el" "gnus/lisp/gnus-xmas.el"
+;;;;;;  "gnus/lisp/gssapi.el" "gnus/lisp/hex-util.el" "gnus/lisp/hmac-def.el"
+;;;;;;  "gnus/lisp/hmac-md5.el" "gnus/lisp/ietf-drums.el" "gnus/lisp/legacy-gnus-agent.el"
+;;;;;;  "gnus/lisp/lpath.el" "gnus/lisp/mail-parse.el" "gnus/lisp/mail-prsvr.el"
+;;;;;;  "gnus/lisp/mail-source.el" "gnus/lisp/mailcap.el" "gnus/lisp/md4.el"
+;;;;;;  "gnus/lisp/messagexmas.el" "gnus/lisp/messcompat.el" "gnus/lisp/mm-archive.el"
+;;;;;;  "gnus/lisp/mm-bodies.el" "gnus/lisp/mm-decode.el" "gnus/lisp/mm-util.el"
+;;;;;;  "gnus/lisp/mm-view.el" "gnus/lisp/mml-sec.el" "gnus/lisp/mml-smime.el"
+;;;;;;  "gnus/lisp/nnagent.el" "gnus/lisp/nnbabyl.el" "gnus/lisp/nndir.el"
+;;;;;;  "gnus/lisp/nndraft.el" "gnus/lisp/nneething.el" "gnus/lisp/nngateway.el"
+;;;;;;  "gnus/lisp/nnheader.el" "gnus/lisp/nnheaderxm.el" "gnus/lisp/nnimap.el"
+;;;;;;  "gnus/lisp/nnir.el" "gnus/lisp/nnmail.el" "gnus/lisp/nnmaildir.el"
+;;;;;;  "gnus/lisp/nnmairix.el" "gnus/lisp/nnmbox.el" "gnus/lisp/nnmh.el"
+;;;;;;  "gnus/lisp/nnnil.el" "gnus/lisp/nnoo.el" "gnus/lisp/nnregistry.el"
+;;;;;;  "gnus/lisp/nnrss.el" "gnus/lisp/nnspool.el" "gnus/lisp/nntp.el"
+;;;;;;  "gnus/lisp/nnvirtual.el" "gnus/lisp/nnweb.el" "gnus/lisp/ntlm.el"
+;;;;;;  "gnus/lisp/registry.el" "gnus/lisp/rfc1843.el" "gnus/lisp/rfc2045.el"
+;;;;;;  "gnus/lisp/rfc2047.el" "gnus/lisp/rfc2104.el" "gnus/lisp/rfc2231.el"
+;;;;;;  "gnus/lisp/rtree.el" "gnus/lisp/sasl-cram.el" "gnus/lisp/sasl-digest.el"
+;;;;;;  "gnus/lisp/sasl-ntlm.el" "gnus/lisp/sasl.el" "gnus/lisp/sieve-manage.el"
+;;;;;;  "gnus/lisp/smime-ldap.el" "gnus/lisp/smime.el" "gnus/lisp/spam-stat.el"
+;;;;;;  "gnus/lisp/spam-wash.el" "gnus/lisp/tls.el" "haskell-mode/haskell-bot.el"
+;;;;;;  "haskell-mode/haskell-checkers.el" "haskell-mode/haskell-compat.el"
+;;;;;;  "haskell-mode/haskell-mode-autoloads.el" "haskell-mode/haskell-package.el"
+;;;;;;  "haskell-mode/haskell-presentation-mode.el" "haskell-mode/haskell-str.el"
+;;;;;;  "haskell-mode/haskell-utils.el" "irc/irc.el" "mew/auxiliary.el"
+;;;;;;  "mew/mew-addrbook.el" "mew/mew-attach.el" "mew/mew-auth.el"
+;;;;;;  "mew/mew-blvs.el" "mew/mew-bq.el" "mew/mew-cache.el" "mew/mew-complete.el"
+;;;;;;  "mew/mew-config.el" "mew/mew-const.el" "mew/mew-darwin.el"
+;;;;;;  "mew/mew-decode.el" "mew/mew-demo.el" "mew/mew-draft.el"
+;;;;;;  "mew/mew-edit.el" "mew/mew-encode.el" "mew/mew-env.el" "mew/mew-exec.el"
+;;;;;;  "mew/mew-ext.el" "mew/mew-fib.el" "mew/mew-func.el" "mew/mew-gemacs.el"
+;;;;;;  "mew/mew-header.el" "mew/mew-highlight.el" "mew/mew-imap.el"
+;;;;;;  "mew/mew-imap2.el" "mew/mew-key.el" "mew/mew-lang-jp.el"
+;;;;;;  "mew/mew-lang-kr.el" "mew/mew-lang-latin.el" "mew/mew-local.el"
+;;;;;;  "mew/mew-mark.el" "mew/mew-message.el" "mew/mew-mime.el"
+;;;;;;  "mew/mew-minibuf.el" "mew/mew-mule.el" "mew/mew-mule3.el"
+;;;;;;  "mew/mew-net.el" "mew/mew-nntp.el" "mew/mew-nntp2.el" "mew/mew-passwd.el"
+;;;;;;  "mew/mew-pgp.el" "mew/mew-pick.el" "mew/mew-pop.el" "mew/mew-refile.el"
+;;;;;;  "mew/mew-scan.el" "mew/mew-search.el" "mew/mew-smime.el"
+;;;;;;  "mew/mew-smtp.el" "mew/mew-sort.el" "mew/mew-ssh.el" "mew/mew-ssl.el"
+;;;;;;  "mew/mew-summary.el" "mew/mew-summary2.el" "mew/mew-summary3.el"
+;;;;;;  "mew/mew-summary4.el" "mew/mew-syntax.el" "mew/mew-thread.el"
+;;;;;;  "mew/mew-unix.el" "mew/mew-vars.el" "mew/mew-vars2.el" "mew/mew-vars3.el"
+;;;;;;  "mew/mew-varsx.el" "mew/mew-virtual.el" "mew/mew-win32.el"
+;;;;;;  "mew/temp.el" "pcache/pcache-tests.el" "pcache/pcache.el"
+;;;;;;  "speedbar-extension/speedbar-extension.el" "window-layout/window-layout.el")
+;;;;;;  (21267 28790 460608))
 
 ;;;***
 
