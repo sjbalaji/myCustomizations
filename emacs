@@ -16,9 +16,9 @@
 (fset 'setSchemeSicp
    "\C-[xrun-scheme\C-m\C-x3\C-x\C-f/home/mswork/ebooks/sicp.info\C-m\C-[xlocal-set-key\C-m\C-x\C-escheme-send-last-sexp\C-m")
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Font size 
+;; Font size
 (set-face-attribute 'default nil :height 100)
-(add-hook 'load-path "~/.emacs.d/" 
+(add-hook 'load-path "~/.emacs.d/"
  "~/.emacs.d/elpa/")
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; displays the time in the status bar
@@ -96,7 +96,7 @@
 ;; open files in read only mode by default (f3 can to used to change to write mode)
 (add-hook 'find-file-hook (lambda () (toggle-read-only 1)))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; emacs multimedia player 
+;; emacs multimedia player
 (add-hook 'load-path "~/.emacs.d/emms-3.0/")
 (require 'emms-setup)
 (emms-standard)
@@ -115,7 +115,7 @@
 (setq org-log-done t)
 (setq org-agenda-files (list "~/.emacs.d/org/HotPower2012.org"))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; custom key bindings for org mode 
+;; custom key bindings for org mode
 (add-hook 'org-mode-hook
 	  (lambda ()
 	    (define-key org-mode-map [f1] 'org-insert-todo-heading)
@@ -132,13 +132,13 @@
 ;; custom key bindings
 (global-set-key [f1] 'comment-region)    ;; Comment region
 (global-set-key [f2] 'uncomment-region)  ;; Uncomment region
-(global-set-key [f3] "\C-x\C-q")         ;; Change ro <+> rw mode 
+(global-set-key [f3] "\C-x\C-q")         ;; Change ro <+> rw mode
 (global-set-key [f4] "\C-xrk")           ;; Kill the  rectangular region
 (global-set-key [f5] "\C-xrrr")          ;; Copy the rectangular region
 (global-set-key [f6] "\C-xrir")          ;; Paste the rectangular region
 (global-set-key [f7] "\C-x5o")           ;; Search for a TAG
 (global-set-key [f8] 'nuke-line)         ;; Delete a line
-(global-set-key [f9] 'switch-to-term)    ;; Open or switch to a terminal 
+(global-set-key [f9] 'switch-to-term)    ;; Open or switch to a terminal
 (global-set-key [f10] 'next-buffer)      ;; Switch to next open buffer
 (global-set-key [f11] "\C-u6\C-xTAB")
 ;;(global-set-key [f12] 'setSchemeSicp)
@@ -247,8 +247,8 @@
 (defun kill-other-buffers ()
   "Kill all other buffers."
   (interactive)
-  (mapc 'kill-buffer 
-	(delq (current-buffer) 
+  (mapc 'kill-buffer
+	(delq (current-buffer)
 	      (remove-if-not 'buffer-file-name (buffer-list)))))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -269,7 +269,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; -== scala-mode ==-
 (add-to-list 'load-path "~/.emacs.d/scala")
-(require 'scala-mode-auto) 
+(require 'scala-mode-auto)
 (add-hook 'scala-mode-hook
 	  '(lambda ()
 	     (scala-mode-feature-electric-mode)))
@@ -331,7 +331,7 @@ or nil if not found."
 ;; ;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (display-battery-mode 1)
- ;;    '(("sjmsworkmdu" 
+ ;;    '(("sjmsworkmdu"
  ;;       (:network-server . "talk.google.com")
  ;;       (:connection-type . ssl))))
 (load-file "~/.emacs.d/elpa/langtool-20130920.407/langtool.el")
