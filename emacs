@@ -47,7 +47,7 @@
 (add-to-list 'load-path "/home/balaji/.emacs.d/git-emacs")
 (require 'git-emacs)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; highlight the current line 
+;; highlight the current line
 ;; Different option for X window vs terminal mode :)
 (global-hl-line-mode 1)
 (if window-system
@@ -119,6 +119,11 @@
 (global-set-key [f9] 'switch-to-term)    ;; Open or switch to a terminal 
 (global-set-key [f10] 'next-buffer)      ;; Switch to next open buffer
 ;;(global-set-key [f11] "\C-u\M-.")
+(global-set-key [backtab] "\C-xo")
+(global-set-key (kbd "M-<up>") "\C-x5o")
+(global-set-key (kbd "M-<down>") "\C-x5o")
+(global-set-key (kbd "C-<up>") "\C-xo")
+(global-set-key (kbd "C-<down>") "\C-xo")
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun switch-to-term ()
   (interactive)
@@ -451,7 +456,6 @@
 	(save-excursion (newline-and-indent))))
     (newline arg)
     (indent-according-to-mode)))
-
 (global-set-key (kbd "RET") 'autopairs-ret)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Enable mouse in nw
