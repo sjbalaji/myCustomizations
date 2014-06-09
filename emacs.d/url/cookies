@@ -1,0 +1,23 @@
+;; Emacs-W3 HTTP cookies file
+;; Automatically generated file!!! DO NOT EDIT!!!
+
+(setq url-cookie-storage
+ '((".kiwiirc.com"
+  [url-cookie "__cfduid" "d237111a587dead84e8001ef96261358a1395317157864" "23-Dec-2019 23:50:00.00 GMT" "/" ".kiwiirc.com" nil]
+  [url-cookie "HttpOnly" nil "23-Dec-2019 23:50:00.00 GMT" "/" ".kiwiirc.com" nil])
+ ("marmalade-repo.org"
+  [url-cookie "httpOnly" nil "Wed, 14 May 2014 12:17:44 GMT" "/" "marmalade-repo.org" nil]
+  [url-cookie "connect.sid" "mOuTXnKdWOVNYl8MLx2oS1Ha.pngdFQsu3OZrMMTAotYQa6Nz7pM5Q5Ta2LEjiwf%2F5D0" "Wed, 14 May 2014 12:17:44 GMT" "/" "marmalade-repo.org" nil])
+ (".ycombinator.com"
+  [url-cookie "__cfduid" "d6eccd756322dab25f7bf31a9786ab6c41395942956512" "23-Dec-2019 23:50:00.00 GMT" "/" ".ycombinator.com" nil]
+  [url-cookie "HttpOnly" nil "23-Dec-2019 23:50:00.00 GMT" "/" ".ycombinator.com" nil])
+ (".nytimes.com"
+  [url-cookie "RMID" "007f01012db0533340630008" "Thu, 26 Mar 2015 21:02:27 UTC" "/" ".nytimes.com" nil]))
+)
+(setq url-cookie-secure-storage
+ 'nil)
+
+;; Local Variables:
+;; version-control: never
+;; no-byte-compile: t
+;; End:
