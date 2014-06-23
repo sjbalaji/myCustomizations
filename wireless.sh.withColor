@@ -1,12 +1,12 @@
 #!/bin/sh
 
-iwconfig eth1 2>&1 | grep -q no\ wireless\ extensions\. && {
+iwconfig wlan0 2>&1 | grep -q no\ wireless\ extensions\. && {
   echo wired
   exit 0
 }
 
-essid=`sudo iwconfig eth1 | awk -F '"' '/ESSID/ {print $2}'`
-stngth=`sudo iwconfig eth1 | awk -F '=' '/Quality/ {print $2}' | cut -d '/' -f 1`
+essid=`sudo iwconfig wlan0 | awk -F '"' '/ESSID/ {print $2}'`
+stngth=`sudo iwconfig wlan0 | awk -F '=' '/Quality/ {print $2}' | cut -d '/' -f 1`
 bars=`echo "$stngth * 2" | bc`
 case $bars in
   0)  bar="[$(tput setaf 1)$(tput bold)----------$(tput sgr0)]" ;;
@@ -22,5 +22,5 @@ case $bars in
   10) bar="[$(tput setaf 2)$(tput bold)**********$(tput sgr0)]" ;;
   *)  bar="[$(tput setaf 1)$(tput bold)----!!----$(tput sgr0)]" ;;
 esac
-echo -ne "${essid}: ${bar}"
+echo "${essid}: ${bar}"
 exit 0
