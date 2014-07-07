@@ -316,12 +316,23 @@
         (TeX-command "LaTeX" 'TeX-master-file -1))
     (TeX-view)))
 ;;(add-hook 'LaTeX-mode-hook (lambda () (local-set-key (kbd "C-x C-s") #'my-run-latex)))
-(add-hook 'LaTeX-mode-hook '(lambda ()
-     (add-hook 'after-save-hook 'my-run-latex)))
+;; (add-hook 'LaTeX-mode-hook '(lambda ()
+;;      (add-hook 'after-save-hook 'run-latex)))
+(add-hook 'LaTeX-mode-hook (lambda () (local-set-key (kbd "C-x C-s") #'run-latex)))
+
+(fset 'cut-one-line
+   "\C-@\C-c.\C-w")
+(fset 'my-compile-latex
+   "\C-c\C-cLaTeX\C-i\C-m")
+(fset 'my-compile-bibtex
+   "\C-c\C-cBibTex\C-i\C-m")
+(fset 'my-compile-all
+   "\C-c\C-cClean All\C-my\C-c\C-cLaTeX\C-i\C-m\C-c\C-cBibTeX\C-i\C-m\C-c\C-cLaTeX\C-i\C-m\C-c\C-cLaTeX\C-i\C-m")
 
 (add-hook 'LaTeX-mode-hook (lambda () (local-set-key [f4] 'ispell-word)))
-(add-hook 'LaTeX-mode-hook (lambda () (local-set-key [f5] 'my-run-latex)))
-(add-hook 'LaTeX-mode-hook (lambda () (local-set-key [f6] 'run-bibtex)))
+(add-hook 'LaTeX-mode-hook (lambda () (local-set-key [f5] 'my-compile-latex)))
+(add-hook 'LaTeX-mode-hook (lambda () (local-set-key [f6] 'my-compile-bibtex)))
+
 (setq reftex-plug-into-AUCTeX t)
 (require 'tex)
 (defun TeX-synctex-output-page ()
