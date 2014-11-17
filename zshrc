@@ -2,7 +2,7 @@ zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.zsh
 fpath=(~/.zsh $fpath)
 source /etc/git-completion.bash
 source /etc/git-prompt.sh
-source /Users/balaji/.zsh/zsh-git-prompt/zshrc.sh
+source ~/.zsh/zsh-git-prompt/zshrc.sh
 # an example prompt
 autoload -U colors && colors
 PROMPT='%{%F{red}%}%n%{%f%}@%{%F{blue}%}%m %{%F{yellow}%}%~%b$(git_super_status) %# '
