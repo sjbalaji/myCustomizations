@@ -58,10 +58,14 @@ myWorkspaces    = ["1:main","2:web","3:emacs","4:chat","5:music", "6:gimp","7:wo
 -- Dzen/Conky
 -- myXmonadBar = "dzen2 -y '1440' -h '24' -w '640' -ta 'l' -fg '#FFFFFF' -bg '#1B1D1E'"
 myXmonadBar = "dzen2 -ta 'l' -h '24' -fg '#FFFFFF' -bg '#1B1D1E'"
-myStatusBar = "conky -c /home/balaji/.xmonad/.conky_dzen | dzen2 -y '1440'  -h '24' -ta 'r' -bg '#1B1D1E' -fg '#FFFFFF'"
+-- myStatusBar = "conky -c /home/balaji/.xmonad/.conky_dzen | dzen2 -y '1440'  -h '24' -ta 'r' -bg '#1B1D1E' -fg '#FFFFFF'"
+-- myStatusBar = "i3status -c /home/balaji/.xmonad/i3statusConfig | dzen2 -y '1440' -h '24' -w '640' -ta 'l' -fg '#FFFFFF' -bg '#1B1D1E'"
+myStatusBar = "i3status -c '/home/balaji/.xmonad/i3statsConfig' | dzen2 -y '1440' -h '24' -ta 'r'"
 myBitmapsDir = "/home/my_user/.xmonad/dzen2"
 -- myBottomBar = "xmobar -b"
-myBottomBar = "dzen2 -y '1440' -h '24' -w '640' -ta 'l' -fg '#FFFFFF' -bg '#1B1D1E'"
+-- myBottomBar = "dzen2 -y '1440' -h '24' -w '640' -ta 'r' -fg '#FFFFFF' -bg '#1B1D1E'"
+-- myBottomBar = "i3status -c /home/balaji/.xmonad/i3statusConfig | dzen2 -y '1440' -h '24' -w '640' -ta 'l' -fg '#FFFFFF' -bg '#1B1D1E'"
+
 myGuake = "guake"
 myWallpaper = "feh --bg-scale /home/balaji/Pictures/husky.jpg"
 --}}}
@@ -219,7 +223,7 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((modMask,                    xK_g        ), spawn "guake")
     , ((modMask,                    xK_F2       ), spawn "gmrun")
     , ((modMask .|. shiftMask,      xK_c        ), kill)
-    , ((modMask .|. shiftMask,      xK_l        ), spawn "slock")
+    , ((modMask .|. shiftMask,      xK_l        ), spawn "gnome-screensaver-command -l")
     -- Programs
     , ((0,                          xK_Print    ), spawn "scrot -e 'mv $f ~/screenshots/'")
     , ((modMask,                                            xK_o        ), spawn "chromium-browser")
